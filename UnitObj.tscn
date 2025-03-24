@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://bl41bmdw7f06q"]
+
+[ext_resource type="Texture2D" uid="uid://xfjyri0wrabf" path="res://Textures/BAA_UnitSymbols.png" id="1_bgkb8"]
+[ext_resource type="Script" path="res://UnitObjScript.gd" id="2_r6mwj"]
+[ext_resource type="Texture2D" uid="uid://bajiiwmmg7vc6" path="res://Textures/BAA_UnitSelected.png" id="3_v8l3e"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_opv5f"]
+atlas = ExtResource("1_bgkb8")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_87tm6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_opv5f")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Unit" type="AnimatedSprite2D"]
+self_modulate = Color(1, 1, 1, 0.462745)
+z_index = 1
+sprite_frames = SubResource("SpriteFrames_87tm6")
+script = ExtResource("2_r6mwj")
+
+[node name="Pos1" type="Node2D" parent="."]
+position = Vector2(-20, 0)
+
+[node name="Pos2" type="Node2D" parent="."]
+position = Vector2(20, 0)
+
+[node name="Pos3" type="Node2D" parent="."]
+position = Vector2(0, 20)
+
+[node name="Pos4" type="Node2D" parent="."]
+position = Vector2(0, -20)
+
+[node name="Pos5" type="Node2D" parent="."]
+
+[node name="SelectIcon" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_v8l3e")

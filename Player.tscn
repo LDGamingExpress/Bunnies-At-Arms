@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://o1mm2ci8jvc"]
+
+[ext_resource type="Script" path="res://PlayerScript.gd" id="1_m4ijf"]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_m4ijf")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
