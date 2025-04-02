@@ -7,6 +7,8 @@ var Selected = 0
 var GoToPos = global_position
 var FarAway = 0
 var Speed = 1
+var FarAwayFrom = null
+var FirstMove = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -35,7 +37,8 @@ func _process(delta: float) -> void:
 	elif PlayerHovering == 1:
 		Globals.HoveringOverClickable -= 1
 		PlayerHovering = 0
-	if FarAway > 0:
+	if FarAway > 0 and FirstMove != 1:
+		#var posBefore = position
 		if GoToPos.x > global_position.x:
 			position.x += 1*(log(400/FarAway))
 		if GoToPos.x < global_position.x:
@@ -45,6 +48,7 @@ func _process(delta: float) -> void:
 		if GoToPos.y < global_position.y:
 			position.y -= 1*(log(400/FarAway))
 	else:
+		FirstMove = 0
 		if GoToPos.x > global_position.x:
 			position.x += 1
 		if GoToPos.x < global_position.x:
@@ -57,7 +61,7 @@ func _process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if (event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT):
-			if PlayerHovering == 0 and (Globals.MousePos.x >= (global_position.x - 16)) and (Globals.MousePos.x <= (global_position.x + 16)) and (Globals.MousePos.y >= (global_position.y - 16)) and (Globals.MousePos.y <= (global_position.y + 16)):
+			if PlayerHovering == 0 and (Globals.MousePos.x >= ($SelectIcon.global_position.x - 16)) and (Globals.MousePos.x <= ($SelectIcon.global_position.x + 16)) and (Globals.MousePos.y >= ($SelectIcon.global_position.y - 16)) and (Globals.MousePos.y <= ($SelectIcon.global_position.y + 16)):
 				Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
 				Globals.HoveringOverClickable += 1
 				PlayerHovering = 1
@@ -76,6 +80,9 @@ func _input(event: InputEvent) -> void:
 		if Selected == 1:
 			if (event.is_pressed() and event.button_index == MOUSE_BUTTON_RIGHT):
 				GoToPos = Globals.MousePos
+				FarAway = 0
+				FirstMove = 1
+				print(GoToPos)
 				UnSelect()
 
 func UnSelect():
