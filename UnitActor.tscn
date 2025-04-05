@@ -1,11 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://ke31dymdk3hu"]
+[gd_scene load_steps=11 format=3 uid="uid://ke31dymdk3hu"]
 
 [ext_resource type="Texture2D" uid="uid://cfgpvagvsvydh" path="res://Textures/BAA_UnitTiles.png" id="1_5xegg"]
 [ext_resource type="Script" path="res://UnitActorScript.gd" id="1_dptay"]
+[ext_resource type="Texture2D" uid="uid://d7cfg2ipt2pg" path="res://Textures/BAA_GunTiles.png" id="3_6livi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mgpde"]
 atlas = ExtResource("1_5xegg")
 region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1u44g"]
+atlas = ExtResource("1_5xegg")
+region = Rect2(64, 64, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_o6apg"]
 animations = [{
@@ -16,20 +21,74 @@ animations = [{
 "loop": true,
 "name": &"Infantry1",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1u44g")
+}],
+"loop": true,
+"name": &"Infantry2",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u7833"]
+atlas = ExtResource("3_6livi")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cud76"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u7833")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rv5ut"]
 radius = 7.0
 
-[node name="UnitActor" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_jjdwi"]
+radius = 250.0
+
+[node name="UnitActor" type="CharacterBody2D" groups=["Units"]]
 top_level = true
 z_as_relative = false
+collision_layer = 3
+collision_mask = 3
+motion_mode = 1
+wall_min_slide_angle = 0.0
 script = ExtResource("1_dptay")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_o6apg")
 animation = &"Infantry1"
 
+[node name="GunSprite" type="AnimatedSprite2D" parent="AnimatedSprite2D"]
+show_behind_parent = true
+position = Vector2(6, -4)
+scale = Vector2(0.8, 0.8)
+sprite_frames = SubResource("SpriteFrames_cud76")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource("CircleShape2D_rv5ut")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 5.0
+target_desired_distance = 8.0
+avoidance_enabled = true
+debug_use_custom = true
+debug_path_custom_color = Color(1, 0, 1, 1)
+
+[node name="DetectArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectArea"]
+shape = SubResource("CircleShape2D_jjdwi")
+
+[node name="ReloadTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="body_entered" from="DetectArea" to="." method="_on_detect_area_body_entered"]
+[connection signal="body_exited" from="DetectArea" to="." method="_on_detect_area_body_exited"]
+[connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]
