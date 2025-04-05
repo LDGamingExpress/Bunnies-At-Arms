@@ -472,3 +472,25 @@ position = Vector2(112, 88)
 [node name="Unit3" parent="." instance=ExtResource("2_i7ys4")]
 position = Vector2(664, 264)
 Team = 2
+
+[node name="Unit4" parent="." instance=ExtResource("2_i7ys4")]
+position = Vector2(72, -32)
+Type = "SMG"
+
+[node name="Unit5" parent="." instance=ExtResource("2_i7ys4")]
+position = Vector2(-80, 232)
+Type = "Recon"
+
+[node name="Unit6" parent="." instance=ExtResource("2_i7ys4")]
+position = Vector2(736, 392)
+Type = "Recon"
+Team = 2
+
+[node name="Unit7" parent="." instance=ExtResource("2_i7ys4")]
+position = Vector2(1096, 8)
+Type = "Recon"
+Team = 2
+
+[node name="Unit8" parent="." instance=ExtResource("2_i7ys4")]
+position = Vector2(-80, 64)
+Type = "Car"

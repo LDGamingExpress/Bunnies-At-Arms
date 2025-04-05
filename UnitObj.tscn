@@ -1,8 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://bl41bmdw7f06q"]
+[gd_scene load_steps=12 format=3 uid="uid://bl41bmdw7f06q"]
 
 [ext_resource type="Texture2D" uid="uid://xfjyri0wrabf" path="res://Textures/BAA_UnitSymbols.png" id="1_bgkb8"]
 [ext_resource type="Script" path="res://UnitObjScript.gd" id="2_r6mwj"]
 [ext_resource type="Texture2D" uid="uid://bajiiwmmg7vc6" path="res://Textures/BAA_UnitSelected.png" id="3_v8l3e"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7vfkd"]
+atlas = ExtResource("1_bgkb8")
+region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_opv5f"]
 atlas = ExtResource("1_bgkb8")
@@ -12,8 +16,32 @@ region = Rect2(0, 0, 32, 32)
 atlas = ExtResource("1_bgkb8")
 region = Rect2(0, 64, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_bg88k"]
+atlas = ExtResource("1_bgkb8")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i7uah"]
+atlas = ExtResource("1_bgkb8")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_03t7j"]
+atlas = ExtResource("1_bgkb8")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b23ni"]
+atlas = ExtResource("1_bgkb8")
+region = Rect2(64, 64, 32, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_87tm6"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7vfkd")
+}],
+"loop": true,
+"name": &"Car1",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_opv5f")
@@ -29,6 +57,38 @@ animations = [{
 "loop": true,
 "name": &"Infantry2",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bg88k")
+}],
+"loop": true,
+"name": &"Recon1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i7uah")
+}],
+"loop": true,
+"name": &"Recon2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_03t7j")
+}],
+"loop": true,
+"name": &"SMG1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b23ni")
+}],
+"loop": true,
+"name": &"SMG2",
+"speed": 5.0
 }]
 
 [node name="Unit" type="CharacterBody2D" groups=["Units"]]
@@ -40,7 +100,7 @@ script = ExtResource("2_r6mwj")
 self_modulate = Color(1, 1, 1, 0.462745)
 z_index = 1
 sprite_frames = SubResource("SpriteFrames_87tm6")
-animation = &"Infantry1"
+animation = &"Car1"
 
 [node name="SelectIcon" type="Sprite2D" parent="UnitIcon"]
 visible = false

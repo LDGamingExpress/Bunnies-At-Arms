@@ -1,8 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://ke31dymdk3hu"]
+[gd_scene load_steps=22 format=3 uid="uid://ke31dymdk3hu"]
 
 [ext_resource type="Texture2D" uid="uid://cfgpvagvsvydh" path="res://Textures/BAA_UnitTiles.png" id="1_5xegg"]
 [ext_resource type="Script" path="res://UnitActorScript.gd" id="1_dptay"]
 [ext_resource type="Texture2D" uid="uid://d7cfg2ipt2pg" path="res://Textures/BAA_GunTiles.png" id="3_6livi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_potrx"]
+atlas = ExtResource("1_5xegg")
+region = Rect2(160, 0, 64, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mgpde"]
 atlas = ExtResource("1_5xegg")
@@ -12,8 +16,32 @@ region = Rect2(64, 0, 32, 32)
 atlas = ExtResource("1_5xegg")
 region = Rect2(64, 64, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_268gh"]
+atlas = ExtResource("1_5xegg")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ybtc2"]
+atlas = ExtResource("1_5xegg")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_16yw6"]
+atlas = ExtResource("1_5xegg")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_roap8"]
+atlas = ExtResource("1_5xegg")
+region = Rect2(128, 64, 32, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_o6apg"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_potrx")
+}],
+"loop": true,
+"name": &"Car1",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_mgpde")
@@ -29,27 +57,131 @@ animations = [{
 "loop": true,
 "name": &"Infantry2",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_268gh")
+}],
+"loop": true,
+"name": &"Recon1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ybtc2")
+}],
+"loop": true,
+"name": &"Recon2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_16yw6")
+}],
+"loop": true,
+"name": &"SMG1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_roap8")
+}],
+"loop": true,
+"name": &"SMG2",
+"speed": 5.0
 }]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2axuy"]
+atlas = ExtResource("3_6livi")
+region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u7833"]
 atlas = ExtResource("3_6livi")
 region = Rect2(0, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_rev1w"]
+atlas = ExtResource("3_6livi")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rbrfh"]
+atlas = ExtResource("3_6livi")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_63lv8"]
+atlas = ExtResource("3_6livi")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ll7xv"]
+atlas = ExtResource("3_6livi")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mbl6o"]
+atlas = ExtResource("3_6livi")
+region = Rect2(64, 0, 32, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_cud76"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2axuy")
+}],
+"loop": true,
+"name": &"Car1",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_u7833")
 }],
 "loop": true,
-"name": &"default",
+"name": &"Infantry1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rev1w")
+}],
+"loop": true,
+"name": &"Infantry2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rbrfh")
+}],
+"loop": true,
+"name": &"Recon1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_63lv8")
+}],
+"loop": true,
+"name": &"Recon2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ll7xv")
+}],
+"loop": true,
+"name": &"SMG1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mbl6o")
+}],
+"loop": true,
+"name": &"SMG2",
 "speed": 5.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rv5ut"]
 radius = 7.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_jjdwi"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_k3sdr"]
 radius = 250.0
 
 [node name="UnitActor" type="CharacterBody2D" groups=["Units"]]
@@ -70,6 +202,7 @@ show_behind_parent = true
 position = Vector2(6, -4)
 scale = Vector2(0.8, 0.8)
 sprite_frames = SubResource("SpriteFrames_cud76")
+animation = &"Infantry1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_rv5ut")
@@ -84,7 +217,7 @@ debug_path_custom_color = Color(1, 0, 1, 1)
 [node name="DetectArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectArea"]
-shape = SubResource("CircleShape2D_jjdwi")
+shape = SubResource("CircleShape2D_k3sdr")
 
 [node name="ReloadTimer" type="Timer" parent="."]
 wait_time = 0.5

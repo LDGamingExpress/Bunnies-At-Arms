@@ -6,6 +6,7 @@ var SPEED = 100.0
 var Damage = 1
 var Team = null
 var startpos = null
+var GunRange = 150
 
 func _ready() -> void:
 	startpos = position
@@ -13,7 +14,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	velocity = dir * SPEED
 	move_and_slide()
-	if pow(startpos.x - position.x,2) + pow(startpos.y - position.y,2) > 250000:
+	if sqrt(pow(startpos.x - position.x,2) + pow(startpos.y - position.y,2)) > GunRange:
 		queue_free()
 
 

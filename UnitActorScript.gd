@@ -20,9 +20,20 @@ var Damage = 1
 var Health = 3
 var rng = RandomNumberGenerator.new()
 
+var GunOffsetX = 6
+var GunOffsetY = -4
+var GunBehind = true
+
 func _ready() -> void:
 	$AnimatedSprite2D.animation = Type
+	$AnimatedSprite2D/GunSprite.animation = Type
 	$ReloadTimer.wait_time = ReloadTime
+	$DetectArea/CollisionShape2D.shape = $DetectArea/CollisionShape2D.shape.duplicate()
+	$DetectArea/CollisionShape2D.shape.radius = (GunRange)
+	$AnimatedSprite2D/GunSprite.position = Vector2(GunOffsetX,GunOffsetY)
+	$AnimatedSprite2D/GunSprite.show_behind_parent = GunBehind
+	#print(GunRange)
+	#print($DetectArea/CollisionShape2D.shape.radius)
 
 func _physics_process(delta: float) -> void:
 	if Health <= 0:
@@ -77,6 +88,48 @@ func _physics_process(delta: float) -> void:
 					NewObj.position = $AnimatedSprite2D/GunSprite.global_position
 					NewObj.SPEED = 700.0
 					NewObj.Team = Team
+					NewObj.GunRange = GunRange
+					# + Vector2(rng.randf_range(-Accuracy,Accuracy),rng.randf_range(-Accuracy,Accuracy))
+					NewObj.dir = to_local(EnemyTarget.global_position).normalized()
+					NewObj.Damage = Damage
+					get_parent().get_parent().add_child(NewObj)
+					$ReloadTimer.start()
+			LastTar = to_global($NavigationAgent2D.get_next_path_position())
+			velocity = dir * SPEED
+		"Aggressive":
+			if EnemiesNearby.size() > 0:
+				if get_parent().Pursuing == null:
+					get_parent().Pursuing = GetClosestEnemy()
+			if get_parent().get_child(pos2go).global_position != GoToPos:
+				GoToPos = get_parent().get_child(pos2go).global_position
+				$NavigationAgent2D.target_position = GoToPos
+
+			var Dis = pow(GoToPos.x - global_position.x,2) + pow(GoToPos.y - global_position.y,2)
+			if get_parent().FarAway < Dis:
+				get_parent().FarAway = Dis
+				LastFar = Dis
+				#get_parent().FarAwayFrom = name
+			if get_parent().FarAway == LastFar and get_parent().FarAway > Dis:
+				get_parent().FarAway = Dis
+			
+			EnemyTarget = null
+			if EnemiesNearby.size() > 0:
+				EnemyTarget = GetClosestEnemy()
+			
+			var dir = to_local($NavigationAgent2D.get_next_path_position()).normalized()
+			if abs(to_global($NavigationAgent2D.get_next_path_position()).x - LastTar.x) + abs(to_global($NavigationAgent2D.get_next_path_position()).y - LastTar.y) > 2:
+				$AnimatedSprite2D.look_at(GoToPos)
+			#print(EnemyTarget)
+			#print(EnemiesNearby)
+			if EnemyTarget != null:
+				$AnimatedSprite2D.look_at(EnemyTarget.global_position)
+				if Reloaded == 1:
+					Reloaded = 0
+					var NewObj = UnitActor.instantiate()
+					NewObj.position = $AnimatedSprite2D/GunSprite.global_position
+					NewObj.SPEED = 700.0
+					NewObj.Team = Team
+					NewObj.GunRange = GunRange
 					# + Vector2(rng.randf_range(-Accuracy,Accuracy),rng.randf_range(-Accuracy,Accuracy))
 					NewObj.dir = to_local(EnemyTarget.global_position).normalized()
 					NewObj.Damage = Damage
@@ -97,6 +150,8 @@ func _on_detect_area_body_exited(body: Node2D) -> void:
 	if body.is_in_group("Units"):
 		if body.Team != Team and EnemiesNearby.find(body) != -1:
 			EnemiesNearby.erase(body)
+			if get_parent().Pursuing == body:
+				get_parent().Pursuing = null
 
 func GetClosestEnemy():
 	var ClosestDis = 1000000000
