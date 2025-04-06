@@ -57,7 +57,7 @@ scale_curve = SubResource("CurveTexture_ryecy")
 color_ramp = SubResource("GradientTexture1D_vk0i8")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ofd4v"]
-radius = 20.0
+radius = 25.0
 
 [node name="ImpactExplosion" type="GPUParticles2D"]
 z_index = 1

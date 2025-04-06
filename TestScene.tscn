@@ -493,7 +493,7 @@ Team = 2
 
 [node name="Unit7" parent="." instance=ExtResource("2_i7ys4")]
 position = Vector2(1096, 8)
-Type = "Recon"
+Type = "Car"
 Team = 2
 
 [node name="Unit8" parent="." instance=ExtResource("2_i7ys4")]
