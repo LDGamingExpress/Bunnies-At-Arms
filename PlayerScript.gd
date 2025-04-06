@@ -51,11 +51,12 @@ func _physics_process(delta: float) -> void:
 
 func _on_selection_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Units"):
-		if body.Team == 1 and PossibleSelections.find(body) == -1:
+		if body.Team == 1 and PossibleSelections.find(body.get_parent()) == -1:
 			PossibleSelections.append(body.get_parent())
 
 
 func _on_selection_area_body_exited(body: Node2D) -> void:
 	if body.is_in_group("Units"):
-		if body.Team == 1 and PossibleSelections.find(body) != -1:
+		if body.Team == 1 and PossibleSelections.find(body.get_parent()) != -1:
 			PossibleSelections.erase(body.get_parent())
+		#print("left")

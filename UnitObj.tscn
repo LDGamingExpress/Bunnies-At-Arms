@@ -98,6 +98,7 @@ script = ExtResource("2_r6mwj")
 
 [node name="UnitIcon" type="AnimatedSprite2D" parent="."]
 self_modulate = Color(1, 1, 1, 0.462745)
+top_level = true
 z_index = 1
 sprite_frames = SubResource("SpriteFrames_87tm6")
 animation = &"Car1"

@@ -13,6 +13,7 @@ var SPEED = 50
 var Behavior = "Defensive" # Can be Defensive, Aggressive, and Passive
 var UnitsLeft = 4
 var Pursuing = null
+var Actors = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -36,6 +37,8 @@ func _ready() -> void:
 			NewObj.isVehicle = true
 			NewObj.GunBehind = false
 			add_child(NewObj)
+			Actors.append(get_child(7))
+			print(Actors)
 		"SMG":
 			UnitsLeft = 2
 			SPEED = 68
@@ -63,6 +66,8 @@ func _ready() -> void:
 			NewObj.Damage = 0.75
 			NewObj.Health = 3
 			add_child(NewObj)
+			Actors.append(get_child(7))
+			Actors.append(get_child(8))
 		"Recon":
 			UnitsLeft = 1
 			Speed = 1
@@ -78,6 +83,7 @@ func _ready() -> void:
 			NewObj.Damage = 2
 			NewObj.Health = 3
 			add_child(NewObj)
+			Actors.append(get_child(7))
 		"Infantry":
 			UnitsLeft = 3
 			Speed = 1
@@ -117,6 +123,9 @@ func _ready() -> void:
 			NewObj.Damage = 1
 			NewObj.Health = 3
 			add_child(NewObj)
+			Actors.append(get_child(7))
+			Actors.append(get_child(8))
+			Actors.append(get_child(9))
 	$UnitIcon.animation = (Type + str(Team))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -164,16 +173,37 @@ func _process(delta: float) -> void:
 				move_and_slide()
 		else:
 			$NavigationAgent2D.target_position = position
+		var MaxDis = 0
+		var AvailableActor = null
+		for i in range(0,Actors.size()):
+			if Actors[i] != null:
+				var ActorDis = sqrt(pow(Actors[i].global_position.x - global_position.x,2)+pow(Actors[i].global_position.y - global_position.y,2))
+				if ActorDis > MaxDis:
+					MaxDis = ActorDis
+					AvailableActor = Actors[i]
+		if MaxDis <= 30:
+			$UnitIcon.global_position = global_position
+		else:
+			$UnitIcon.global_position = lerp($UnitIcon.global_position,AvailableActor.global_position,0.5)
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if PlayerHovering == 1:
-			Globals.HoveringOverClickable -= 1
+			#Globals.HoveringOverClickable -= 1
 			PlayerHovering = 0
+			if Globals.EnemySelectable == self:
+				Globals.EnemySelectable = null
+			else:
+				Globals.HoveringOverClickable -= 1
 		if (Globals.MousePos.x >= ($UnitIcon.global_position.x - 18)) and (Globals.MousePos.x <= ($UnitIcon.global_position.x + 18)) and (Globals.MousePos.y >= ($UnitIcon.global_position.y - 18)) and (Globals.MousePos.y <= ($UnitIcon.global_position.y + 18)):
 			Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
-			Globals.HoveringOverClickable += 1
+			#Globals.HoveringOverClickable += 1
 			PlayerHovering = 1
+			if Team != 1:
+				Globals.EnemySelectable = self
+			else:
+				Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
+				Globals.HoveringOverClickable += 1
 		if Input.is_action_just_pressed("Select") and Team == 1:
 			if PlayerHovering == 1:
 				if Selected == 0:
@@ -199,6 +229,8 @@ func _input(event: InputEvent) -> void:
 				FirstMove = 1
 				#print(GoToPos)
 				$NavigationAgent2D.target_position = GoToPos
+				if Globals.EnemySelectable != null:
+					Pursuing = Globals.EnemySelectable
 				UnSelect()
 
 func UnSelect():
