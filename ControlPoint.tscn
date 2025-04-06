@@ -46,22 +46,29 @@ Point"
 horizontal_alignment = 1
 
 [node name="CPLabel2" type="Label" parent="."]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -30.0
-offset_right = 30.0
-offset_bottom = 49.0
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -46.5
+offset_right = 46.5
+offset_bottom = 60.0
 grow_horizontal = 2
 size_flags_horizontal = 4
 theme = ExtResource("4_tnkk2")
 text = "
-+BunnyPower"
++10
+BunnyPower
+"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ResourceTimer" type="Timer" parent="."]
 autostart = true
 
+[node name="CaptureTime" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="timeout" from="ResourceTimer" to="." method="_on_resource_timer_timeout"]
+[connection signal="timeout" from="CaptureTime" to="." method="_on_capture_time_timeout"]

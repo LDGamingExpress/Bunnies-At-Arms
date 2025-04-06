@@ -8,6 +8,15 @@ var SelectionStartPos = null
 var PossibleSelections = []
 
 func _physics_process(delta: float) -> void:
+	
+	# UI Update Code:
+	$Camera2D/CanvasLayer/HBoxContainer/PanelContainer/BPLabel.text = "BunnyPower:\n" + str(Globals.BunnyPower[0])
+	$Camera2D/CanvasLayer/HBoxContainer/PanelContainer2/MunitionsLabel.text = "Munitions:\n" + str(Globals.Munitions[0])
+	$Camera2D/CanvasLayer/HBoxContainer/PanelContainer3/FuelLabel.text = "Fuel:\n" + str(Globals.Fuel[0])
+	
+	
+	# End of UI Update Code
+	
 	if Input.is_action_pressed("Up"):
 		velocity.y -= SPEED
 	if Input.is_action_pressed("Down"):

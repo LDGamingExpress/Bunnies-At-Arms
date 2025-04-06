@@ -38,7 +38,6 @@ func _ready() -> void:
 			NewObj.GunBehind = false
 			add_child(NewObj)
 			Actors.append(get_child(7))
-			print(Actors)
 		"SMG":
 			UnitsLeft = 2
 			SPEED = 68

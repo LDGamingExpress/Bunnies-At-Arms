@@ -1,0 +1,130 @@
+[gd_scene load_steps=22 format=3 uid="uid://bkqiyxagjx20"]
+
+[ext_resource type="Texture2D" uid="uid://dwjg0kk8rnst3" path="res://Textures/BloodParticle.png" id="1_jg74c"]
+[ext_resource type="Script" path="res://DeathParticles.gd" id="2_e3qen"]
+[ext_resource type="Texture2D" uid="uid://dqacxvrhkulmr" path="res://Textures/BunnyGib1.png" id="3_ojooc"]
+[ext_resource type="Texture2D" uid="uid://c5a5qewmkocbx" path="res://Textures/BunnyGib3.png" id="4_kgd3l"]
+
+[sub_resource type="Gradient" id="Gradient_f4uao"]
+offsets = PackedFloat32Array(0, 0.745902, 1)
+colors = PackedColorArray(1, 0.705882, 0, 1, 1, 0.858824, 0.517647, 0.678431, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_dsduh"]
+gradient = SubResource("Gradient_f4uao")
+
+[sub_resource type="Curve" id="Curve_itojt"]
+_data = [Vector2(0, 0.549451), 0.0, 6.0989, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_l0p1c"]
+curve = SubResource("Curve_itojt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_atq25"]
+particle_flag_disable_z = true
+angle_min = -263.7
+angle_max = 182.5
+spread = 180.0
+initial_velocity_min = 5.0
+initial_velocity_max = 18.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_l0p1c")
+color_ramp = SubResource("GradientTexture1D_dsduh")
+
+[sub_resource type="Gradient" id="Gradient_75lc7"]
+offsets = PackedFloat32Array(0, 0.557377, 1)
+colors = PackedColorArray(1, 0.188235, 0, 1, 1, 0, 0, 0.678431, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5p78a"]
+gradient = SubResource("Gradient_75lc7")
+
+[sub_resource type="Curve" id="Curve_qs0gr"]
+_data = [Vector2(0, 0.263736), 0.0, 4.04595, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_wusmp"]
+curve = SubResource("Curve_qs0gr")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ni5p6"]
+particle_flag_disable_z = true
+angle_min = -263.7
+angle_max = 182.5
+spread = 180.0
+initial_velocity_min = 5.0
+initial_velocity_max = 18.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_wusmp")
+color_ramp = SubResource("GradientTexture1D_5p78a")
+
+[sub_resource type="Curve" id="Curve_dgdlg"]
+_data = [Vector2(0, 0.263736), 0.0, 4.04595, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_70myo"]
+curve = SubResource("Curve_dgdlg")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1chyj"]
+particle_flag_disable_z = true
+angle_min = -263.7
+angle_max = 182.5
+spread = 180.0
+initial_velocity_min = 5.0
+initial_velocity_max = 18.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_70myo")
+color_ramp = SubResource("GradientTexture1D_5p78a")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_x8ey2"]
+load_path = "res://.godot/imported/BunnyGib2.png-072225e0032093369bb5d9594856ac89.ctex"
+
+[sub_resource type="Curve" id="Curve_ps43d"]
+_data = [Vector2(0, 0.263736), 0.0, 4.04595, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_o8ld6"]
+curve = SubResource("Curve_ps43d")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7srlf"]
+particle_flag_disable_z = true
+angle_min = -263.7
+angle_max = 182.5
+spread = 180.0
+initial_velocity_min = 5.0
+initial_velocity_max = 18.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_o8ld6")
+color_ramp = SubResource("GradientTexture1D_5p78a")
+
+[node name="DeathParticles" type="GPUParticles2D"]
+emitting = false
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_atq25")
+texture = ExtResource("1_jg74c")
+one_shot = true
+explosiveness = 0.95
+script = ExtResource("2_e3qen")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 3
+process_material = SubResource("ParticleProcessMaterial_ni5p6")
+texture = ExtResource("3_ojooc")
+one_shot = true
+explosiveness = 0.95
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 3
+process_material = SubResource("ParticleProcessMaterial_1chyj")
+texture = SubResource("CompressedTexture2D_x8ey2")
+one_shot = true
+explosiveness = 0.95
+
+[node name="GPUParticles2D4" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 3
+process_material = SubResource("ParticleProcessMaterial_7srlf")
+texture = ExtResource("4_kgd3l")
+one_shot = true
+explosiveness = 0.95
+
+[connection signal="finished" from="." to="." method="_on_finished"]

@@ -498,3 +498,5 @@ Type = "Car"
 
 [node name="ControlPoint" parent="." instance=ExtResource("5_xbp3i")]
 position = Vector2(832, 0)
+ResourceType = "Munitions"
+ResourceAmount = 15

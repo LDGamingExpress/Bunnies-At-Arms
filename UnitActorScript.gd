@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 var GunParticles = preload("res://GunParticles.tscn")
 var UnitActor = preload("res://Bullet.tscn")
+var DeathParticles = preload("res://DeathParticles.tscn")
+var VehicleDeathP = preload("res://VehicleExplosionParticles.tscn")
 var GoToPos = global_position
 var SPEED = 50.0
 var Type = null
@@ -40,6 +42,14 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if Health <= 0:
 		get_parent().UnitsLeft -= 1
+		if isVehicle == true:
+			var NewObj = VehicleDeathP.instantiate()
+			NewObj.global_position = global_position
+			get_parent().get_parent().add_child(NewObj)
+		else:
+			var NewObj = DeathParticles.instantiate()
+			NewObj.global_position = global_position
+			get_parent().get_parent().add_child(NewObj)
 		queue_free()
 	match get_parent().Behavior:
 		"Passive":

@@ -1,0 +1,102 @@
+[gd_scene load_steps=16 format=3 uid="uid://bcadb33bnx48h"]
+
+[ext_resource type="Script" path="res://VehicleExplosionParticles.gd" id="1_5ee85"]
+[ext_resource type="Texture2D" uid="uid://jxi7n15np3u5" path="res://Textures/SmokeParticle.png" id="2_s4kh4"]
+[ext_resource type="Texture2D" uid="uid://dhnslujt1ecec" path="res://Textures/VehicleGib1.png" id="3_wo1qp"]
+[ext_resource type="Texture2D" uid="uid://d4sfwhnejf2g" path="res://Textures/VehicleGib2.png" id="4_4oyl0"]
+[ext_resource type="Texture2D" uid="uid://bx6x72qnc3wi8" path="res://Textures/VehicleGib3.png" id="5_sufvd"]
+
+[sub_resource type="Gradient" id="Gradient_f4uao"]
+offsets = PackedFloat32Array(0, 0.745902, 1)
+colors = PackedColorArray(1, 0.705882, 0, 1, 1, 0.858824, 0.517647, 0.678431, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_dsduh"]
+gradient = SubResource("Gradient_f4uao")
+
+[sub_resource type="Curve" id="Curve_itojt"]
+_data = [Vector2(0, 0.549451), 0.0, 6.0989, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_l0p1c"]
+curve = SubResource("Curve_itojt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_atq25"]
+particle_flag_disable_z = true
+angle_min = -263.7
+angle_max = 182.5
+spread = 180.0
+initial_velocity_min = 5.0
+initial_velocity_max = 18.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_l0p1c")
+color_ramp = SubResource("GradientTexture1D_dsduh")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_u34as"]
+load_path = "res://.godot/imported/FireParticle.png-c6f477c14192667766c9fe5eb3333847.ctex"
+
+[sub_resource type="Gradient" id="Gradient_mrmrj"]
+offsets = PackedFloat32Array(0, 0.745902, 1)
+colors = PackedColorArray(0.560955, 0.560955, 0.560955, 1, 0.691357, 0.691357, 0.691357, 0.678431, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_a06lx"]
+gradient = SubResource("Gradient_mrmrj")
+
+[sub_resource type="CurveTexture" id="CurveTexture_g6i51"]
+curve = SubResource("Curve_itojt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_miaw6"]
+particle_flag_disable_z = true
+angle_min = -263.7
+angle_max = 182.5
+spread = 180.0
+initial_velocity_min = 5.0
+initial_velocity_max = 18.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_g6i51")
+color_ramp = SubResource("GradientTexture1D_a06lx")
+
+[node name="VehicleExplosion" type="GPUParticles2D"]
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_atq25")
+texture = SubResource("CompressedTexture2D_u34as")
+one_shot = true
+explosiveness = 0.95
+script = ExtResource("1_5ee85")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+show_behind_parent = true
+emitting = false
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_miaw6")
+texture = ExtResource("2_s4kh4")
+one_shot = true
+explosiveness = 0.95
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+scale = Vector2(2, 2)
+emitting = false
+amount = 3
+process_material = SubResource("ParticleProcessMaterial_miaw6")
+texture = ExtResource("3_wo1qp")
+one_shot = true
+explosiveness = 0.95
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="."]
+scale = Vector2(2, 2)
+emitting = false
+amount = 3
+process_material = SubResource("ParticleProcessMaterial_miaw6")
+texture = ExtResource("4_4oyl0")
+one_shot = true
+explosiveness = 0.95
+
+[node name="GPUParticles2D4" type="GPUParticles2D" parent="."]
+scale = Vector2(2, 2)
+emitting = false
+amount = 3
+process_material = SubResource("ParticleProcessMaterial_miaw6")
+texture = ExtResource("5_sufvd")
+one_shot = true
+explosiveness = 0.95
+
+[connection signal="finished" from="." to="." method="_on_finished"]

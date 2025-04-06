@@ -4,9 +4,10 @@ var HoveringOverClickable = 0
 var EnemySelectable = null
 var UnitsSelected = []
 
-var Fuel = []
-var BunnyPower = []
-var Munitions = []
+var Fuel = [10,10]
+var BunnyPower = [10,10]
+var Munitions = [10,10]
+var TeamColors = [[61, 204, 92],[204, 66, 61]]
 # Called when the node enters the scene tree for the first time.
 #func _ready() -> void:
 #	pass # Replace with function body.
