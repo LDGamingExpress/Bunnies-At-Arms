@@ -3,6 +3,9 @@ var MousePos = Vector2 (0,0)
 var HoveringOverClickable = 0
 var UnitsSelected = []
 
+var Fuel = []
+var BunnyPower = []
+var Munitions = []
 # Called when the node enters the scene tree for the first time.
 #func _ready() -> void:
 #	pass # Replace with function body.

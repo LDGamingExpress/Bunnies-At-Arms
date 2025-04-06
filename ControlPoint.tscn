@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://moay3qpb8c0e"]
+[gd_scene load_steps=7 format=3 uid="uid://moay3qpb8c0e"]
 
 [ext_resource type="Texture2D" uid="uid://blk0gtx2pelb5" path="res://Textures/ControlPoint.png" id="1_bxxv0"]
 [ext_resource type="Script" path="res://ControlPointScript.gd" id="1_qlmqi"]
+[ext_resource type="Texture2D" uid="uid://dbignfamxvth2" path="res://Textures/ControlArea.png" id="2_p35c0"]
+[ext_resource type="Theme" uid="uid://bd0je60acp7ff" path="res://MainTheme.tres" id="4_tnkk2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uxqp0"]
 
@@ -14,14 +16,52 @@ script = ExtResource("1_qlmqi")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_uxqp0")
 
+[node name="ControlArea" type="Sprite2D" parent="."]
+self_modulate = Color(0.572549, 0.572549, 0.572549, 0.74902)
+texture = ExtResource("2_p35c0")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_bxxv0")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+modulate = Color(1, 1, 1, 0.541176)
 shape = SubResource("CircleShape2D_f3jqw")
 debug_color = Color(0.415686, 0.431373, 0.427451, 0.435294)
 
+[node name="CPLabel" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -32.0
+offset_top = -48.0
+offset_right = 28.0
+offset_bottom = 1.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme = ExtResource("4_tnkk2")
+text = "Control
+Point"
+horizontal_alignment = 1
+
+[node name="CPLabel2" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -30.0
+offset_right = 30.0
+offset_bottom = 49.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme = ExtResource("4_tnkk2")
+text = "
++BunnyPower"
+horizontal_alignment = 1
+
+[node name="ResourceTimer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="ResourceTimer" to="." method="_on_resource_timer_timeout"]

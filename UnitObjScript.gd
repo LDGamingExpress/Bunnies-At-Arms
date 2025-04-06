@@ -19,30 +19,31 @@ func _ready() -> void:
 	match Type:
 		"Car":
 			UnitsLeft = 1
-			Speed = 55
+			SPEED = 100
 			var NewObj = UnitActor.instantiate()
 			NewObj.Type = (Type + str(Team))
 			NewObj.position = $Pos1.global_position
 			NewObj.pos2go = 1
-			NewObj.SPEED = 50.0
+			NewObj.SPEED = 100.0
 			NewObj.GunRange = 180
 			NewObj.Team = Team
 			NewObj.ReloadTime = 0.2
 			NewObj.Accuracy = 10
 			NewObj.Damage = 1
-			NewObj.Health = 12
+			NewObj.Health = 15
 			NewObj.GunOffsetX = -13
 			NewObj.GunOffsetY = 0
+			NewObj.isVehicle = true
 			NewObj.GunBehind = false
 			add_child(NewObj)
 		"SMG":
 			UnitsLeft = 2
-			Speed = 25
+			SPEED = 68
 			var NewObj = UnitActor.instantiate()
 			NewObj.Type = (Type + str(Team))
 			NewObj.position = $Pos1.global_position
 			NewObj.pos2go = 1
-			NewObj.SPEED = 50.0
+			NewObj.SPEED = 68.0
 			NewObj.GunRange = 120
 			NewObj.Team = Team
 			NewObj.ReloadTime = 0.2
@@ -54,7 +55,7 @@ func _ready() -> void:
 			NewObj.Type = (Type + str(Team))
 			NewObj.position = $Pos2.global_position
 			NewObj.pos2go = 2
-			NewObj.SPEED = 50.0
+			NewObj.SPEED = 68.0
 			NewObj.GunRange = 120
 			NewObj.Team = Team
 			NewObj.ReloadTime = 0.2
@@ -140,8 +141,10 @@ func _process(delta: float) -> void:
 			$NavigationAgent2D.target_position = Pursuing.global_position
 		else:
 			$NavigationAgent2D.target_desired_distance = 8
-		if abs(to_global($NavigationAgent2D.get_next_path_position()).x - global_position.x) + abs(to_global($NavigationAgent2D.get_next_path_position()).y - global_position.y) > 6:
-			if FarAway > 0 and FirstMove != 1:
+		#if Type == "Car":
+		#	print(sqrt(pow($NavigationAgent2D.get_next_path_position().x - global_position.x,2) + pow($NavigationAgent2D.get_next_path_position().y - global_position.y,2)))
+		if abs($NavigationAgent2D.get_next_path_position().x - global_position.x) + abs($NavigationAgent2D.get_next_path_position().y - global_position.y) > 1:
+			if FarAway > 20 and FirstMove != 1:
 				#var posBefore = position
 				var dir = to_local($NavigationAgent2D.get_next_path_position()).normalized()
 				velocity = dir * SPEED
@@ -177,13 +180,21 @@ func _input(event: InputEvent) -> void:
 					Selected = 1
 					$UnitIcon/SelectIcon.visible = true
 					if Globals.UnitsSelected.size() > 0:
-						for i in range(0,Globals.UnitsSelected.size):
-							get_node_or_null(Globals.UnitsSelected[i]).UnSelect()
+						for i in range(0,Globals.UnitsSelected.size()):
+							if Globals.UnitsSelected[i] != null:
+								Globals.UnitsSelected[i].UnSelect()
+						Globals.UnitsSelected = []
 				else:
 					UnSelect()
 		if Selected == 1:
 			if (event.is_pressed() and event.button_index == MOUSE_BUTTON_RIGHT):
-				GoToPos = Globals.MousePos
+				var IndexInList = Globals.UnitsSelected.find(self) + 1
+				var ListLength = Globals.UnitsSelected.size() + 1
+				if ListLength == 1:
+					GoToPos = Globals.MousePos
+				else:
+					#if ListLength % 2 == 0:
+					GoToPos = Globals.MousePos - (ListLength/2 - IndexInList)*Vector2(20,-20)
 				FarAway = 0
 				FirstMove = 1
 				#print(GoToPos)
@@ -193,3 +204,7 @@ func _input(event: InputEvent) -> void:
 func UnSelect():
 	Selected = 0
 	$UnitIcon/SelectIcon.visible = false
+
+func Select():
+	Selected = 1
+	$UnitIcon/SelectIcon.visible = true

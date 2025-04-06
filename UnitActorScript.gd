@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+var GunParticles = preload("res://GunParticles.tscn")
 var UnitActor = preload("res://Bullet.tscn")
 var GoToPos = global_position
 var SPEED = 50.0
@@ -19,6 +20,7 @@ var Accuracy = 10
 var Damage = 1
 var Health = 3
 var rng = RandomNumberGenerator.new()
+var isVehicle = false
 
 var GunOffsetX = 6
 var GunOffsetY = -4
@@ -51,12 +53,12 @@ func _physics_process(delta: float) -> void:
 				LastFar = Dis
 				#get_parent().FarAwayFrom = name
 			if get_parent().FarAway == LastFar and get_parent().FarAway > Dis:
-				get_parent().FarAway = Dis
+				get_parent().FarAway = 0
 			
 			var dir = to_local($NavigationAgent2D.get_next_path_position()).normalized()
-			if abs(to_global($NavigationAgent2D.get_next_path_position()).x - LastTar.x) + abs(to_global($NavigationAgent2D.get_next_path_position()).y - LastTar.y) > 2:
+			if abs($NavigationAgent2D.get_next_path_position().x - LastTar.x) + abs($NavigationAgent2D.get_next_path_position().y - LastTar.y) > 1:
 				$AnimatedSprite2D.look_at(GoToPos)
-			LastTar = to_global($NavigationAgent2D.get_next_path_position())
+			LastTar = $NavigationAgent2D.get_next_path_position()
 			velocity = dir * SPEED
 		"Defensive":
 			if get_parent().get_child(pos2go).global_position != GoToPos:
@@ -76,25 +78,33 @@ func _physics_process(delta: float) -> void:
 				EnemyTarget = GetClosestEnemy()
 			
 			var dir = to_local($NavigationAgent2D.get_next_path_position()).normalized()
-			if abs(to_global($NavigationAgent2D.get_next_path_position()).x - LastTar.x) + abs(to_global($NavigationAgent2D.get_next_path_position()).y - LastTar.y) > 2:
+			if abs($NavigationAgent2D.get_next_path_position().x - LastTar.x) + abs($NavigationAgent2D.get_next_path_position().y - LastTar.y) > 1:
 				$AnimatedSprite2D.look_at(GoToPos)
 			#print(EnemyTarget)
 			#print(EnemiesNearby)
 			if EnemyTarget != null:
-				$AnimatedSprite2D.look_at(EnemyTarget.global_position)
+				if isVehicle == false:
+					$AnimatedSprite2D.look_at(EnemyTarget.global_position)
+				else:
+					$AnimatedSprite2D/GunSprite.look_at(EnemyTarget.global_position)
 				if Reloaded == 1:
 					Reloaded = 0
+					var NewObj1 = GunParticles.instantiate()
+					NewObj1.position = Vector2(0,0)
+					$AnimatedSprite2D/GunSprite/EffectStart.add_child(NewObj1)
 					var NewObj = UnitActor.instantiate()
 					NewObj.position = $AnimatedSprite2D/GunSprite.global_position
 					NewObj.SPEED = 700.0
 					NewObj.Team = Team
 					NewObj.GunRange = GunRange
 					# + Vector2(rng.randf_range(-Accuracy,Accuracy),rng.randf_range(-Accuracy,Accuracy))
-					NewObj.dir = to_local(EnemyTarget.global_position).normalized()
+					#NewObj.dir = to_local(EnemyTarget.global_position).normalized()
+					NewObj.dir = (EnemyTarget.global_position - $AnimatedSprite2D/GunSprite.global_position).normalized()
 					NewObj.Damage = Damage
 					get_parent().get_parent().add_child(NewObj)
 					$ReloadTimer.start()
-			LastTar = to_global($NavigationAgent2D.get_next_path_position())
+			LastTar = $NavigationAgent2D.get_next_path_position()
+			#if abs($NavigationAgent2D.get_next_path_position().x - global_position.x) + abs($NavigationAgent2D.get_next_path_position().y - global_position.y) > 1:
 			velocity = dir * SPEED
 		"Aggressive":
 			if EnemiesNearby.size() > 0:
@@ -117,12 +127,15 @@ func _physics_process(delta: float) -> void:
 				EnemyTarget = GetClosestEnemy()
 			
 			var dir = to_local($NavigationAgent2D.get_next_path_position()).normalized()
-			if abs(to_global($NavigationAgent2D.get_next_path_position()).x - LastTar.x) + abs(to_global($NavigationAgent2D.get_next_path_position()).y - LastTar.y) > 2:
+			if abs($NavigationAgent2D.get_next_path_position().x - LastTar.x) + abs($NavigationAgent2D.get_next_path_position().y - LastTar.y) > 1:
 				$AnimatedSprite2D.look_at(GoToPos)
 			#print(EnemyTarget)
 			#print(EnemiesNearby)
 			if EnemyTarget != null:
-				$AnimatedSprite2D.look_at(EnemyTarget.global_position)
+				if isVehicle == false:
+					$AnimatedSprite2D.look_at(EnemyTarget.global_position)
+				else:
+					$AnimatedSprite2D/GunSprite.look_at(EnemyTarget.global_position)
 				if Reloaded == 1:
 					Reloaded = 0
 					var NewObj = UnitActor.instantiate()
@@ -135,7 +148,7 @@ func _physics_process(delta: float) -> void:
 					NewObj.Damage = Damage
 					get_parent().get_parent().add_child(NewObj)
 					$ReloadTimer.start()
-			LastTar = to_global($NavigationAgent2D.get_next_path_position())
+			LastTar = $NavigationAgent2D.get_next_path_position()
 			velocity = dir * SPEED
 	move_and_slide()
 

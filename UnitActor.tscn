@@ -204,6 +204,9 @@ scale = Vector2(0.8, 0.8)
 sprite_frames = SubResource("SpriteFrames_cud76")
 animation = &"Infantry1"
 
+[node name="EffectStart" type="Node2D" parent="AnimatedSprite2D/GunSprite"]
+position = Vector2(10, 0)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_rv5ut")
 

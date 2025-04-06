@@ -1,9 +1,26 @@
-[gd_scene load_steps=2 format=3 uid="uid://o1mm2ci8jvc"]
+[gd_scene load_steps=4 format=3 uid="uid://o1mm2ci8jvc"]
 
 [ext_resource type="Script" path="res://PlayerScript.gd" id="1_m4ijf"]
+[ext_resource type="Texture2D" uid="uid://bk474hqpn514c" path="res://Textures/SelectionSquare.png" id="2_pqenh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kej0h"]
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_m4ijf")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+self_modulate = Color(1, 1, 1, 0.494118)
+top_level = true
+texture = ExtResource("2_pqenh")
+
+[node name="SelectionArea" type="Area2D" parent="Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/SelectionArea"]
+shape = SubResource("RectangleShape2D_kej0h")
+
+[connection signal="body_entered" from="Sprite2D/SelectionArea" to="." method="_on_selection_area_body_entered"]
+[connection signal="body_exited" from="Sprite2D/SelectionArea" to="." method="_on_selection_area_body_exited"]
