@@ -18,6 +18,26 @@ var Actors = []
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	match Type:
+		"Tank":
+			UnitsLeft = 1
+			SPEED = 60
+			var NewObj = UnitActor.instantiate()
+			NewObj.Type = (Type + str(Team))
+			NewObj.position = $Pos1.global_position
+			NewObj.pos2go = 1
+			NewObj.SPEED = 60.0
+			NewObj.GunRange = 250
+			NewObj.Team = Team
+			NewObj.ReloadTime = 1
+			NewObj.Accuracy = 10
+			NewObj.Damage = 5
+			NewObj.Health = 25
+			NewObj.GunOffsetX = 4.5
+			NewObj.GunOffsetY = 0
+			NewObj.isVehicle = true
+			NewObj.GunBehind = false
+			add_child(NewObj)
+			Actors.append(get_child(7))
 		"Car":
 			UnitsLeft = 1
 			SPEED = 100

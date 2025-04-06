@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://ke31dymdk3hu"]
+[gd_scene load_steps=24 format=3 uid="uid://ke31dymdk3hu"]
 
 [ext_resource type="Texture2D" uid="uid://cfgpvagvsvydh" path="res://Textures/BAA_UnitTiles.png" id="1_5xegg"]
 [ext_resource type="Script" path="res://UnitActorScript.gd" id="1_dptay"]
@@ -31,6 +31,10 @@ region = Rect2(128, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_roap8"]
 atlas = ExtResource("1_5xegg")
 region = Rect2(128, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nxqbl"]
+atlas = ExtResource("1_5xegg")
+region = Rect2(224, 0, 64, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_o6apg"]
 animations = [{
@@ -89,6 +93,14 @@ animations = [{
 "loop": true,
 "name": &"SMG2",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nxqbl")
+}],
+"loop": true,
+"name": &"Tank1",
+"speed": 5.0
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2axuy"]
@@ -118,6 +130,10 @@ region = Rect2(64, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_mbl6o"]
 atlas = ExtResource("3_6livi")
 region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_egu83"]
+atlas = ExtResource("3_6livi")
+region = Rect2(192, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cud76"]
 animations = [{
@@ -176,6 +192,14 @@ animations = [{
 "loop": true,
 "name": &"SMG2",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_egu83")
+}],
+"loop": true,
+"name": &"Tank1",
+"speed": 5.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rv5ut"]
@@ -195,14 +219,13 @@ script = ExtResource("1_dptay")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_o6apg")
-animation = &"Infantry1"
+animation = &"Tank1"
 
 [node name="GunSprite" type="AnimatedSprite2D" parent="AnimatedSprite2D"]
-show_behind_parent = true
-position = Vector2(6, -4)
+position = Vector2(4.5, 0)
 scale = Vector2(0.8, 0.8)
 sprite_frames = SubResource("SpriteFrames_cud76")
-animation = &"Infantry1"
+animation = &"Tank1"
 
 [node name="EffectStart" type="Node2D" parent="AnimatedSprite2D/GunSprite"]
 position = Vector2(10, 0)

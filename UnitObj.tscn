@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bl41bmdw7f06q"]
+[gd_scene load_steps=13 format=3 uid="uid://bl41bmdw7f06q"]
 
 [ext_resource type="Texture2D" uid="uid://xfjyri0wrabf" path="res://Textures/BAA_UnitSymbols.png" id="1_bgkb8"]
 [ext_resource type="Script" path="res://UnitObjScript.gd" id="2_r6mwj"]
@@ -31,6 +31,10 @@ region = Rect2(64, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_b23ni"]
 atlas = ExtResource("1_bgkb8")
 region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fjvnh"]
+atlas = ExtResource("1_bgkb8")
+region = Rect2(192, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_87tm6"]
 animations = [{
@@ -89,6 +93,14 @@ animations = [{
 "loop": true,
 "name": &"SMG2",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fjvnh")
+}],
+"loop": true,
+"name": &"Tank1",
+"speed": 5.0
 }]
 
 [node name="Unit" type="CharacterBody2D" groups=["Units"]]
@@ -101,7 +113,7 @@ self_modulate = Color(1, 1, 1, 0.462745)
 top_level = true
 z_index = 1
 sprite_frames = SubResource("SpriteFrames_87tm6")
-animation = &"Car1"
+animation = &"Tank1"
 
 [node name="SelectIcon" type="Sprite2D" parent="UnitIcon"]
 visible = false

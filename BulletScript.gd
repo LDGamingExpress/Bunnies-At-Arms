@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 var BloodP = preload("res://BloodParticles.tscn")
 var SmokeP = preload("res://SmokeParticlesImpact.tscn")
+var ImpactE = preload("res://ImpactExplosion.tscn")
 var dir = null
 var SPEED = 100.0
 var Damage = 1
@@ -16,7 +17,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	velocity = dir * SPEED
 	move_and_slide()
-	if sqrt(pow(startpos.x - position.x,2) + pow(startpos.y - position.y,2)) > GunRange:
+	if sqrt(pow(startpos.x - position.x,2) + pow(startpos.y - position.y,2)) > GunRange*1.2:
 		queue_free()
 
 
@@ -32,6 +33,12 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 				var NewObj = BloodP.instantiate()
 				NewObj.position = global_position
 				get_parent().add_child(NewObj)
+			if Damage >= 5:
+				var NewObj2 = ImpactE.instantiate()
+				NewObj2.position = global_position
+				NewObj2.Damage = Damage/2
+				NewObj2.Team = Team
+				get_parent().add_child(NewObj2)
 			queue_free()
 	else:
 		queue_free()
