@@ -1,7 +1,7 @@
 [gd_resource type="Theme" load_steps=2 format=3 uid="uid://bd0je60acp7ff"]
 
-[ext_resource type="FontFile" uid="uid://b4nobkgokp57p" path="res://Textures/Kenney Pixel.ttf" id="1_lad7x"]
+[ext_resource type="FontFile" uid="uid://cqbps4l5bnvar" path="res://Textures/basicpixelfont.ttf" id="1_ruta7"]
 
 [resource]
-default_font = ExtResource("1_lad7x")
+default_font = ExtResource("1_ruta7")
 default_font_size = 24
