@@ -504,3 +504,16 @@ Type = "Car"
 position = Vector2(832, 0)
 ResourceType = "Munitions"
 ResourceAmount = 2
+
+[node name="Unit9" parent="." instance=ExtResource("2_i7ys4")]
+position = Vector2(-80, 416)
+Type = "MTank"
+
+[node name="Unit10" parent="." instance=ExtResource("2_i7ys4")]
+position = Vector2(72, 488)
+Type = "Eng"
+
+[node name="Unit11" parent="." instance=ExtResource("2_i7ys4")]
+position = Vector2(848, 448)
+Type = "MG"
+Team = 2

@@ -3,6 +3,7 @@ extends CharacterBody2D
 var BloodP = preload("res://BloodParticles.tscn")
 var SmokeP = preload("res://SmokeParticlesImpact.tscn")
 var ImpactE = preload("res://ImpactExplosion.tscn")
+var AltTexture1 = preload("res://Textures/FireParticle.png")
 var dir = null
 var SPEED = 100.0
 var Damage = 1
@@ -13,6 +14,8 @@ var GunRange = 150
 func _ready() -> void:
 	startpos = position
 	$Sprite2D.rotate(atan(dir.y/dir.x))
+	if Damage == 0.8:
+		$Sprite2D.texture = AltTexture1
 
 func _physics_process(delta: float) -> void:
 	velocity = dir * SPEED
@@ -38,7 +41,8 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 				NewObj2.position = global_position
 				NewObj2.Damage = Damage/2
 				NewObj2.Team = Team
-				get_parent().add_child(NewObj2)
+				get_parent().call_deferred("add_child",NewObj2)
+				#get_parent().add_child(NewObj2)
 			queue_free()
 	else:
 		queue_free()

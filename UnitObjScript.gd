@@ -18,6 +18,75 @@ var Actors = []
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	match Type:
+		"MG":
+			UnitsLeft = 1
+			SPEED = 40.0
+			var NewObj = UnitActor.instantiate()
+			NewObj.Type = (Type + str(Team))
+			NewObj.position = $Pos1.global_position
+			NewObj.pos2go = 1
+			NewObj.SPEED = 40.0
+			NewObj.GunRange = 150
+			NewObj.Team = Team
+			NewObj.ReloadTime = 0.1
+			NewObj.Accuracy = 15
+			NewObj.Damage = 1.2
+			NewObj.Health = 5
+			NewObj.GunEnd = 15.0
+			add_child(NewObj)
+			Actors.append(get_child(7))
+		"Eng":
+			UnitsLeft = 2
+			SPEED = 50
+			var NewObj = UnitActor.instantiate()
+			NewObj.Type = (Type + str(Team))
+			NewObj.position = $Pos1.global_position
+			NewObj.pos2go = 1
+			NewObj.SPEED = 50.0
+			NewObj.GunRange = 100
+			NewObj.Team = Team
+			NewObj.ReloadTime = 0.08
+			NewObj.Accuracy = 8
+			NewObj.Damage = 0.8
+			NewObj.Health = 4
+			NewObj.GunEnd = 15.0
+			add_child(NewObj)
+			NewObj = UnitActor.instantiate()
+			NewObj.Type = (Type + str(Team))
+			NewObj.position = $Pos2.global_position
+			NewObj.pos2go = 2
+			NewObj.SPEED = 50.0
+			NewObj.GunRange = 50
+			NewObj.Team = Team
+			NewObj.ReloadTime = 0.08
+			NewObj.Accuracy = 8
+			NewObj.Damage = 0.8
+			NewObj.Health = 4
+			NewObj.GunEnd = 15.0
+			add_child(NewObj)
+			Actors.append(get_child(7))
+			Actors.append(get_child(8))
+		"MTank":
+			UnitsLeft = 1
+			SPEED = 68
+			var NewObj = UnitActor.instantiate()
+			NewObj.Type = (Type + str(Team))
+			NewObj.position = $Pos1.global_position
+			NewObj.pos2go = 1
+			NewObj.SPEED = 68.0
+			NewObj.GunRange = 300
+			NewObj.Team = Team
+			NewObj.ReloadTime = 1.5
+			NewObj.Accuracy = 10
+			NewObj.Damage = 8
+			NewObj.Health = 40
+			NewObj.GunOffsetX = 3
+			NewObj.GunOffsetY = 0
+			NewObj.GunEnd = 61.0
+			NewObj.isVehicle = true
+			NewObj.GunBehind = false
+			add_child(NewObj)
+			Actors.append(get_child(7))
 		"Tank":
 			UnitsLeft = 1
 			SPEED = 60
@@ -32,8 +101,9 @@ func _ready() -> void:
 			NewObj.Accuracy = 10
 			NewObj.Damage = 5
 			NewObj.Health = 25
-			NewObj.GunOffsetX = 4.5
-			NewObj.GunOffsetY = 0
+			NewObj.GunOffsetX = 4
+			NewObj.GunOffsetY = -0.5
+			NewObj.GunEnd = 16.0
 			NewObj.isVehicle = true
 			NewObj.GunBehind = false
 			add_child(NewObj)
@@ -53,7 +123,8 @@ func _ready() -> void:
 			NewObj.Damage = 1
 			NewObj.Health = 15
 			NewObj.GunOffsetX = -13
-			NewObj.GunOffsetY = 0
+			NewObj.GunOffsetY = -0.5
+			NewObj.GunEnd = 16.0
 			NewObj.isVehicle = true
 			NewObj.GunBehind = false
 			add_child(NewObj)
@@ -72,6 +143,7 @@ func _ready() -> void:
 			NewObj.Accuracy = 13
 			NewObj.Damage = 0.75
 			NewObj.Health = 4.5
+			NewObj.GunEnd = 15.0
 			add_child(NewObj)
 			NewObj = UnitActor.instantiate()
 			NewObj.Type = (Type + str(Team))
@@ -83,13 +155,14 @@ func _ready() -> void:
 			NewObj.ReloadTime = 0.2
 			NewObj.Accuracy = 13
 			NewObj.Damage = 0.75
-			NewObj.Health = 3
+			NewObj.Health = 4.5
+			NewObj.GunEnd = 15.0
 			add_child(NewObj)
 			Actors.append(get_child(7))
 			Actors.append(get_child(8))
 		"Recon":
 			UnitsLeft = 1
-			Speed = 1
+			SPEED = 50.0
 			var NewObj = UnitActor.instantiate()
 			NewObj.Type = (Type + str(Team))
 			NewObj.position = $Pos1.global_position
@@ -101,11 +174,12 @@ func _ready() -> void:
 			NewObj.Accuracy = 1
 			NewObj.Damage = 2
 			NewObj.Health = 3
+			NewObj.GunEnd = 15.0
 			add_child(NewObj)
 			Actors.append(get_child(7))
 		"Infantry":
 			UnitsLeft = 3
-			Speed = 1
+			SPEED = 50.0
 			var NewObj = UnitActor.instantiate()
 			NewObj.Type = (Type + str(Team))
 			NewObj.position = $Pos1.global_position
@@ -117,6 +191,7 @@ func _ready() -> void:
 			NewObj.Accuracy = 10
 			NewObj.Damage = 1
 			NewObj.Health = 3
+			NewObj.GunEnd = 15.0
 			add_child(NewObj)
 			NewObj = UnitActor.instantiate()
 			NewObj.Type = (Type + str(Team))
@@ -129,6 +204,7 @@ func _ready() -> void:
 			NewObj.Accuracy = 10
 			NewObj.Damage = 1
 			NewObj.Health = 3
+			NewObj.GunEnd = 15.0
 			add_child(NewObj)
 			NewObj = UnitActor.instantiate()
 			NewObj.Type = (Type + str(Team))
@@ -141,6 +217,7 @@ func _ready() -> void:
 			NewObj.Accuracy = 10
 			NewObj.Damage = 1
 			NewObj.Health = 3
+			NewObj.GunEnd = 15.0
 			add_child(NewObj)
 			Actors.append(get_child(7))
 			Actors.append(get_child(8))

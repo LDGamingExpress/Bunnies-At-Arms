@@ -27,6 +27,7 @@ var isVehicle = false
 var GunOffsetX = 6
 var GunOffsetY = -4
 var GunBehind = true
+var GunEnd = 10.0
 
 func _ready() -> void:
 	$AnimatedSprite2D.animation = Type
@@ -36,6 +37,11 @@ func _ready() -> void:
 	$DetectArea/CollisionShape2D.shape.radius = (GunRange)
 	$AnimatedSprite2D/GunSprite.position = Vector2(GunOffsetX,GunOffsetY)
 	$AnimatedSprite2D/GunSprite.show_behind_parent = GunBehind
+	if isVehicle == true:
+		$AnimatedSprite2D/GunSprite.scale = Vector2(1.0,1.0)
+	else:
+		$AnimatedSprite2D/GunSprite.scale = Vector2(0.8,0.8)
+	$AnimatedSprite2D/GunSprite/EffectStart.position.x = GunEnd
 	#print(GunRange)
 	#print($DetectArea/CollisionShape2D.shape.radius)
 
