@@ -13,6 +13,8 @@ var GunRange = 150
 
 func _ready() -> void:
 	startpos = position
+	if Damage >= 5:
+		$Sprite2D.scale = Vector2(1.5,1.5)
 	$Sprite2D.rotate(atan(dir.y/dir.x))
 	if Damage == 0.8:
 		$Sprite2D.texture = AltTexture1

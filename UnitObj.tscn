@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bl41bmdw7f06q"]
+[gd_scene load_steps=25 format=3 uid="uid://bl41bmdw7f06q"]
 
 [ext_resource type="Texture2D" uid="uid://xfjyri0wrabf" path="res://Textures/BAA_UnitSymbols.png" id="1_bgkb8"]
 [ext_resource type="Script" path="res://UnitObjScript.gd" id="2_r6mwj"]
@@ -19,6 +19,14 @@ region = Rect2(128, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_8eruo"]
 atlas = ExtResource("1_bgkb8")
 region = Rect2(128, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q11gb"]
+atlas = ExtResource("1_bgkb8")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2r7cl"]
+atlas = ExtResource("1_bgkb8")
+region = Rect2(256, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_opv5f"]
 atlas = ExtResource("1_bgkb8")
@@ -51,6 +59,14 @@ region = Rect2(32, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_i7uah"]
 atlas = ExtResource("1_bgkb8")
 region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_po2xf"]
+atlas = ExtResource("1_bgkb8")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tuejf"]
+atlas = ExtResource("1_bgkb8")
+region = Rect2(0, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_03t7j"]
 atlas = ExtResource("1_bgkb8")
@@ -100,6 +116,22 @@ animations = [{
 }],
 "loop": true,
 "name": &"Eng2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q11gb")
+}],
+"loop": true,
+"name": &"HTank1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2r7cl")
+}],
+"loop": true,
+"name": &"HTank2",
 "speed": 5.0
 }, {
 "frames": [{
@@ -168,6 +200,22 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_po2xf")
+}],
+"loop": true,
+"name": &"Rocket1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tuejf")
+}],
+"loop": true,
+"name": &"Rocket2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_03t7j")
 }],
 "loop": true,
@@ -209,7 +257,7 @@ self_modulate = Color(1, 1, 1, 0.462745)
 top_level = true
 z_index = 1
 sprite_frames = SubResource("SpriteFrames_87tm6")
-animation = &"MG2"
+animation = &"Rocket1"
 
 [node name="SelectIcon" type="Sprite2D" parent="UnitIcon"]
 visible = false

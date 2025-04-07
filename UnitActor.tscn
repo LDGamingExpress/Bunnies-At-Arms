@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://ke31dymdk3hu"]
+[gd_scene load_steps=42 format=3 uid="uid://ke31dymdk3hu"]
 
 [ext_resource type="Texture2D" uid="uid://cfgpvagvsvydh" path="res://Textures/BAA_UnitTiles.png" id="1_5xegg"]
 [ext_resource type="Script" path="res://UnitActorScript.gd" id="1_dptay"]
@@ -19,6 +19,10 @@ region = Rect2(288, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_l78eu"]
 atlas = ExtResource("1_5xegg")
 region = Rect2(288, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2x5j8"]
+atlas = ExtResource("1_5xegg")
+region = Rect2(64, 32, 64, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mgpde"]
 atlas = ExtResource("1_5xegg")
@@ -96,6 +100,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"Eng2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2x5j8")
+}],
+"loop": true,
+"name": &"HTank1",
 "speed": 5.0
 }, {
 "frames": [{
@@ -203,6 +215,10 @@ region = Rect2(0, 32, 32, 32)
 atlas = ExtResource("3_6livi")
 region = Rect2(0, 32, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_x2tyx"]
+atlas = ExtResource("3_6livi")
+region = Rect2(160, 96, 128, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_u7833"]
 atlas = ExtResource("3_6livi")
 region = Rect2(0, 0, 32, 32)
@@ -287,6 +303,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"Eng2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x2tyx")
+}],
+"loop": true,
+"name": &"HTank1",
 "speed": 5.0
 }, {
 "frames": [{
@@ -411,15 +435,15 @@ script = ExtResource("1_dptay")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_o6apg")
-animation = &"MG2"
+animation = &"HTank1"
 
 [node name="GunSprite" type="AnimatedSprite2D" parent="AnimatedSprite2D"]
-position = Vector2(3, 0)
+position = Vector2(-2, 0)
 sprite_frames = SubResource("SpriteFrames_cud76")
-animation = &"Rocket2"
+animation = &"MTank1"
 
 [node name="EffectStart" type="Node2D" parent="AnimatedSprite2D/GunSprite"]
-position = Vector2(61, 0)
+position = Vector2(42, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_rv5ut")

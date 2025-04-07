@@ -66,6 +66,27 @@ func _ready() -> void:
 			add_child(NewObj)
 			Actors.append(get_child(7))
 			Actors.append(get_child(8))
+		"HTank":
+			UnitsLeft = 1
+			SPEED = 45
+			var NewObj = UnitActor.instantiate()
+			NewObj.Type = (Type + str(Team))
+			NewObj.position = $Pos1.global_position
+			NewObj.pos2go = 1
+			NewObj.SPEED = 45.0
+			NewObj.GunRange = 310
+			NewObj.Team = Team
+			NewObj.ReloadTime = 2.5
+			NewObj.Accuracy = 10
+			NewObj.Damage = 15
+			NewObj.Health = 80
+			NewObj.GunOffsetX = -2
+			NewObj.GunOffsetY = 0
+			NewObj.GunEnd = 61.0
+			NewObj.isVehicle = true
+			NewObj.GunBehind = false
+			add_child(NewObj)
+			Actors.append(get_child(7))
 		"MTank":
 			UnitsLeft = 1
 			SPEED = 68
@@ -82,7 +103,7 @@ func _ready() -> void:
 			NewObj.Health = 40
 			NewObj.GunOffsetX = 3
 			NewObj.GunOffsetY = 0
-			NewObj.GunEnd = 61.0
+			NewObj.GunEnd = 42.0
 			NewObj.isVehicle = true
 			NewObj.GunBehind = false
 			add_child(NewObj)
