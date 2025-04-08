@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bl41bmdw7f06q"]
+[gd_scene load_steps=35 format=3 uid="uid://bl41bmdw7f06q"]
 
 [ext_resource type="Texture2D" uid="uid://xfjyri0wrabf" path="res://Textures/BAA_UnitSymbols.png" id="1_bgkb8"]
 [ext_resource type="Script" path="res://UnitObjScript.gd" id="2_r6mwj"]
@@ -12,6 +12,14 @@ region = Rect2(160, 0, 32, 32)
 atlas = ExtResource("1_bgkb8")
 region = Rect2(160, 64, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_exe4k"]
+atlas = ExtResource("1_bgkb8")
+region = Rect2(128, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jnpkf"]
+atlas = ExtResource("1_bgkb8")
+region = Rect2(128, 96, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_raqja"]
 atlas = ExtResource("1_bgkb8")
 region = Rect2(128, 0, 32, 32)
@@ -19,6 +27,14 @@ region = Rect2(128, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_8eruo"]
 atlas = ExtResource("1_bgkb8")
 region = Rect2(128, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5sx4a"]
+atlas = ExtResource("1_bgkb8")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cq5cy"]
+atlas = ExtResource("1_bgkb8")
+region = Rect2(32, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q11gb"]
 atlas = ExtResource("1_bgkb8")
@@ -52,6 +68,22 @@ region = Rect2(224, 0, 32, 32)
 atlas = ExtResource("1_bgkb8")
 region = Rect2(224, 64, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_62xmv"]
+atlas = ExtResource("1_bgkb8")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q7c4u"]
+atlas = ExtResource("1_bgkb8")
+region = Rect2(96, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fj228"]
+atlas = ExtResource("1_bgkb8")
+region = Rect2(160, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tww1q"]
+atlas = ExtResource("1_bgkb8")
+region = Rect2(160, 96, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_bg88k"]
 atlas = ExtResource("1_bgkb8")
 region = Rect2(32, 0, 32, 32)
@@ -84,6 +116,14 @@ region = Rect2(192, 0, 32, 32)
 atlas = ExtResource("1_bgkb8")
 region = Rect2(192, 64, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ovlin"]
+atlas = ExtResource("1_bgkb8")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wdeid"]
+atlas = ExtResource("1_bgkb8")
+region = Rect2(64, 96, 32, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_87tm6"]
 animations = [{
 "frames": [{
@@ -104,6 +144,22 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_exe4k")
+}],
+"loop": true,
+"name": &"Depot1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jnpkf")
+}],
+"loop": true,
+"name": &"Depot2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_raqja")
 }],
 "loop": true,
@@ -116,6 +172,22 @@ animations = [{
 }],
 "loop": true,
 "name": &"Eng2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5sx4a")
+}],
+"loop": true,
+"name": &"HQ1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cq5cy")
+}],
+"loop": true,
+"name": &"HQ2",
 "speed": 5.0
 }, {
 "frames": [{
@@ -184,6 +256,38 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_62xmv")
+}],
+"loop": true,
+"name": &"MotorPool1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q7c4u")
+}],
+"loop": true,
+"name": &"MotorPool2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fj228")
+}],
+"loop": true,
+"name": &"Radio1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tww1q")
+}],
+"loop": true,
+"name": &"Radio2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_bg88k")
 }],
 "loop": true,
@@ -245,6 +349,22 @@ animations = [{
 "loop": true,
 "name": &"Tank2",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ovlin")
+}],
+"loop": true,
+"name": &"Tent1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wdeid")
+}],
+"loop": true,
+"name": &"Tent2",
+"speed": 5.0
 }]
 
 [node name="Unit" type="CharacterBody2D" groups=["Units"]]
@@ -257,7 +377,7 @@ self_modulate = Color(1, 1, 1, 0.462745)
 top_level = true
 z_index = 1
 sprite_frames = SubResource("SpriteFrames_87tm6")
-animation = &"Rocket1"
+animation = &"Radio2"
 
 [node name="SelectIcon" type="Sprite2D" parent="UnitIcon"]
 visible = false

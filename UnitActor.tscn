@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://ke31dymdk3hu"]
+[gd_scene load_steps=46 format=3 uid="uid://ke31dymdk3hu"]
 
 [ext_resource type="Texture2D" uid="uid://cfgpvagvsvydh" path="res://Textures/BAA_UnitTiles.png" id="1_5xegg"]
 [ext_resource type="Script" path="res://UnitActorScript.gd" id="1_dptay"]
@@ -24,6 +24,10 @@ region = Rect2(288, 64, 32, 32)
 atlas = ExtResource("1_5xegg")
 region = Rect2(64, 32, 64, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_vsusb"]
+atlas = ExtResource("1_5xegg")
+region = Rect2(64, 96, 64, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_mgpde"]
 atlas = ExtResource("1_5xegg")
 region = Rect2(64, 0, 32, 32)
@@ -43,6 +47,10 @@ region = Rect2(128, 64, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_45fq2"]
 atlas = ExtResource("1_5xegg")
 region = Rect2(0, 32, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fybtr"]
+atlas = ExtResource("1_5xegg")
+region = Rect2(0, 96, 64, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_268gh"]
 atlas = ExtResource("1_5xegg")
@@ -112,6 +120,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_vsusb")
+}],
+"loop": true,
+"name": &"HTank2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_mgpde")
 }],
 "loop": true,
@@ -148,6 +164,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"MTank1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fybtr")
+}],
+"loop": true,
+"name": &"MTank2",
 "speed": 5.0
 }, {
 "frames": [{
@@ -219,6 +243,10 @@ region = Rect2(0, 32, 32, 32)
 atlas = ExtResource("3_6livi")
 region = Rect2(160, 96, 128, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_hkst5"]
+atlas = ExtResource("3_6livi")
+region = Rect2(160, 160, 128, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_u7833"]
 atlas = ExtResource("3_6livi")
 region = Rect2(0, 0, 32, 32)
@@ -238,6 +266,10 @@ region = Rect2(96, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_42ne6"]
 atlas = ExtResource("3_6livi")
 region = Rect2(160, 64, 128, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mi2ec"]
+atlas = ExtResource("3_6livi")
+region = Rect2(160, 128, 128, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rbrfh"]
 atlas = ExtResource("3_6livi")
@@ -315,6 +347,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_hkst5")
+}],
+"loop": true,
+"name": &"HTank2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_u7833")
 }],
 "loop": true,
@@ -351,6 +391,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"MTank1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mi2ec")
+}],
+"loop": true,
+"name": &"MTank2",
 "speed": 5.0
 }, {
 "frames": [{
@@ -435,12 +483,12 @@ script = ExtResource("1_dptay")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_o6apg")
-animation = &"HTank1"
+animation = &"HTank2"
 
 [node name="GunSprite" type="AnimatedSprite2D" parent="AnimatedSprite2D"]
 position = Vector2(-2, 0)
 sprite_frames = SubResource("SpriteFrames_cud76")
-animation = &"MTank1"
+animation = &"HTank2"
 
 [node name="EffectStart" type="Node2D" parent="AnimatedSprite2D/GunSprite"]
 position = Vector2(42, 0)
