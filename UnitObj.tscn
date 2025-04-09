@@ -1,8 +1,16 @@
-[gd_scene load_steps=35 format=3 uid="uid://bl41bmdw7f06q"]
+[gd_scene load_steps=37 format=3 uid="uid://bl41bmdw7f06q"]
 
 [ext_resource type="Texture2D" uid="uid://xfjyri0wrabf" path="res://Textures/BAA_UnitSymbols.png" id="1_bgkb8"]
 [ext_resource type="Script" path="res://UnitObjScript.gd" id="2_r6mwj"]
 [ext_resource type="Texture2D" uid="uid://bajiiwmmg7vc6" path="res://Textures/BAA_UnitSelected.png" id="3_v8l3e"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d357s"]
+atlas = ExtResource("1_bgkb8")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q5kqn"]
+atlas = ExtResource("1_bgkb8")
+region = Rect2(96, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7vfkd"]
 atlas = ExtResource("1_bgkb8")
@@ -126,6 +134,22 @@ region = Rect2(64, 96, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_87tm6"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d357s")
+}],
+"loop": true,
+"name": &"Bunker1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q5kqn")
+}],
+"loop": true,
+"name": &"Bunker2",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7vfkd")
@@ -377,7 +401,7 @@ self_modulate = Color(1, 1, 1, 0.462745)
 top_level = true
 z_index = 1
 sprite_frames = SubResource("SpriteFrames_87tm6")
-animation = &"Radio2"
+animation = &"Depot1"
 
 [node name="SelectIcon" type="Sprite2D" parent="UnitIcon"]
 visible = false

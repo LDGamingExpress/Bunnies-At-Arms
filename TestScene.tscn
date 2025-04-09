@@ -536,3 +536,8 @@ Team = 2
 position = Vector2(1032, 304)
 Type = "MTank"
 Team = 2
+
+[node name="Unit16" parent="." instance=ExtResource("2_i7ys4")]
+position = Vector2(840, -200)
+Type = "Bunker"
+Team = 2

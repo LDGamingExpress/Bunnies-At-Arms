@@ -1,8 +1,16 @@
-[gd_scene load_steps=46 format=3 uid="uid://ke31dymdk3hu"]
+[gd_scene load_steps=60 format=3 uid="uid://ke31dymdk3hu"]
 
 [ext_resource type="Texture2D" uid="uid://cfgpvagvsvydh" path="res://Textures/BAA_UnitTiles.png" id="1_5xegg"]
 [ext_resource type="Script" path="res://UnitActorScript.gd" id="1_dptay"]
 [ext_resource type="Texture2D" uid="uid://d7cfg2ipt2pg" path="res://Textures/BAA_GunTiles.png" id="3_6livi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wcqlw"]
+atlas = ExtResource("1_5xegg")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x8hyr"]
+atlas = ExtResource("1_5xegg")
+region = Rect2(0, 128, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_potrx"]
 atlas = ExtResource("1_5xegg")
@@ -12,6 +20,14 @@ region = Rect2(160, 0, 64, 32)
 atlas = ExtResource("1_5xegg")
 region = Rect2(160, 64, 64, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_7yls2"]
+atlas = ExtResource("1_5xegg")
+region = Rect2(96, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d4tp6"]
+atlas = ExtResource("1_5xegg")
+region = Rect2(96, 128, 64, 64)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_bqy20"]
 atlas = ExtResource("1_5xegg")
 region = Rect2(288, 0, 32, 32)
@@ -19,6 +35,14 @@ region = Rect2(288, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_l78eu"]
 atlas = ExtResource("1_5xegg")
 region = Rect2(288, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dkr3s"]
+atlas = ExtResource("1_5xegg")
+region = Rect2(32, 160, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yq5ms"]
+atlas = ExtResource("1_5xegg")
+region = Rect2(32, 160, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2x5j8"]
 atlas = ExtResource("1_5xegg")
@@ -52,6 +76,22 @@ region = Rect2(0, 32, 64, 32)
 atlas = ExtResource("1_5xegg")
 region = Rect2(0, 96, 64, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_epoov"]
+atlas = ExtResource("1_5xegg")
+region = Rect2(64, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yacb5"]
+atlas = ExtResource("1_5xegg")
+region = Rect2(64, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e47vw"]
+atlas = ExtResource("1_5xegg")
+region = Rect2(160, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5b2wr"]
+atlas = ExtResource("1_5xegg")
+region = Rect2(160, 128, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_268gh"]
 atlas = ExtResource("1_5xegg")
 region = Rect2(96, 0, 32, 32)
@@ -76,8 +116,32 @@ region = Rect2(224, 0, 64, 32)
 atlas = ExtResource("1_5xegg")
 region = Rect2(224, 64, 64, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_u3eew"]
+atlas = ExtResource("1_5xegg")
+region = Rect2(32, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jaxrh"]
+atlas = ExtResource("1_5xegg")
+region = Rect2(32, 128, 32, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_o6apg"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wcqlw")
+}],
+"loop": true,
+"name": &"Bunker1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x8hyr")
+}],
+"loop": true,
+"name": &"Bunker2",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_potrx")
@@ -96,6 +160,22 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_7yls2")
+}],
+"loop": true,
+"name": &"Depot1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d4tp6")
+}],
+"loop": true,
+"name": &"Depot2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_bqy20")
 }],
 "loop": true,
@@ -108,6 +188,22 @@ animations = [{
 }],
 "loop": true,
 "name": &"Eng2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dkr3s")
+}],
+"loop": true,
+"name": &"HQ1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yq5ms")
+}],
+"loop": true,
+"name": &"HQ2",
 "speed": 5.0
 }, {
 "frames": [{
@@ -176,6 +272,38 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_epoov")
+}],
+"loop": true,
+"name": &"MotorPool1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yacb5")
+}],
+"loop": true,
+"name": &"MotorPool2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e47vw")
+}],
+"loop": true,
+"name": &"Radio1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5b2wr")
+}],
+"loop": true,
+"name": &"Radio2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_268gh")
 }],
 "loop": true,
@@ -221,7 +349,31 @@ animations = [{
 "loop": true,
 "name": &"Tank2",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u3eew")
+}],
+"loop": true,
+"name": &"Tent1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jaxrh")
+}],
+"loop": true,
+"name": &"Tent2",
+"speed": 5.0
 }]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6xl1u"]
+atlas = ExtResource("3_6livi")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xdk5j"]
+atlas = ExtResource("3_6livi")
+region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2axuy"]
 atlas = ExtResource("3_6livi")
@@ -305,6 +457,22 @@ region = Rect2(192, 32, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cud76"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6xl1u")
+}],
+"loop": true,
+"name": &"Bunker1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xdk5j")
+}],
+"loop": true,
+"name": &"Bunker2",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2axuy")
@@ -483,12 +651,11 @@ script = ExtResource("1_dptay")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_o6apg")
-animation = &"HTank2"
+animation = &"Depot2"
 
 [node name="GunSprite" type="AnimatedSprite2D" parent="AnimatedSprite2D"]
-position = Vector2(-2, 0)
 sprite_frames = SubResource("SpriteFrames_cud76")
-animation = &"HTank2"
+animation = &"Bunker1"
 
 [node name="EffectStart" type="Node2D" parent="AnimatedSprite2D/GunSprite"]
 position = Vector2(42, 0)

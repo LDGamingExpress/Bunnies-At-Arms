@@ -20,7 +20,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Units"):
 		if body.Team != Team:
 			body.Health -= Damage
-			if body.isVehicle:
+			if body.isVehicle or body.isBuilding:
 				var NewObj = SmokeP.instantiate()
 				NewObj.position = body.global_position
 				get_parent().add_child(NewObj)

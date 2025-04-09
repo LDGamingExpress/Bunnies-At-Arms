@@ -14,10 +14,32 @@ var Behavior = "Defensive" # Can be Defensive, Aggressive, and Passive
 var UnitsLeft = 4
 var Pursuing = null
 var Actors = []
+var isBuilding = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	match Type:
+		"Bunker":
+			UnitsLeft = 1
+			SPEED = 0.0
+			isBuilding = true
+			var NewObj = UnitActor.instantiate()
+			NewObj.Type = (Type + str(Team))
+			NewObj.position = $Pos5.global_position
+			NewObj.pos2go = 5
+			NewObj.SPEED = 0.0
+			NewObj.GunRange = 150
+			NewObj.Team = Team
+			NewObj.ReloadTime = 0.1
+			NewObj.Accuracy = 15
+			NewObj.Damage = 1.2
+			NewObj.Health = 35
+			NewObj.GunEnd = 15.0
+			NewObj.GunOffsetX = 0
+			NewObj.GunOffsetY = 0
+			NewObj.isBuilding = true
+			add_child(NewObj)
+			Actors.append(get_child(7))
 		"MG":
 			UnitsLeft = 1
 			SPEED = 40.0
@@ -269,7 +291,7 @@ func _process(delta: float) -> void:
 			$NavigationAgent2D.target_desired_distance = 8
 		#if Type == "Car":
 		#	print(sqrt(pow($NavigationAgent2D.get_next_path_position().x - global_position.x,2) + pow($NavigationAgent2D.get_next_path_position().y - global_position.y,2)))
-		if abs($NavigationAgent2D.get_next_path_position().x - global_position.x) + abs($NavigationAgent2D.get_next_path_position().y - global_position.y) > 1:
+		if abs($NavigationAgent2D.get_next_path_position().x - global_position.x) + abs($NavigationAgent2D.get_next_path_position().y - global_position.y) > 1 and isBuilding == false:
 			if FarAway > 20 and FirstMove != 1:
 				#var posBefore = position
 				var dir = to_local($NavigationAgent2D.get_next_path_position()).normalized()
@@ -290,19 +312,21 @@ func _process(delta: float) -> void:
 				move_and_slide()
 		else:
 			$NavigationAgent2D.target_position = position
-		var MaxDis = 0
-		var AvailableActor = null
-		for i in range(0,Actors.size()):
-			if Actors[i] != null:
-				var ActorDis = sqrt(pow(Actors[i].global_position.x - global_position.x,2)+pow(Actors[i].global_position.y - global_position.y,2))
-				if ActorDis > MaxDis:
-					MaxDis = ActorDis
-					AvailableActor = Actors[i]
-		if MaxDis <= 30:
-			$UnitIcon.global_position = global_position
+		if isBuilding == false:
+			var MaxDis = 0
+			var AvailableActor = null
+			for i in range(0,Actors.size()):
+				if Actors[i] != null:
+					var ActorDis = sqrt(pow(Actors[i].global_position.x - global_position.x,2)+pow(Actors[i].global_position.y - global_position.y,2))
+					if ActorDis > MaxDis:
+						MaxDis = ActorDis
+						AvailableActor = Actors[i]
+			if MaxDis <= 30:
+				$UnitIcon.global_position = global_position
+			else:
+				$UnitIcon.global_position = lerp($UnitIcon.global_position,AvailableActor.global_position,0.5)
 		else:
-			$UnitIcon.global_position = lerp($UnitIcon.global_position,AvailableActor.global_position,0.5)
-
+			$UnitIcon.global_position = global_position + Vector2(0,-32)
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if PlayerHovering == 1:
@@ -333,8 +357,10 @@ func _input(event: InputEvent) -> void:
 						Globals.UnitsSelected = []
 				else:
 					UnSelect()
+			elif Selected == 1:
+				UnSelect()
 		if Selected == 1:
-			if (event.is_pressed() and event.button_index == MOUSE_BUTTON_RIGHT):
+			if (event.is_pressed() and event.button_index == MOUSE_BUTTON_RIGHT) and isBuilding == false:
 				var IndexInList = Globals.UnitsSelected.find(self) + 1
 				var ListLength = Globals.UnitsSelected.size() + 1
 				if ListLength == 1:
@@ -353,6 +379,8 @@ func _input(event: InputEvent) -> void:
 func UnSelect():
 	Selected = 0
 	$UnitIcon/SelectIcon.visible = false
+	var IndexInList = Globals.UnitsSelected.find(self)
+	Globals.UnitsSelected.remove_at(IndexInList)
 
 func Select():
 	Selected = 1
