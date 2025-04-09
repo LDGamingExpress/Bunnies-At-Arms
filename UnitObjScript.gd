@@ -19,6 +19,111 @@ var isBuilding = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	match Type:
+		"HQ":
+			UnitsLeft = 1
+			SPEED = 0.0
+			isBuilding = true
+			var NewObj = UnitActor.instantiate()
+			NewObj.Type = (Type + str(Team))
+			NewObj.position = $Pos5.global_position
+			NewObj.pos2go = 5
+			NewObj.SPEED = 0.0
+			NewObj.GunRange = 0
+			NewObj.Team = Team
+			NewObj.ReloadTime = 0.1
+			NewObj.Accuracy = 15
+			NewObj.Damage = 1.2
+			NewObj.Health = 60
+			NewObj.GunEnd = 15.0
+			NewObj.GunOffsetX = 0
+			NewObj.GunOffsetY = 0
+			NewObj.isBuilding = true
+			add_child(NewObj)
+			Actors.append(get_child(7))
+		"Depot":
+			UnitsLeft = 1
+			SPEED = 0.0
+			isBuilding = true
+			var NewObj = UnitActor.instantiate()
+			NewObj.Type = (Type + str(Team))
+			NewObj.position = $Pos5.global_position
+			NewObj.pos2go = 5
+			NewObj.SPEED = 0.0
+			NewObj.GunRange = 0
+			NewObj.Team = Team
+			NewObj.ReloadTime = 0.1
+			NewObj.Accuracy = 15
+			NewObj.Damage = 1.2
+			NewObj.Health = 40
+			NewObj.GunEnd = 15.0
+			NewObj.GunOffsetX = 0
+			NewObj.GunOffsetY = 0
+			NewObj.isBuilding = true
+			add_child(NewObj)
+			Actors.append(get_child(7))
+		"Radio":
+			UnitsLeft = 1
+			SPEED = 0.0
+			isBuilding = true
+			var NewObj = UnitActor.instantiate()
+			NewObj.Type = (Type + str(Team))
+			NewObj.position = $Pos5.global_position
+			NewObj.pos2go = 5
+			NewObj.SPEED = 0.0
+			NewObj.GunRange = 0
+			NewObj.Team = Team
+			NewObj.ReloadTime = 0.1
+			NewObj.Accuracy = 15
+			NewObj.Damage = 1.2
+			NewObj.Health = 25
+			NewObj.GunEnd = 15.0
+			NewObj.GunOffsetX = 0
+			NewObj.GunOffsetY = 0
+			NewObj.isBuilding = true
+			add_child(NewObj)
+			Actors.append(get_child(7))
+		"MotorPool":
+			UnitsLeft = 1
+			SPEED = 0.0
+			isBuilding = true
+			var NewObj = UnitActor.instantiate()
+			NewObj.Type = (Type + str(Team))
+			NewObj.position = $Pos5.global_position
+			NewObj.pos2go = 5
+			NewObj.SPEED = 0.0
+			NewObj.GunRange = 0
+			NewObj.Team = Team
+			NewObj.ReloadTime = 0.1
+			NewObj.Accuracy = 15
+			NewObj.Damage = 1.2
+			NewObj.Health = 25
+			NewObj.GunEnd = 15.0
+			NewObj.GunOffsetX = 0
+			NewObj.GunOffsetY = 0
+			NewObj.isBuilding = true
+			add_child(NewObj)
+			Actors.append(get_child(7))
+		"Tent":
+			UnitsLeft = 1
+			SPEED = 0.0
+			isBuilding = true
+			var NewObj = UnitActor.instantiate()
+			NewObj.Type = (Type + str(Team))
+			NewObj.position = $Pos5.global_position
+			NewObj.pos2go = 5
+			NewObj.SPEED = 0.0
+			NewObj.GunRange = 0
+			NewObj.Team = Team
+			NewObj.ReloadTime = 0.1
+			NewObj.Accuracy = 15
+			NewObj.Damage = 1.2
+			NewObj.Health = 25
+			NewObj.GunEnd = 15.0
+			NewObj.GunOffsetX = 0
+			NewObj.GunOffsetY = 0
+			NewObj.isBuilding = true
+			add_child(NewObj)
+			Actors.append(get_child(7))
 		"Bunker":
 			UnitsLeft = 1
 			SPEED = 0.0

@@ -77,6 +77,46 @@ func _ready() -> void:
 			var NewShape = RectangleShape2D.new()
 			NewShape.set_size(Vector2(32,32))
 			$CollisionShape2D.shape = NewShape
+		"Tent1":
+			var NewShape = RectangleShape2D.new()
+			NewShape.set_size(Vector2(32,32))
+			$CollisionShape2D.shape = NewShape
+		"Tent2":
+			var NewShape = RectangleShape2D.new()
+			NewShape.set_size(Vector2(32,32))
+			$CollisionShape2D.shape = NewShape
+		"MotorPool1":
+			var NewShape = RectangleShape2D.new()
+			NewShape.set_size(Vector2(32,32))
+			$CollisionShape2D.shape = NewShape
+		"MotorPool2":
+			var NewShape = RectangleShape2D.new()
+			NewShape.set_size(Vector2(32,32))
+			$CollisionShape2D.shape = NewShape
+		"Radio1":
+			var NewShape = RectangleShape2D.new()
+			NewShape.set_size(Vector2(32,32))
+			$CollisionShape2D.shape = NewShape
+		"Radio2":
+			var NewShape = RectangleShape2D.new()
+			NewShape.set_size(Vector2(32,32))
+			$CollisionShape2D.shape = NewShape
+		"Depot1":
+			var NewShape = RectangleShape2D.new()
+			NewShape.set_size(Vector2(64,64))
+			$CollisionShape2D.shape = NewShape
+		"Depot2":
+			var NewShape = RectangleShape2D.new()
+			NewShape.set_size(Vector2(64,64))
+			$CollisionShape2D.shape = NewShape
+		"HQ1":
+			var NewShape = RectangleShape2D.new()
+			NewShape.set_size(Vector2(64,64))
+			$CollisionShape2D.shape = NewShape
+		"HQ2":
+			var NewShape = RectangleShape2D.new()
+			NewShape.set_size(Vector2(64,64))
+			$CollisionShape2D.shape = NewShape
 	$AnimatedSprite2D/GunSprite.position = Vector2(GunOffsetX,GunOffsetY)
 	$AnimatedSprite2D/GunSprite.show_behind_parent = GunBehind
 	if isVehicle == true:
