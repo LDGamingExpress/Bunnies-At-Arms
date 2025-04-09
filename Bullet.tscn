@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dxvners18g7kr"]
+[gd_scene load_steps=9 format=3 uid="uid://dxvners18g7kr"]
 
 [ext_resource type="Script" path="res://BulletScript.gd" id="1_af8bg"]
 [ext_resource type="Texture2D" uid="uid://bmqqoxb64xyc6" path="res://Textures/Bullet.png" id="2_p0mrc"]
@@ -25,6 +25,9 @@ scale_curve = SubResource("CurveTexture_i6j6v")
 [sub_resource type="CircleShape2D" id="CircleShape2D_onfyq"]
 radius = 1.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_bm187"]
+radius = 1.0
+
 [node name="Bullet" type="CharacterBody2D"]
 script = ExtResource("1_af8bg")
 
@@ -44,4 +47,15 @@ shape = SubResource("CircleShape2D_onfyq")
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("2_p0mrc")
 
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(1, 0)
+
+[node name="CoverArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CoverArea"]
+shape = SubResource("CircleShape2D_bm187")
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="CoverArea" to="." method="_on_cover_area_body_entered"]

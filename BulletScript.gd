@@ -10,6 +10,7 @@ var Damage = 1
 var Team = null
 var startpos = null
 var GunRange = 150
+var rng = RandomNumberGenerator.new()
 
 func _ready() -> void:
 	startpos = position
@@ -53,9 +54,34 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 			NewObj2.Damage = Damage/2
 			NewObj2.Team = Team
 			get_parent().call_deferred("add_child",NewObj2)
+			var CellImpacted = body.local_to_map(body.to_local($Node2D.global_position))
+			#print(CellImpacted)
+			body.set_cell(CellImpacted,-1,Vector2i(-1,-1),0)
 		var NewObj = SmokeP.instantiate()
 		NewObj.position = global_position
 		get_parent().add_child(NewObj)
 		#var CellImpacted = body.local_to_map(body.to_local(global_position))
 		#print(CellImpacted)
 		queue_free()
+
+
+func _on_cover_area_body_entered(body: Node2D) -> void:
+	var dis = sqrt(pow(startpos.x - position.x,2) + pow(startpos.y - position.y,2))
+	if body.is_in_group("Props") and dis > 20:
+		var Chance2Hit = rng.randi_range(0,100)
+		if Chance2Hit > 15:
+			if Damage >= 5:
+				var NewObj2 = ImpactE.instantiate()
+				NewObj2.position = global_position
+				NewObj2.Damage = Damage/2
+				NewObj2.Team = Team
+				get_parent().call_deferred("add_child",NewObj2)
+				var CellImpacted = body.local_to_map(body.to_local($Node2D.global_position))
+				#print(CellImpacted)
+				body.set_cell(CellImpacted,-1,Vector2i(-1,-1),0)
+			var NewObj = SmokeP.instantiate()
+			NewObj.position = global_position
+			get_parent().add_child(NewObj)
+			#var CellImpacted = body.local_to_map(body.to_local(global_position))
+			#print(CellImpacted)
+			queue_free()

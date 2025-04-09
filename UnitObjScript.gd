@@ -504,8 +504,8 @@ func _input(event: InputEvent) -> void:
 func UnSelect():
 	Selected = 0
 	$UnitIcon/SelectIcon.visible = false
-	var IndexInList = Globals.UnitsSelected.find(self)
-	Globals.UnitsSelected.remove_at(IndexInList)
+	#var IndexInList = Globals.UnitsSelected.find(self)
+	#Globals.UnitsSelected.remove_at(IndexInList)
 
 func Select():
 	Selected = 1

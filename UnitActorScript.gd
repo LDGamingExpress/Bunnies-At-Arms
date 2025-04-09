@@ -32,7 +32,10 @@ var isBuilding = false
 
 func _ready() -> void:
 	$AnimatedSprite2D.animation = Type
-	$AnimatedSprite2D/GunSprite.animation = Type
+	if isBuilding == false or Type == "Bunker1" or Type == "Bunker2":
+		$AnimatedSprite2D/GunSprite.animation = Type
+	else:
+		$AnimatedSprite2D/GunSprite.visible = false
 	$ReloadTimer.wait_time = ReloadTime
 	$DetectArea/CollisionShape2D.shape = $DetectArea/CollisionShape2D.shape.duplicate()
 	$DetectArea/CollisionShape2D.shape.radius = (GunRange)
@@ -146,7 +149,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if Health <= 0:
 		get_parent().UnitsLeft -= 1
-		if isVehicle == true:
+		if isVehicle == true or isBuilding == true:
 			var NewObj = VehicleDeathP.instantiate()
 			NewObj.global_position = global_position
 			get_parent().get_parent().add_child(NewObj)
