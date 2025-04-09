@@ -382,7 +382,10 @@ func _process(delta: float) -> void:
 		#print(Globals.HoveringOverClickable)
 		queue_free()
 	else:
-		if Team == 1 and PlayerHovering == 0 and (Globals.MousePos.x >= (global_position.x - 16)) and (Globals.MousePos.x <= (global_position.x + 16)) and (Globals.MousePos.y >= (global_position.y - 16)) and (Globals.MousePos.y <= (global_position.y + 16)):
+		if Selected == 1:
+			if Globals.UnitsSelected.size() > 1 and isBuilding == true:
+				UnSelect()
+		if Team == 1 and PlayerHovering == 0 and (Globals.MousePos.x >= ($UnitIcon.global_position.x - 16)) and (Globals.MousePos.x <= ($UnitIcon.global_position.x + 16)) and (Globals.MousePos.y >= ($UnitIcon.global_position.y - 16)) and (Globals.MousePos.y <= ($UnitIcon.global_position.y + 16)):
 			Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
 			Globals.HoveringOverClickable += 1
 			PlayerHovering = 1

@@ -38,36 +38,52 @@ func _ready() -> void:
 	$DetectArea/CollisionShape2D.shape.radius = (GunRange)
 	match Type:
 		"Car1":
-			var NewShape = RectangleShape2D.new()
-			NewShape.set_size(Vector2(54,22))
+			#var NewShape = RectangleShape2D.new()
+			#NewShape.set_size(Vector2(54,22))
+			var NewShape = CircleShape2D.new()
+			NewShape.set_radius(22)
 			$CollisionShape2D.shape = NewShape
 		"Car2":
-			var NewShape = RectangleShape2D.new()
-			NewShape.set_size(Vector2(54,22))
+			#var NewShape = RectangleShape2D.new()
+			#NewShape.set_size(Vector2(54,22))
+			var NewShape = CircleShape2D.new()
+			NewShape.set_radius(22)
 			$CollisionShape2D.shape = NewShape
 		"Tank1":
-			var NewShape = RectangleShape2D.new()
-			NewShape.set_size(Vector2(57,20))
+			#var NewShape = RectangleShape2D.new()
+			#NewShape.set_size(Vector2(57,20))
+			var NewShape = CircleShape2D.new()
+			NewShape.set_radius(21)
 			$CollisionShape2D.shape = NewShape
 		"Tank2":
-			var NewShape = RectangleShape2D.new()
-			NewShape.set_size(Vector2(57,20))
+			#var NewShape = RectangleShape2D.new()
+			#NewShape.set_size(Vector2(57,20))
+			var NewShape = CircleShape2D.new()
+			NewShape.set_radius(21)
 			$CollisionShape2D.shape = NewShape
 		"MTank1":
-			var NewShape = RectangleShape2D.new()
-			NewShape.set_size(Vector2(54,20))
+			#var NewShape = RectangleShape2D.new()
+			#NewShape.set_size(Vector2(54,20))
+			var NewShape = CircleShape2D.new()
+			NewShape.set_radius(22)
 			$CollisionShape2D.shape = NewShape
 		"MTank2":
-			var NewShape = RectangleShape2D.new()
-			NewShape.set_size(Vector2(54,20))
+			#var NewShape = RectangleShape2D.new()
+			#NewShape.set_size(Vector2(54,20))
+			var NewShape = CircleShape2D.new()
+			NewShape.set_radius(22)
 			$CollisionShape2D.shape = NewShape
 		"HTank1":
-			var NewShape = RectangleShape2D.new()
-			NewShape.set_size(Vector2(55,28))
+			#var NewShape = RectangleShape2D.new()
+			#NewShape.set_size(Vector2(55,28))
+			var NewShape = CircleShape2D.new()
+			NewShape.set_radius(28)
 			$CollisionShape2D.shape = NewShape
 		"HTank2":
-			var NewShape = RectangleShape2D.new()
-			NewShape.set_size(Vector2(55,28))
+			#var NewShape = RectangleShape2D.new()
+			#NewShape.set_size(Vector2(55,28))
+			var NewShape = CircleShape2D.new()
+			NewShape.set_radius(28)
 			$CollisionShape2D.shape = NewShape
 		"Bunker1":
 			var NewShape = RectangleShape2D.new()
