@@ -28,3 +28,8 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 				var NewObj = BloodP.instantiate()
 				NewObj.position = body.global_position
 				get_parent().add_child(NewObj)
+	if body.is_in_group("Props"):
+		var CellImpacted = body.local_to_map(body.to_local(global_position))
+		#print(CellImpacted)
+		body.set_cell(CellImpacted,-1,Vector2i(-1,-1),0)
+		#var tile = body.local_to_map()

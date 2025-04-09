@@ -47,4 +47,15 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 				#get_parent().add_child(NewObj2)
 			queue_free()
 	else:
+		if Damage >= 5:
+			var NewObj2 = ImpactE.instantiate()
+			NewObj2.position = global_position
+			NewObj2.Damage = Damage/2
+			NewObj2.Team = Team
+			get_parent().call_deferred("add_child",NewObj2)
+		var NewObj = SmokeP.instantiate()
+		NewObj.position = global_position
+		get_parent().add_child(NewObj)
+		#var CellImpacted = body.local_to_map(body.to_local(global_position))
+		#print(CellImpacted)
 		queue_free()

@@ -308,6 +308,23 @@ func _ready() -> void:
 			add_child(NewObj)
 			Actors.append(get_child(7))
 			Actors.append(get_child(8))
+		"Rocket":
+			UnitsLeft = 1
+			SPEED = 45.0
+			var NewObj = UnitActor.instantiate()
+			NewObj.Type = (Type + str(Team))
+			NewObj.position = $Pos1.global_position
+			NewObj.pos2go = 1
+			NewObj.SPEED = 45.0
+			NewObj.GunRange = 280
+			NewObj.Team = Team
+			NewObj.ReloadTime = 1.8
+			NewObj.Accuracy = 5
+			NewObj.Damage = 10
+			NewObj.Health = 3
+			NewObj.GunEnd = 15.0
+			add_child(NewObj)
+			Actors.append(get_child(7))
 		"Recon":
 			UnitsLeft = 1
 			SPEED = 50.0

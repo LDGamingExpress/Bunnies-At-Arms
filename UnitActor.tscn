@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://ke31dymdk3hu"]
+[gd_scene load_steps=62 format=3 uid="uid://ke31dymdk3hu"]
 
 [ext_resource type="Texture2D" uid="uid://cfgpvagvsvydh" path="res://Textures/BAA_UnitTiles.png" id="1_5xegg"]
 [ext_resource type="Script" path="res://UnitActorScript.gd" id="1_dptay"]
@@ -99,6 +99,14 @@ region = Rect2(96, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_ybtc2"]
 atlas = ExtResource("1_5xegg")
 region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x0b22"]
+atlas = ExtResource("1_5xegg")
+region = Rect2(288, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c3hfq"]
+atlas = ExtResource("1_5xegg")
+region = Rect2(288, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_16yw6"]
 atlas = ExtResource("1_5xegg")
@@ -316,6 +324,22 @@ animations = [{
 }],
 "loop": true,
 "name": &"Recon2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x0b22")
+}],
+"loop": true,
+"name": &"Rocket1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c3hfq")
+}],
+"loop": true,
+"name": &"Rocket2",
 "speed": 5.0
 }, {
 "frames": [{
@@ -651,11 +675,11 @@ script = ExtResource("1_dptay")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_o6apg")
-animation = &"Depot2"
+animation = &"Rocket2"
 
 [node name="GunSprite" type="AnimatedSprite2D" parent="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_cud76")
-animation = &"Bunker1"
+animation = &"Rocket1"
 
 [node name="EffectStart" type="Node2D" parent="AnimatedSprite2D/GunSprite"]
 position = Vector2(42, 0)

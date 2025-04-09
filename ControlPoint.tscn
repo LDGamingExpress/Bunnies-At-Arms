@@ -6,6 +6,7 @@
 [ext_resource type="Theme" uid="uid://bd0je60acp7ff" path="res://MainTheme.tres" id="4_tnkk2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uxqp0"]
+radius = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f3jqw"]
 radius = 60.0
@@ -15,6 +16,7 @@ script = ExtResource("1_qlmqi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_uxqp0")
+disabled = true
 
 [node name="ControlArea" type="Sprite2D" parent="."]
 self_modulate = Color(0.572549, 0.572549, 0.572549, 0.74902)
