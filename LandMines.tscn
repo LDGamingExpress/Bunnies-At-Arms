@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://dg4ka7kbuv5rn"]
+
+[ext_resource type="Texture2D" uid="uid://cfgpvagvsvydh" path="res://Textures/BAA_UnitTiles.png" id="1_u2l0x"]
+[ext_resource type="Script" path="res://LandMinesScript.gd" id="2_d13f1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5kily"]
+atlas = ExtResource("1_u2l0x")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d7slp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5kily")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2rv5o"]
+size = Vector2(28, 28)
+
+[node name="LandMines" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_d7slp")
+script = ExtResource("2_d13f1")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_2rv5o")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
