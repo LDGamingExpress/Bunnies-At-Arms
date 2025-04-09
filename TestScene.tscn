@@ -521,3 +521,18 @@ Team = 2
 [node name="Unit12" parent="." instance=ExtResource("2_i7ys4")]
 position = Vector2(-56, 664)
 Type = "HTank"
+
+[node name="Unit13" parent="." instance=ExtResource("2_i7ys4")]
+position = Vector2(696, 584)
+Type = "HTank"
+Team = 2
+
+[node name="Unit14" parent="." instance=ExtResource("2_i7ys4")]
+position = Vector2(1056, 192)
+Type = "Tank"
+Team = 2
+
+[node name="Unit15" parent="." instance=ExtResource("2_i7ys4")]
+position = Vector2(1032, 304)
+Type = "MTank"
+Team = 2
