@@ -19,7 +19,7 @@ func _physics_process(delta: float) -> void:
 	#print("Mouse:")
 	#print(Globals.MousePos.y)
 	#print("Size:")
-	print(get_viewport().size.y/2*0.95)
+	#print(get_viewport().size.y/2*0.95)
 	if Input.is_action_pressed("Up") or (get_local_mouse_position().y <= -get_viewport().size.y/2*0.95/$Camera2D.zoom.x):
 		velocity.y -= SPEED
 	if Input.is_action_pressed("Down") or (get_local_mouse_position().y >= get_viewport().size.y/2*0.95/$Camera2D.zoom.x):
