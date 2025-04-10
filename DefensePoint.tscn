@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://dchpe6n7gxdce"]
+
+[node name="DefensePoint" type="Node2D" groups=["DefensePoints"]]

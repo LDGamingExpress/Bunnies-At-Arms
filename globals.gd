@@ -8,6 +8,8 @@ var Fuel = [10,10]
 var BunnyPower = [10,10]
 var Munitions = [10,10]
 var TeamColors = [[61, 204, 92],[204, 66, 61]]
+# Infantry, 
+
 # Called when the node enters the scene tree for the first time.
 #func _ready() -> void:
 #	pass # Replace with function body.

@@ -16,14 +16,17 @@ func _physics_process(delta: float) -> void:
 	
 	
 	# End of UI Update Code
-	
-	if Input.is_action_pressed("Up"):
+	#print("Mouse:")
+	#print(Globals.MousePos.y)
+	#print("Size:")
+	print(get_viewport().size.y/2*0.95)
+	if Input.is_action_pressed("Up") or (get_local_mouse_position().y <= -get_viewport().size.y/2*0.95/$Camera2D.zoom.x):
 		velocity.y -= SPEED
-	if Input.is_action_pressed("Down"):
+	if Input.is_action_pressed("Down") or (get_local_mouse_position().y >= get_viewport().size.y/2*0.95/$Camera2D.zoom.x):
 		velocity.y += SPEED
-	if Input.is_action_pressed("Left"):
+	if Input.is_action_pressed("Left") or (get_local_mouse_position().x <= -get_viewport().size.x/2*0.95/$Camera2D.zoom.x):
 		velocity.x -= SPEED
-	if Input.is_action_pressed("Right"):
+	if Input.is_action_pressed("Right") or (get_local_mouse_position().x >= get_viewport().size.x/2*0.95/$Camera2D.zoom.x):
 		velocity.x += SPEED
 	if Input.is_action_just_released("ZoomIn"):
 		$Camera2D.zoom += Vector2(0.1,0.1)
