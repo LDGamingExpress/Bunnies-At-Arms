@@ -176,6 +176,7 @@ func _physics_process(delta: float) -> void:
 				var dir = to_local($NavigationAgent2D.get_next_path_position()).normalized()
 				if abs($NavigationAgent2D.get_next_path_position().x - LastTar.x) + abs($NavigationAgent2D.get_next_path_position().y - LastTar.y) > 0.9:
 					$AnimatedSprite2D.look_at(GoToPos)
+					#add sound effect where idling
 				LastTar = $NavigationAgent2D.get_next_path_position()
 				velocity = dir * SPEED
 			"Defensive":
@@ -198,6 +199,7 @@ func _physics_process(delta: float) -> void:
 				var dir = to_local($NavigationAgent2D.get_next_path_position()).normalized()
 				if abs($NavigationAgent2D.get_next_path_position().x - LastTar.x) + abs($NavigationAgent2D.get_next_path_position().y - LastTar.y) > 0.9:
 					$AnimatedSprite2D.look_at(GoToPos)
+					#add sfx where moving
 				#print(EnemyTarget)
 				#print(EnemiesNearby)
 				if EnemyTarget != null:
@@ -247,6 +249,7 @@ func _physics_process(delta: float) -> void:
 				var dir = to_local($NavigationAgent2D.get_next_path_position()).normalized()
 				if abs($NavigationAgent2D.get_next_path_position().x - LastTar.x) + abs($NavigationAgent2D.get_next_path_position().y - LastTar.y) > 0.9:
 					$AnimatedSprite2D.look_at(GoToPos)
+					#add sfx where moving
 				#print(EnemyTarget)
 				#print(EnemiesNearby)
 				if EnemyTarget != null:

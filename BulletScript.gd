@@ -16,9 +16,13 @@ func _ready() -> void:
 	startpos = position
 	if Damage >= 5:
 		$Sprite2D.scale = Vector2(1.5,1.5)
+		#put tank sfx
 	$Sprite2D.rotate(atan(dir.y/dir.x))
 	if Damage == 0.8:
 		$Sprite2D.texture = AltTexture1
+		#put flamethrower sfx
+	#if Damage <= 5 and Damage != 0.8
+		#put bullet sfx
 
 func _physics_process(delta: float) -> void:
 	velocity = dir * SPEED
