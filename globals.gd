@@ -18,7 +18,7 @@ var UnitTypeMatch = ['Infantry', 'Recon', 'SMG', 'MG', 'Eng', 'Rocket', 'Car', '
 # Used to get the index based on the string tag for referencing other arrays (i.e. an infantry unit will find it's index to be 0 and can use that to find it's abilities
 
 #                    Infantry,       Recon,         SMG,            MG,                  Engineer,                                                           AT,         Vehicles(No Abilities)                   Tent,                                Motor Pool,                 Depot,                      Radio,     Mines & Bunker (No Abilities),  HQ
-var UnitAbilities = [['Grenade'], ['Grenade'], ['Satchel Charge'], ['Grenade'], ['Minesweep','Tent', 'Motor Pool', 'Depot', 'Radio', 'Mines', 'Bunker'], ['Satchel Charge'], [], [], [], [], ['Infantry', 'Recon', 'SMG', 'MG', 'Engineer', 'AT'], ['Car', 'Light Tank'], ['Medium Tank', 'Heavy Tank'], ['Artillery','Airstrike'], [], [], ['Infantry','Engineer']]
+var UnitAbilities = [['Grenade'], ['Grenade'], ['Satchel Charge'], ['Grenade'], ['Minesweep','Tent', 'MotorPool', 'Depot', 'Radio', 'Mines', 'Bunker'], ['Satchel Charge'], [], [], [], [], ['Infantry', 'Recon', 'SMG', 'MG', 'Eng', 'Rocket'], ['Car', 'Tank'], ['MTank', 'HTank'], ['Artillery','Airstrike'], [], [], ['Infantry','Eng']]
 var GrenadeCost = 25 # Munitions
 var SatchelCost = 40 # Munitions
 var MinesweepCost = 15 # BunnyPower
@@ -34,4 +34,12 @@ func _process(delta: float) -> void:
 	#print(UnitsSelected)
 	if HoveringOverClickable <= 0:
 		Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+	#print(UnitsSelected)
+	for i in UnitsSelected:
+		#var item = UnitsSelected[i]
+		var count = UnitsSelected.count(i)
+		if count > 1:
+			for a in range(0,count-1):
+				UnitsSelected.erase(i)
+	#print(UnitsSelected)
 #	MousePos = get_viewport().get_global_mouse_position()

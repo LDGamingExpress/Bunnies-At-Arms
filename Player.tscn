@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://o1mm2ci8jvc"]
+[gd_scene load_steps=9 format=3 uid="uid://o1mm2ci8jvc"]
 
 [ext_resource type="Script" path="res://PlayerScript.gd" id="1_m4ijf"]
 [ext_resource type="Theme" uid="uid://bd0je60acp7ff" path="res://MainTheme.tres" id="2_0yxj5"]
@@ -22,6 +22,9 @@ corner_radius_bottom_left = 3
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pw0ll"]
 radius = 60.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s8fyj"]
+size = Vector2(19, 19)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_m4ijf")
@@ -90,6 +93,17 @@ texture = ExtResource("4_67bee")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AbilitySprite/AbilityArea"]
 shape = SubResource("CircleShape2D_pw0ll")
+
+[node name="BuildArea" type="Sprite2D" parent="."]
+scale = Vector2(1.684, 1.684)
+texture = ExtResource("2_pqenh")
+
+[node name="BuildAreaD" type="Area2D" parent="BuildArea"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BuildArea/BuildAreaD"]
+shape = SubResource("RectangleShape2D_s8fyj")
 
 [connection signal="body_entered" from="Sprite2D/SelectionArea" to="." method="_on_selection_area_body_entered"]
 [connection signal="body_exited" from="Sprite2D/SelectionArea" to="." method="_on_selection_area_body_exited"]

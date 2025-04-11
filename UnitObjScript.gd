@@ -153,7 +153,7 @@ func _ready() -> void:
 			NewObj.position = $Pos1.global_position
 			NewObj.pos2go = 1
 			NewObj.SPEED = 40.0
-			NewObj.GunRange = 150
+			NewObj.GunRange = 170
 			NewObj.Team = Team
 			NewObj.ReloadTime = 0.1
 			NewObj.Accuracy = 15
@@ -401,6 +401,8 @@ func _process(delta: float) -> void:
 	else:
 		if Selected == 1:
 			if Globals.UnitsSelected.size() > 1 and isBuilding == true:
+				print(Globals.UnitsSelected)
+				print("Unselecting")
 				UnSelect()
 		if Team == 1 and PlayerHovering == 0 and (Globals.MousePos.x >= ($UnitIcon.global_position.x - 16)) and (Globals.MousePos.x <= ($UnitIcon.global_position.x + 16)) and (Globals.MousePos.y >= ($UnitIcon.global_position.y - 16)) and (Globals.MousePos.y <= ($UnitIcon.global_position.y + 16)):
 			Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)

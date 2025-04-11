@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @onready var GrenadeObj = preload("res://Grenade.tscn")
+@onready var UnitObj = preload("res://UnitObj.tscn")
 const SPEED = 300.0
 var SelectionStarted = false
 var SelectionStartPos = null
@@ -13,6 +14,13 @@ var AbilityRadius = 30
 var AbilitySelected = null
 var UnitWAbility = null
 var LandMines = []
+var rng = RandomNumberGenerator.new()
+var AbleToBuild = false
+var Building = false
+var BuildingI = null
+var BuildingT = null
+
+var BuildDict = {1: "Build1",2: "Build2",3: "Build3",4: "Build4",5: "Build5",6: "Build6",7: "Build7"}
 
 func _physics_process(delta: float) -> void:
 	
@@ -25,7 +33,7 @@ func _physics_process(delta: float) -> void:
 	# End of UI Update Code
 	
 	#print(Globals.UnitsSelected)
-	if Input.is_action_just_pressed("Select") and AbilityUse == true:
+	if Input.is_action_just_pressed("Select") and (AbilityUse == true or Building == true):
 		if AllowAbility:
 			var dis = sqrt(pow(Globals.MousePos.x - UnitWAbility.global_position.x,2) + pow(Globals.MousePos.y - UnitWAbility.global_position.y,2))
 			match AbilitySelected:
@@ -72,6 +80,20 @@ func _physics_process(delta: float) -> void:
 						Globals.CurrentUnitIndex = null
 						AbilityUse = false
 						$AbilitySprite.visible = false
+		if Building and AbleToBuild:
+			if Globals.BunnyPower[0] >= Globals.UnitBPCost[BuildingI] and Globals.Munitions[0] >= Globals.UnitMunitionCost[BuildingI] and Globals.Fuel[0] >= Globals.UnitFuelCost[BuildingI]:
+				Globals.BunnyPower[0] -= Globals.UnitBPCost[BuildingI]
+				Globals.Munitions[0] -= Globals.UnitMunitionCost[BuildingI]
+				Globals.Fuel[0] -= Globals.UnitFuelCost[BuildingI]
+				var NewObj = UnitObj.instantiate()
+				NewObj.Team = 1
+				NewObj.Type = BuildingT
+				NewObj.global_position = Globals.MousePos
+				get_parent().add_child(NewObj)
+				Globals.UnitPanelShow = null
+				Globals.CurrentUnitIndex = null
+				Building = false
+				$BuildArea.visible = false
 	
 	if Globals.UnitsSelected.size() == 1:
 		if Globals.UnitsSelected[0] != null:
@@ -85,13 +107,18 @@ func _physics_process(delta: float) -> void:
 			Globals.CurrentUnitIndex = null
 			AbilityUse = false
 			$AbilitySprite.visible = false
+			Building = false
+			$BuildArea.visible = false
 	else:
 		Globals.UnitPanelShow = null
 		Globals.CurrentUnitIndex = null
 		AbilityUse = false
 		$AbilitySprite.visible = false
+		Building = false
+		$BuildArea.visible = false
 	
 	if Globals.UnitPanelShow != null:
+		var BuildStart = null
 		for i in range(0,Globals.UnitAbilities[Globals.CurrentUnitIndex].size()):
 			match Globals.UnitAbilities[Globals.CurrentUnitIndex][i]:
 				'Grenade':
@@ -134,6 +161,120 @@ func _physics_process(delta: float) -> void:
 							AbilityRadius = 30.0
 							AbilitySelected = 'Minesweep'
 							$AbilitySprite.scale = Vector2(AbilityRadius/60.0,AbilityRadius/60.0)
+				'Tent':
+					if BuildStart == null:
+						BuildStart = i-1
+					if Input.is_action_just_pressed(BuildDict[i-BuildStart]):
+						var toBuild = Globals.UnitAbilities[Globals.CurrentUnitIndex][i]
+						var BuildIndex = Globals.UnitTypeMatch.find(toBuild)
+						if Globals.BunnyPower[0] >= Globals.UnitBPCost[BuildIndex] and Globals.Munitions[0] >= Globals.UnitMunitionCost[BuildIndex] and Globals.Fuel[0] >= Globals.UnitFuelCost[BuildIndex]:
+							AbleToBuild = false
+							AbilityRange = 120
+							$BuildArea.visible = true
+							$BuildArea.scale = Vector2(32.0/19.0,32.0/19.0)
+							Building = true
+							BuildingI = BuildIndex
+							BuildingT = toBuild
+				'MotorPool':
+					if BuildStart == null:
+						BuildStart = i-1
+					if Input.is_action_just_pressed(BuildDict[i-BuildStart]):
+						var toBuild = Globals.UnitAbilities[Globals.CurrentUnitIndex][i]
+						var BuildIndex = Globals.UnitTypeMatch.find(toBuild)
+						if Globals.BunnyPower[0] >= Globals.UnitBPCost[BuildIndex] and Globals.Munitions[0] >= Globals.UnitMunitionCost[BuildIndex] and Globals.Fuel[0] >= Globals.UnitFuelCost[BuildIndex]:
+							AbleToBuild = false
+							AbilityRange = 120
+							$BuildArea.visible = true
+							$BuildArea.scale = Vector2(32.0/19.0,32.0/19.0)
+							Building = true
+							BuildingI = BuildIndex
+							BuildingT = toBuild
+				'Depot':
+					if BuildStart == null:
+						BuildStart = i-1
+					if Input.is_action_just_pressed(BuildDict[i-BuildStart]):
+						var toBuild = Globals.UnitAbilities[Globals.CurrentUnitIndex][i]
+						var BuildIndex = Globals.UnitTypeMatch.find(toBuild)
+						if Globals.BunnyPower[0] >= Globals.UnitBPCost[BuildIndex] and Globals.Munitions[0] >= Globals.UnitMunitionCost[BuildIndex] and Globals.Fuel[0] >= Globals.UnitFuelCost[BuildIndex]:
+							AbleToBuild = false
+							AbilityRange = 120
+							$BuildArea.visible = true
+							$BuildArea.scale = Vector2(64.0/19.0,64.0/19.0)
+							Building = true
+							BuildingI = BuildIndex
+							BuildingT = toBuild
+				'Radio':
+					if BuildStart == null:
+						BuildStart = i-1
+					if Input.is_action_just_pressed(BuildDict[i-BuildStart]):
+						var toBuild = Globals.UnitAbilities[Globals.CurrentUnitIndex][i]
+						var BuildIndex = Globals.UnitTypeMatch.find(toBuild)
+						if Globals.BunnyPower[0] >= Globals.UnitBPCost[BuildIndex] and Globals.Munitions[0] >= Globals.UnitMunitionCost[BuildIndex] and Globals.Fuel[0] >= Globals.UnitFuelCost[BuildIndex]:
+							AbleToBuild = false
+							AbilityRange = 120
+							$BuildArea.visible = true
+							$BuildArea.scale = Vector2(32.0/19.0,32.0/19.0)
+							Building = true
+							BuildingI = BuildIndex
+							BuildingT = toBuild
+				'Mines':
+					if BuildStart == null:
+						BuildStart = i-1
+					if Input.is_action_just_pressed(BuildDict[i-BuildStart]):
+						var toBuild = Globals.UnitAbilities[Globals.CurrentUnitIndex][i]
+						var BuildIndex = Globals.UnitTypeMatch.find(toBuild)
+						if Globals.BunnyPower[0] >= Globals.UnitBPCost[BuildIndex] and Globals.Munitions[0] >= Globals.UnitMunitionCost[BuildIndex] and Globals.Fuel[0] >= Globals.UnitFuelCost[BuildIndex]:
+							AbleToBuild = false
+							AbilityRange = 120
+							$BuildArea.visible = true
+							$BuildArea.scale = Vector2(32.0/19.0,32.0/19.0)
+							Building = true
+							BuildingI = BuildIndex
+							BuildingT = toBuild
+				'Bunker':
+					if BuildStart == null:
+						BuildStart = i-1
+					if Input.is_action_just_pressed(BuildDict[i-BuildStart]):
+						var toBuild = Globals.UnitAbilities[Globals.CurrentUnitIndex][i]
+						var BuildIndex = Globals.UnitTypeMatch.find(toBuild)
+						if Globals.BunnyPower[0] >= Globals.UnitBPCost[BuildIndex] and Globals.Munitions[0] >= Globals.UnitMunitionCost[BuildIndex] and Globals.Fuel[0] >= Globals.UnitFuelCost[BuildIndex]:
+							AbleToBuild = false
+							AbilityRange = 120
+							$BuildArea.visible = true
+							$BuildArea.scale = Vector2(32.0/19.0,32.0/19.0)
+							Building = true
+							BuildingI = BuildIndex
+							BuildingT = toBuild
+				_:
+					if BuildStart == null:
+						BuildStart = i-1
+					if Input.is_action_just_pressed(BuildDict[i-BuildStart]):
+						var toBuild = Globals.UnitAbilities[Globals.CurrentUnitIndex][i]
+						var BuildIndex = Globals.UnitTypeMatch.find(toBuild)
+						if Globals.BunnyPower[0] >= Globals.UnitBPCost[BuildIndex] and Globals.Munitions[0] >= Globals.UnitMunitionCost[BuildIndex] and Globals.Fuel[0] >= Globals.UnitFuelCost[BuildIndex]:
+							Globals.BunnyPower[0] -= Globals.UnitBPCost[BuildIndex]
+							Globals.Munitions[0] -= Globals.UnitMunitionCost[BuildIndex]
+							Globals.Fuel[0] -= Globals.UnitFuelCost[BuildIndex]
+							var NewObj = UnitObj.instantiate()
+							NewObj.Team = 1
+							NewObj.Type = toBuild
+							NewObj.global_position = Globals.UnitsSelected[0].global_position + Vector2(rng.randf_range(-64,64),rng.randf_range(64,96))
+							get_parent().add_child(NewObj)
+							#print("Created")
+							#print(NewObj.global_position)
+							#print(Globals.MousePos)
+	if Building == true:
+		$BuildArea.global_position = Globals.MousePos
+		if sqrt(pow(Globals.MousePos.x - Globals.UnitsSelected[0].global_position.x,2) + pow(Globals.MousePos.y - Globals.UnitsSelected[0].global_position.y,2)) <= AbilityRange:
+			if $BuildArea/BuildAreaD.has_overlapping_bodies() == true:
+				AbleToBuild = false
+				$BuildArea.self_modulate = Color8(255,0,0,255)
+			else:
+				AbleToBuild = true
+				$BuildArea.self_modulate = Color8(0,255,0,255)
+		else:
+			AbleToBuild = false
+			$BuildArea.self_modulate = Color8(255,0,0,255)
 	if AbilityUse == true:
 		$AbilitySprite.global_position = Globals.MousePos
 		if sqrt(pow(Globals.MousePos.x - Globals.UnitsSelected[0].global_position.x,2) + pow(Globals.MousePos.y - Globals.UnitsSelected[0].global_position.y,2)) <= AbilityRange:
@@ -176,8 +317,9 @@ func _physics_process(delta: float) -> void:
 					Globals.UnitsSelected[i].UnSelect()
 			Globals.UnitsSelected = []
 		for i in range(0,PossibleSelections.size()):
-			Globals.UnitsSelected.append(PossibleSelections[i])
-			PossibleSelections[i].Select()
+			if Globals.UnitsSelected.find(PossibleSelections[i]) == -1:
+				Globals.UnitsSelected.append(PossibleSelections[i])
+				PossibleSelections[i].Select()
 		$Sprite2D.visible = false
 		SelectionStarted = false
 		PossibleSelections = []
