@@ -480,6 +480,8 @@ func _input(event: InputEvent) -> void:
 							if Globals.UnitsSelected[i] != null:
 								Globals.UnitsSelected[i].UnSelect()
 						Globals.UnitsSelected = []
+					await get_tree().create_timer(0.11).timeout
+					Globals.UnitsSelected.append(self)
 				else:
 					UnSelect()
 			elif Selected == 1:
@@ -504,8 +506,9 @@ func _input(event: InputEvent) -> void:
 func UnSelect():
 	Selected = 0
 	$UnitIcon/SelectIcon.visible = false
-	#var IndexInList = Globals.UnitsSelected.find(self)
-	#Globals.UnitsSelected.remove_at(IndexInList)
+	var IndexInList = Globals.UnitsSelected.find(self)
+	if IndexInList != -1:
+		Globals.UnitsSelected.remove_at(IndexInList)
 
 func Select():
 	Selected = 1

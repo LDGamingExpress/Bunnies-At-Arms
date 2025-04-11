@@ -16,10 +16,35 @@ func _physics_process(delta: float) -> void:
 	
 	
 	# End of UI Update Code
-	#print("Mouse:")
-	#print(Globals.MousePos.y)
-	#print("Size:")
-	#print(get_viewport().size.y/2*0.95)
+	
+	#print(Globals.UnitsSelected)
+	if Globals.UnitsSelected.size() == 1:
+		if Globals.UnitsSelected[0] != null:
+			var ToSelect = Globals.UnitsSelected[0].Type
+			ToSelect.left(ToSelect.length() - 1)
+			Globals.UnitPanelShow = ToSelect
+			Globals.CurrentUnitIndex = Globals.UnitTypeMatch.find(ToSelect)
+		else:
+			Globals.UnitPanelShow = null
+			Globals.CurrentUnitIndex = null
+	else:
+		Globals.UnitPanelShow = null
+		Globals.CurrentUnitIndex = null
+	
+	if Globals.UnitPanelShow != null:
+		for i in range(0,Globals.UnitAbilities[Globals.CurrentUnitIndex].size()):
+			match Globals.UnitAbilities[Globals.CurrentUnitIndex][i]:
+				'Grenade':
+					print("Grenade Available")
+					if Input.is_action_just_pressed("Ability1"):
+						pass
+						#if Globals.GrenadeCost <= Globals.Munitions[0]:
+						#	Globals.Munitions[0] -= Globals.GrenadeCost
+				'Satchel Charge':
+					print("Satchel Charge Available")
+				'Minesweep':
+					print("Minesweep Available")
+	
 	if Input.is_action_pressed("Up") or (get_local_mouse_position().y <= -get_viewport().size.y/2*0.95/$Camera2D.zoom.x):
 		velocity.y -= SPEED
 	if Input.is_action_pressed("Down") or (get_local_mouse_position().y >= get_viewport().size.y/2*0.95/$Camera2D.zoom.x):

@@ -174,7 +174,7 @@ func _physics_process(delta: float) -> void:
 					get_parent().FarAway = 0
 				
 				var dir = to_local($NavigationAgent2D.get_next_path_position()).normalized()
-				if abs($NavigationAgent2D.get_next_path_position().x - LastTar.x) + abs($NavigationAgent2D.get_next_path_position().y - LastTar.y) > 0.9:
+				if abs($NavigationAgent2D.get_next_path_position().x - LastTar.x) + abs($NavigationAgent2D.get_next_path_position().y - LastTar.y) > 0.75:
 					$AnimatedSprite2D.look_at(GoToPos)
 				LastTar = $NavigationAgent2D.get_next_path_position()
 				velocity = dir * SPEED
@@ -196,7 +196,7 @@ func _physics_process(delta: float) -> void:
 					EnemyTarget = GetClosestEnemy()
 				
 				var dir = to_local($NavigationAgent2D.get_next_path_position()).normalized()
-				if abs($NavigationAgent2D.get_next_path_position().x - LastTar.x) + abs($NavigationAgent2D.get_next_path_position().y - LastTar.y) > 0.9:
+				if abs($NavigationAgent2D.get_next_path_position().x - LastTar.x) + abs($NavigationAgent2D.get_next_path_position().y - LastTar.y) > 0.75:
 					$AnimatedSprite2D.look_at(GoToPos)
 				#print(EnemyTarget)
 				#print(EnemiesNearby)
@@ -245,7 +245,7 @@ func _physics_process(delta: float) -> void:
 					EnemyTarget = GetClosestEnemy()
 				
 				var dir = to_local($NavigationAgent2D.get_next_path_position()).normalized()
-				if abs($NavigationAgent2D.get_next_path_position().x - LastTar.x) + abs($NavigationAgent2D.get_next_path_position().y - LastTar.y) > 0.9:
+				if abs($NavigationAgent2D.get_next_path_position().x - LastTar.x) + abs($NavigationAgent2D.get_next_path_position().y - LastTar.y) > 0.75:
 					$AnimatedSprite2D.look_at(GoToPos)
 				#print(EnemyTarget)
 				#print(EnemiesNearby)
