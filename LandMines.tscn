@@ -21,7 +21,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2rv5o"]
 size = Vector2(28, 28)
 
-[node name="LandMines" type="AnimatedSprite2D"]
+[node name="LandMines" type="AnimatedSprite2D" groups=["Landmines"]]
 sprite_frames = SubResource("SpriteFrames_d7slp")
 script = ExtResource("2_d13f1")
 
