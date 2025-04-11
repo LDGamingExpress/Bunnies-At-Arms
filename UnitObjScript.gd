@@ -15,6 +15,7 @@ var UnitsLeft = 4
 var Pursuing = null
 var Actors = []
 var isBuilding = false
+var isVehicle = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -214,6 +215,7 @@ func _ready() -> void:
 			NewObj.GunBehind = false
 			add_child(NewObj)
 			Actors.append(get_child(7))
+			isVehicle = true
 		"MTank":
 			UnitsLeft = 1
 			SPEED = 68
@@ -235,6 +237,7 @@ func _ready() -> void:
 			NewObj.GunBehind = false
 			add_child(NewObj)
 			Actors.append(get_child(7))
+			isVehicle = true
 		"Tank":
 			UnitsLeft = 1
 			SPEED = 60
@@ -256,6 +259,7 @@ func _ready() -> void:
 			NewObj.GunBehind = false
 			add_child(NewObj)
 			Actors.append(get_child(7))
+			isVehicle = true
 		"Car":
 			UnitsLeft = 1
 			SPEED = 100
@@ -277,6 +281,7 @@ func _ready() -> void:
 			NewObj.GunBehind = false
 			add_child(NewObj)
 			Actors.append(get_child(7))
+			isVehicle = true
 		"SMG":
 			UnitsLeft = 2
 			SPEED = 68
@@ -388,6 +393,9 @@ func _ready() -> void:
 			Actors.append(get_child(8))
 			Actors.append(get_child(9))
 	$UnitIcon.animation = (Type + str(Team))
+	#print($NavigationAgent2D.navigation_layers)
+	if isVehicle == true:
+		$NavigationAgent2D.navigation_layers = 2
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

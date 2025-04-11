@@ -39,6 +39,8 @@ func _ready() -> void:
 	$ReloadTimer.wait_time = ReloadTime
 	$DetectArea/CollisionShape2D.shape = $DetectArea/CollisionShape2D.shape.duplicate()
 	$DetectArea/CollisionShape2D.shape.radius = (GunRange)
+	if isVehicle == true:
+		$NavigationAgent2D.navigation_layers = 2
 	match Type:
 		"Car1":
 			#var NewShape = RectangleShape2D.new()

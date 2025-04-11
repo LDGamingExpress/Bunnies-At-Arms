@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @onready var GrenadeObj = preload("res://Grenade.tscn")
 @onready var UnitObj = preload("res://UnitObj.tscn")
+@onready var LandMineObj = preload("res://LandMines.tscn")
 const SPEED = 300.0
 var SelectionStarted = false
 var SelectionStartPos = null
@@ -52,6 +53,7 @@ func _physics_process(delta: float) -> void:
 						Globals.CurrentUnitIndex = null
 						AbilityUse = false
 						$AbilitySprite.visible = false
+						AbilitySelected = null
 						Globals.Munitions[0] -= Globals.GrenadeCost
 				'Satchel Charge':
 					if Globals.SatchelCost <= Globals.Munitions[0]:
@@ -68,6 +70,7 @@ func _physics_process(delta: float) -> void:
 						Globals.CurrentUnitIndex = null
 						AbilityUse = false
 						$AbilitySprite.visible = false
+						AbilitySelected = null
 						Globals.Munitions[0] -= Globals.SatchelCost
 				'Minesweep':
 					if Globals.MinesweepCost <= Globals.BunnyPower[0]:
@@ -80,20 +83,28 @@ func _physics_process(delta: float) -> void:
 						Globals.CurrentUnitIndex = null
 						AbilityUse = false
 						$AbilitySprite.visible = false
+						AbilitySelected = null
 		if Building and AbleToBuild:
 			if Globals.BunnyPower[0] >= Globals.UnitBPCost[BuildingI] and Globals.Munitions[0] >= Globals.UnitMunitionCost[BuildingI] and Globals.Fuel[0] >= Globals.UnitFuelCost[BuildingI]:
 				Globals.BunnyPower[0] -= Globals.UnitBPCost[BuildingI]
 				Globals.Munitions[0] -= Globals.UnitMunitionCost[BuildingI]
 				Globals.Fuel[0] -= Globals.UnitFuelCost[BuildingI]
-				var NewObj = UnitObj.instantiate()
-				NewObj.Team = 1
-				NewObj.Type = BuildingT
-				NewObj.global_position = Globals.MousePos
-				get_parent().add_child(NewObj)
+				if BuildingT != 'Mines':
+					var NewObj = UnitObj.instantiate()
+					NewObj.Team = 1
+					NewObj.Type = BuildingT
+					NewObj.global_position = Globals.MousePos
+					get_parent().add_child(NewObj)
+				else:
+					var NewObj = LandMineObj.instantiate()
+					NewObj.Team = 1
+					NewObj.global_position = Globals.MousePos
+					get_parent().add_child(NewObj)
 				Globals.UnitPanelShow = null
 				Globals.CurrentUnitIndex = null
 				Building = false
 				$BuildArea.visible = false
+				AbilitySelected = null
 	
 	if Globals.UnitsSelected.size() == 1:
 		if Globals.UnitsSelected[0] != null:
@@ -109,6 +120,7 @@ func _physics_process(delta: float) -> void:
 			$AbilitySprite.visible = false
 			Building = false
 			$BuildArea.visible = false
+			AbilitySelected = null
 	else:
 		Globals.UnitPanelShow = null
 		Globals.CurrentUnitIndex = null
@@ -116,6 +128,7 @@ func _physics_process(delta: float) -> void:
 		$AbilitySprite.visible = false
 		Building = false
 		$BuildArea.visible = false
+		AbilitySelected = null
 	
 	if Globals.UnitPanelShow != null:
 		var BuildStart = null
