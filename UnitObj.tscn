@@ -392,6 +392,7 @@ animations = [{
 }]
 
 [node name="Unit" type="CharacterBody2D" groups=["Units"]]
+visible = false
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("2_r6mwj")

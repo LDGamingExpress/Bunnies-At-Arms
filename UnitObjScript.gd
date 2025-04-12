@@ -19,6 +19,7 @@ var isVehicle = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	visible = true
 	match Type:
 		"HQ":
 			UnitsLeft = 1
@@ -523,3 +524,6 @@ func UnSelect():
 func Select():
 	Selected = 1
 	$UnitIcon/SelectIcon.visible = true
+
+func SetTarget():
+	$NavigationAgent2D.target_position = GoToPos

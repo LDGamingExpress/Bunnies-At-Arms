@@ -48,6 +48,8 @@ func _on_resource_timer_timeout() -> void:
 				Globals.Fuel[Owner-1] += ResourceAmount
 			"Munitions":
 				Globals.Munitions[Owner-1] += ResourceAmount
+			"Victory Points":
+				Globals.VictoryPoints[Owner-1] += ResourceAmount
 
 
 func _on_capture_time_timeout() -> void:

@@ -31,6 +31,7 @@ var GunEnd = 10.0
 var isBuilding = false
 
 func _ready() -> void:
+	visible = true
 	$AnimatedSprite2D.animation = Type
 	if isBuilding == false or Type == "Bunker1" or Type == "Bunker2":
 		$AnimatedSprite2D/GunSprite.animation = Type

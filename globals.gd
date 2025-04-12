@@ -5,13 +5,19 @@ var EnemySelectable = null
 var UnitsSelected = []
 var UnitPanelShow = null
 var CurrentUnitIndex = null
+var GameMode = 'Victory Points'
+var ChangedMesh = false
+# Victory Points - Conquer a series of victory points and hold them till you gain a certain number of points
+# Elimination - Eliminate all enemy buildings and units
+# Encircled - Hold out for as long as possible against waves of enemies
 
-var Fuel = [1000,1000]
-var BunnyPower = [1000,1000]
-var Munitions = [1000,1000]
+var Fuel = [100,100]
+var BunnyPower = [500,500]
+var Munitions = [100,100]
+var VictoryPoints = [0,0]
 var TeamColors = [[61, 204, 92],[204, 66, 61]]
 # Infantry, Recon, SMG, MG, Engineer, AT, Car, Light Tank, Medium Tank, Heavy Tank, Tent, Motor Pool, Depot, Radio, Mines, Bunker, HQ
-var UnitBPCost = [50, 75, 75, 100, 100, 75, 100, 150, 250, 500, 150, 200, 400, 250, 0, 100]
+var UnitBPCost = [50, 75, 75, 100, 100, 75, 100, 150, 250, 500, 150, 200, 250, 250, 0, 100]
 var UnitMunitionCost = [25, 50, 75, 100, 15, 150, 70, 100, 200, 350, 50, 150, 250, 50, 50, 100]
 var UnitFuelCost = [0, 0, 0, 0, 0, 0, 50, 100, 250, 400, 0, 100, 300, 50, 0, 0]
 var UnitTypeMatch = ['Infantry', 'Recon', 'SMG', 'MG', 'Eng', 'Rocket', 'Car', 'Tank', 'MTank', 'HTank', 'Tent', 'MotorPool', 'Depot', 'Radio', 'Mines', 'Bunker', 'HQ']

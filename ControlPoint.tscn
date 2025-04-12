@@ -11,7 +11,7 @@ radius = 1.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_f3jqw"]
 radius = 60.0
 
-[node name="ControlPoint" type="StaticBody2D"]
+[node name="ControlPoint" type="StaticBody2D" groups=["ControlPoints"]]
 script = ExtResource("1_qlmqi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

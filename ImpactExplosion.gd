@@ -32,4 +32,5 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		var CellImpacted = body.local_to_map(body.to_local(global_position))
 		#print(CellImpacted)
 		body.set_cell(CellImpacted,-1,Vector2i(-1,-1),0)
+		Globals.ChangedMesh = true
 		#var tile = body.local_to_map()

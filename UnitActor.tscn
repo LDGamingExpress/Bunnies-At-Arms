@@ -665,6 +665,7 @@ radius = 7.0
 radius = 250.0
 
 [node name="UnitActor" type="CharacterBody2D" groups=["Units"]]
+visible = false
 top_level = true
 z_as_relative = false
 collision_layer = 3
