@@ -24,6 +24,12 @@ func _physics_process(delta: float) -> void:
 	velocity = dir * SPEED
 	move_and_slide()
 	if sqrt(pow(startpos.x - position.x,2) + pow(startpos.y - position.y,2)) > GunRange*1.2:
+		if Damage >= 5:
+			var NewObj2 = ImpactE.instantiate()
+			NewObj2.position = global_position
+			NewObj2.Damage = Damage/2
+			NewObj2.Team = Team
+			get_parent().call_deferred("add_child",NewObj2)
 		queue_free()
 
 
@@ -54,10 +60,11 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 			NewObj2.Damage = Damage/2
 			NewObj2.Team = Team
 			get_parent().call_deferred("add_child",NewObj2)
-			var CellImpacted = body.local_to_map(body.to_local($Node2D.global_position))
-			#print(CellImpacted)
-			body.set_cell(CellImpacted,-1,Vector2i(-1,-1),0)
-			Globals.ChangedMesh = true
+			if body.is_in_group("Props"):
+				var CellImpacted = body.local_to_map(body.to_local($Node2D.global_position))
+				#print(CellImpacted)
+				body.set_cell(CellImpacted,-1,Vector2i(-1,-1),0)
+				Globals.ChangedMesh = true
 		var NewObj = SmokeP.instantiate()
 		NewObj.position = global_position
 		get_parent().add_child(NewObj)

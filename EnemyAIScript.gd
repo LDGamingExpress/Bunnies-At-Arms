@@ -46,7 +46,7 @@ func _ready() -> void:
 
 
 func _on_enemy_d_timer_timeout() -> void:
-	print(Focus)
+	#print(Focus)
 	Troops = []
 	Buildings = []
 	Engineers = []
@@ -148,7 +148,7 @@ func _on_enemy_d_timer_timeout() -> void:
 				Focus = "Victory"
 			else:
 				if (hasHQ.size() + hasTent.size() + hasMotorPool.size() + hasDepot.size() + hasRadio.size()) >= 5:
-					if Globals.BunnyPower[Team - 1] >= 500 and Globals.Fuel[Team - 1] >= 300 and Globals.Munitions[Team - 1] >= 500:
+					if Globals.BunnyPower[Team - 1] >= 500 and Globals.Fuel[Team - 1] >= 200 and Globals.Munitions[Team - 1] >= 300:
 						Focus = "Unit Production"
 					else:
 						Focus = "Resources"
@@ -161,7 +161,7 @@ func _on_enemy_d_timer_timeout() -> void:
 				Focus = "Base Destruction"
 			else:
 				if (hasHQ.size() + hasTent.size() + hasMotorPool.size() + hasDepot.size() + hasRadio.size()) >= 5:
-					if Globals.BunnyPower[Team - 1] >= 500 and Globals.Fuel[Team - 1] >= 300 and Globals.Munitions[Team - 1] >= 500:
+					if Globals.BunnyPower[Team - 1] >= 500 and Globals.Fuel[Team - 1] >= 200 and Globals.Munitions[Team - 1] >= 300:
 						Focus = "Unit Production"
 					else:
 						Focus = "Resources"
@@ -173,7 +173,7 @@ func _on_enemy_d_timer_timeout() -> void:
 		if hasHQ.size() >= 1:
 			BuildUnit(4,'Eng',hasHQ[rng.randi_range(0,hasHQ.size()-1)])
 		elif hasTent.size() >= 1:
-			BuildUnit(4,'Eng',hasHQ[rng.randi_range(0,hasTent.size()-1)])
+			BuildUnit(4,'Eng',hasTent[rng.randi_range(0,hasTent.size()-1)])
 	if Engineers.size() >= 1:
 		if hasTent.size() == 0 and CheckPrice(10):
 			BuildBuilding(10, 'Tent', Engineers[rng.randi_range(0,Engineers.size()-1)])
@@ -191,17 +191,17 @@ func _on_enemy_d_timer_timeout() -> void:
 			if Globals.BunnyPower[Team - 1] >= 400 and Globals.Munitions[Team - 1] >= 200 and Globals.Fuel[Team - 1] >= 200:
 				Factor = 0.1
 			for i in range(0,Troops.size()):
-				print("CheckingTroop")
+				#print("CheckingTroop")
 				Troops[i].Behavior = "Defensive"
 				var ClosestDis = 100000
 				var ClosestPoint = null
 				for a in range(0,ResourcePoints.size()):
-					print(Troops[i].GoToPos)
+					#print(Troops[i].GoToPos)
 					var dis = sqrt(pow(ResourcePoints[a].global_position.x - Troops[i].GoToPos.x,2)+pow(ResourcePoints[a].global_position.y - Troops[i].GoToPos.y,2))
 					if dis < ClosestDis and ResourcePoints[a].Owner != Team:
 						ClosestDis = dis
 						ClosestPoint = ResourcePoints[a]
-				print(ClosestDis)
+				#print(ClosestDis)
 				if ClosestDis > 100 and ClosestDis < 300:
 					Troops[i].GoToPos = ClosestPoint.global_position + Vector2(rng.randf_range(-60,60),rng.randf_range(-60,60))
 					Troops[i].FarAway = 0
@@ -211,9 +211,9 @@ func _on_enemy_d_timer_timeout() -> void:
 					Troops[i].GoToPos = ClosestPoint.global_position + Vector2(rng.randf_range(-60,60),rng.randf_range(-60,60))
 					Troops[i].FarAway = 0
 					Troops[i].FirstMove = 1
-					print(ClosestPoint)
+					#print(ClosestPoint)
 					Troops[i].SetTarget()
-					print("Closest")
+					#print("Closest")
 				elif ClosestDis >= 300:
 					Troops[i].GoToPos = ResourcePoints[rng.randi_range(0,ResourcePoints.size()-1)].global_position + Vector2(rng.randf_range(-60,60),rng.randf_range(-60,60))
 					Troops[i].FarAway = 0
@@ -222,7 +222,7 @@ func _on_enemy_d_timer_timeout() -> void:
 		"Unit Production":
 			Factor = 0.9
 			for i in range(0,Troops.size()):
-				print("CheckingTroop")
+				#print("CheckingTroop")
 				Troops[i].Behavior = "Defensive"
 				var ClosestDis = 100000
 				var ClosestPoint = null
@@ -231,7 +231,7 @@ func _on_enemy_d_timer_timeout() -> void:
 					if dis < ClosestDis:
 						ClosestDis = dis
 						ClosestPoint = DefensePoints[a]
-				print(ClosestDis)
+				#print(ClosestDis)
 				if ClosestDis > 100 and ClosestDis < 250:
 					Troops[i].GoToPos = ClosestPoint.global_position + Vector2(rng.randf_range(-100,100),rng.randf_range(-100,100))
 					Troops[i].FarAway = 0
@@ -244,7 +244,7 @@ func _on_enemy_d_timer_timeout() -> void:
 					Troops[i].SetTarget()
 		"Victory":
 			for i in range(0,Troops.size()):
-				print("CheckingTroop")
+				#print("CheckingTroop")
 				Troops[i].Behavior = "Aggressive"
 				var ClosestDis = 100000
 				var ClosestPoint = null
@@ -253,7 +253,7 @@ func _on_enemy_d_timer_timeout() -> void:
 					if dis < ClosestDis:
 						ClosestDis = dis
 						ClosestPoint = VictoryPoints[a]
-				print(ClosestDis)
+				#print(ClosestDis)
 				if ClosestDis > 100 and ClosestDis < 250:
 					Troops[i].GoToPos = ClosestPoint.global_position + Vector2(rng.randf_range(-100,100),rng.randf_range(-100,100))
 					Troops[i].FarAway = 0
@@ -288,25 +288,46 @@ func _on_enemy_d_timer_timeout() -> void:
 						Troops[i].FirstMove = 1
 						Troops[i].SetTarget()
 		"Base Destruction":
-			pass
-	print(Globals.BunnyPower[Team-1])
-	print(Globals.Munitions[Team-1])
-	print(Globals.Fuel[Team-1])
+			if EnemyBuildings.size() >= 1:
+				for i in range(0,Troops.size()):
+					#print("CheckingTroop")
+					Troops[i].Behavior = "Aggressive"
+					var ClosestDis = 100000
+					var ClosestPoint = null
+					for a in range(0,EnemyBuildings.size()):
+						var dis = sqrt(pow(EnemyBuildings[a].global_position.x - Troops[i].GoToPos.x,2)+pow(EnemyBuildings[a].global_position.y - Troops[i].GoToPos.y,2))
+						if dis < ClosestDis:
+							ClosestDis = dis
+							ClosestPoint = EnemyBuildings[a]
+					#print(ClosestDis)
+					if ClosestDis > 100 and ClosestDis < 350:
+						Troops[i].GoToPos = ClosestPoint.global_position + Vector2(rng.randf_range(-100,100),rng.randf_range(-100,100))
+						Troops[i].FarAway = 0
+						Troops[i].FirstMove = 1
+						Troops[i].SetTarget()
+					elif ClosestDis >= 250:
+						Troops[i].GoToPos = EnemyBuildings[rng.randi_range(0,EnemyBuildings.size()-1)].global_position + Vector2(rng.randf_range(-100,100),rng.randf_range(-100,100))
+						Troops[i].FarAway = 0
+						Troops[i].FirstMove = 1
+						Troops[i].SetTarget()
+	#print(Globals.BunnyPower[Team-1])
+	#print(Globals.Munitions[Team-1])
+	#print(Globals.Fuel[Team-1])
 	if hasDepot.size() > 0 and CheckPriceSave(8,Factor):
-		if CheckPriceSave(9,Factor):
+		if CheckPrice(9):
 			BuildUnit(9, 'HTank', hasDepot[rng.randi_range(0,hasDepot.size()-1)])
 		else:
 			BuildUnit(8, 'MTank', hasDepot[rng.randi_range(0,hasDepot.size()-1)])
 	elif hasMotorPool.size() > 0 and ((CheckPriceSave(6,Factor) and Troops.size() < 10) or ((CheckPriceSave(6,Factor) and hasDepot.size() > 0))):
-		if CheckPriceSave(7,Factor):
+		if CheckPrice(7):
 			BuildUnit(7, 'Tank', hasMotorPool[rng.randi_range(0,hasMotorPool.size()-1)])
-		else:
+		elif Troops.size() < 9:
 			BuildUnit(6, 'Car', hasMotorPool[rng.randi_range(0,hasMotorPool.size()-1)])
-	elif hasTent.size() > 0 and ((CheckPriceSave(0,Factor) and Troops.size() < 7) or ((CheckPriceSave(0,Factor) and hasDepot.size() > 0))):
+	elif hasTent.size() > 0 and ((CheckPriceSave(0,Factor) and Troops.size() < 7) or ((CheckPriceSave(0,Factor*0.3) and hasDepot.size() > 0))):
 		var BetterUnit = rng.randi_range(1,5)
 		if CheckPriceSave(BetterUnit,Factor):
 			BuildUnit(BetterUnit, Globals.UnitTypeMatch[BetterUnit], hasTent[rng.randi_range(0,hasTent.size()-1)])
-		else:
+		elif rng.randi_range(0,100) > 60:
 			BuildUnit(0, 'Infantry', hasTent[rng.randi_range(0,hasTent.size()-1)])
 
 func BuildUnit(BuildIndex,toBuild,Building):
