@@ -364,25 +364,26 @@ func BuildBuilding(BuildingI, BuildingT, Eng):
 	else:
 		$EnemyAreaChecker.scale = Vector2(1,1)
 	for i in range(0,25):
-		var NewPos = Eng.global_position + Vector2(rng.randf_range(-96.0,96.0),rng.randf_range(-96.0,96.0))
-		$EnemyAreaChecker.global_position = NewPos
-		await get_tree().create_timer(0.05).timeout
-		if $EnemyAreaChecker.has_overlapping_bodies() == false and CheckPrice(BuildingI):
-			Globals.BunnyPower[Team - 1] -= Globals.UnitBPCost[BuildingI]
-			Globals.Munitions[Team - 1] -= Globals.UnitMunitionCost[BuildingI]
-			Globals.Fuel[Team - 1] -= Globals.UnitFuelCost[BuildingI]
-			if BuildingT != 'Mines':
-				var NewObj = UnitObj.instantiate()
-				NewObj.Team = Team
-				NewObj.Type = BuildingT
-				NewObj.global_position = NewPos
-				get_parent().add_child(NewObj)
-			else:
-				var NewObj = LandMineObj.instantiate()
-				NewObj.Team = Team
-				NewObj.global_position = NewPos
-				get_parent().add_child(NewObj)
-			i = 26
-			return
-		#else:
-		#	print("Colliding!")
+		if Eng != null:
+			var NewPos = Eng.global_position + Vector2(rng.randf_range(-96.0,96.0),rng.randf_range(-96.0,96.0))
+			$EnemyAreaChecker.global_position = NewPos
+			await get_tree().create_timer(0.05).timeout
+			if $EnemyAreaChecker.has_overlapping_bodies() == false and CheckPrice(BuildingI):
+				Globals.BunnyPower[Team - 1] -= Globals.UnitBPCost[BuildingI]
+				Globals.Munitions[Team - 1] -= Globals.UnitMunitionCost[BuildingI]
+				Globals.Fuel[Team - 1] -= Globals.UnitFuelCost[BuildingI]
+				if BuildingT != 'Mines':
+					var NewObj = UnitObj.instantiate()
+					NewObj.Team = Team
+					NewObj.Type = BuildingT
+					NewObj.global_position = NewPos
+					get_parent().add_child(NewObj)
+				else:
+					var NewObj = LandMineObj.instantiate()
+					NewObj.Team = Team
+					NewObj.global_position = NewPos
+					get_parent().add_child(NewObj)
+				i = 26
+				return
+			#else:
+			#	print("Colliding!")

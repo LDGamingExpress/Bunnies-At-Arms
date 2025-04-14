@@ -19,7 +19,6 @@ var isVehicle = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	visible = true
 	match Type:
 		"HQ":
 			UnitsLeft = 1
@@ -395,6 +394,7 @@ func _ready() -> void:
 			Actors.append(get_child(9))
 	$UnitIcon.animation = (Type + str(Team))
 	#print($NavigationAgent2D.navigation_layers)
+	visible = true
 	if isVehicle == true:
 		$NavigationAgent2D.navigation_layers = 2
 
