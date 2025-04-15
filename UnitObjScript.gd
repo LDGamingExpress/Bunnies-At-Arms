@@ -19,6 +19,7 @@ var isVehicle = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$UnitIcon.global_position = global_position
 	match Type:
 		"HQ":
 			UnitsLeft = 1
@@ -394,7 +395,7 @@ func _ready() -> void:
 			Actors.append(get_child(9))
 	$UnitIcon.animation = (Type + str(Team))
 	#print($NavigationAgent2D.navigation_layers)
-	visible = true
+	$UnitIcon.visible = true
 	if isVehicle == true:
 		$NavigationAgent2D.navigation_layers = 2
 
@@ -410,8 +411,8 @@ func _process(delta: float) -> void:
 	else:
 		if Selected == 1:
 			if Globals.UnitsSelected.size() > 1 and isBuilding == true:
-				print(Globals.UnitsSelected)
-				print("Unselecting")
+				#print(Globals.UnitsSelected)
+				#print("Unselecting")
 				UnSelect()
 		if Team == 1 and PlayerHovering == 0 and (Globals.MousePos.x >= ($UnitIcon.global_position.x - 16)) and (Globals.MousePos.x <= ($UnitIcon.global_position.x + 16)) and (Globals.MousePos.y >= ($UnitIcon.global_position.y - 16)) and (Globals.MousePos.y <= ($UnitIcon.global_position.y + 16)):
 			Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
@@ -475,12 +476,13 @@ func _input(event: InputEvent) -> void:
 		if (Globals.MousePos.x >= ($UnitIcon.global_position.x - 18)) and (Globals.MousePos.x <= ($UnitIcon.global_position.x + 18)) and (Globals.MousePos.y >= ($UnitIcon.global_position.y - 18)) and (Globals.MousePos.y <= ($UnitIcon.global_position.y + 18)):
 			Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
 			#Globals.HoveringOverClickable += 1
-			PlayerHovering = 1
 			if Team != 1:
 				Globals.EnemySelectable = self
 			else:
-				Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
-				Globals.HoveringOverClickable += 1
+				if PlayerHovering == 0:
+					Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
+					Globals.HoveringOverClickable += 1
+			PlayerHovering = 1
 		if Input.is_action_just_pressed("Select") and Team == 1:
 			if PlayerHovering == 1:
 				if Selected == 0:

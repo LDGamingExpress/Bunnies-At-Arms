@@ -75,7 +75,9 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 func _on_cover_area_body_entered(body: Node2D) -> void:
 	var dis = sqrt(pow(startpos.x - position.x,2) + pow(startpos.y - position.y,2))
-	if body.is_in_group("Props") and dis > 20:
+	#print(dis)
+	#print(body.is_in_group("Props"))
+	if body.is_in_group("Props") and dis > 50:
 		var Chance2Hit = rng.randi_range(0,100)
 		if Chance2Hit > 15:
 			if Damage >= 5:

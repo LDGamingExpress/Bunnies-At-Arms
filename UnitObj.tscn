@@ -392,12 +392,12 @@ animations = [{
 }]
 
 [node name="Unit" type="CharacterBody2D" groups=["Units"]]
-visible = false
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("2_r6mwj")
 
 [node name="UnitIcon" type="AnimatedSprite2D" parent="."]
+visible = false
 self_modulate = Color(1, 1, 1, 0.462745)
 top_level = true
 z_index = 1

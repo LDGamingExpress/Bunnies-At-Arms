@@ -142,7 +142,7 @@ func _on_enemy_d_timer_timeout() -> void:
 				Enemies.append(child)
 	match Globals.GameMode:
 		'Victory Points':
-			if Troops.size() >= (Enemies.size() - EnemyBuildings.size())*2.0:
+			if Troops.size() >= (Enemies.size() - EnemyBuildings.size())*1.8:
 				Focus = "Elimination"
 			elif Troops.size() >= (Enemies.size() - EnemyBuildings.size())*1.3:
 				Focus = "Victory"
@@ -319,7 +319,7 @@ func _on_enemy_d_timer_timeout() -> void:
 		else:
 			BuildUnit(8, 'MTank', hasDepot[rng.randi_range(0,hasDepot.size()-1)])
 	elif hasMotorPool.size() > 0 and ((CheckPriceSave(6,Factor) and Troops.size() < 10) or ((CheckPriceSave(6,Factor) and hasDepot.size() > 0))):
-		if CheckPrice(7):
+		if CheckPrice(7) and Troops.size() < 15:
 			BuildUnit(7, 'Tank', hasMotorPool[rng.randi_range(0,hasMotorPool.size()-1)])
 		elif Troops.size() < 9:
 			BuildUnit(6, 'Car', hasMotorPool[rng.randi_range(0,hasMotorPool.size()-1)])

@@ -17,9 +17,9 @@ var Munitions = [100,100]
 var VictoryPoints = [0,0]
 var TeamColors = [[61, 204, 92],[204, 66, 61]]
 # Infantry, Recon, SMG, MG, Engineer, AT, Car, Light Tank, Medium Tank, Heavy Tank, Tent, Motor Pool, Depot, Radio, Mines, Bunker, HQ
-var UnitBPCost = [50, 75, 75, 100, 100, 75, 100, 150, 250, 500, 150, 200, 250, 250, 0, 100]
+var UnitBPCost = [50, 75, 75, 100, 100, 75, 100, 150, 300, 550, 150, 200, 250, 250, 0, 100]
 var UnitMunitionCost = [25, 50, 75, 100, 15, 150, 70, 100, 200, 350, 50, 150, 250, 50, 50, 100]
-var UnitFuelCost = [0, 0, 0, 0, 0, 0, 50, 100, 250, 400, 0, 100, 300, 50, 0, 0]
+var UnitFuelCost = [0, 0, 0, 0, 0, 0, 50, 100, 250, 350, 0, 100, 280, 50, 0, 0]
 var UnitTypeMatch = ['Infantry', 'Recon', 'SMG', 'MG', 'Eng', 'Rocket', 'Car', 'Tank', 'MTank', 'HTank', 'Tent', 'MotorPool', 'Depot', 'Radio', 'Mines', 'Bunker', 'HQ']
 # Used to get the index based on the string tag for referencing other arrays (i.e. an infantry unit will find it's index to be 0 and can use that to find it's abilities
 
