@@ -16,6 +16,7 @@ var Pursuing = null
 var Actors = []
 var isBuilding = false
 var isVehicle = false
+var SelectCursor = preload("res://Textures/BAASelectCursor.png")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -414,13 +415,23 @@ func _process(delta: float) -> void:
 				#print(Globals.UnitsSelected)
 				#print("Unselecting")
 				UnSelect()
-		if Team == 1 and PlayerHovering == 0 and (Globals.MousePos.x >= ($UnitIcon.global_position.x - 16)) and (Globals.MousePos.x <= ($UnitIcon.global_position.x + 16)) and (Globals.MousePos.y >= ($UnitIcon.global_position.y - 16)) and (Globals.MousePos.y <= ($UnitIcon.global_position.y + 16)):
-			Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
-			Globals.HoveringOverClickable += 1
-			PlayerHovering = 1
-		elif Team == 1 and PlayerHovering == 1:
-			Globals.HoveringOverClickable -= 1
-			PlayerHovering = 0
+		if (Globals.MousePos.x >= ($UnitIcon.global_position.x - 16)) and (Globals.MousePos.x <= ($UnitIcon.global_position.x + 16)) and (Globals.MousePos.y >= ($UnitIcon.global_position.y - 16)) and (Globals.MousePos.y <= ($UnitIcon.global_position.y + 16)):
+			if PlayerHovering == 0:
+				if Team == 1:
+					#Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
+					Input.set_custom_mouse_cursor(SelectCursor)
+					Globals.HoveringOverClickable += 1
+					PlayerHovering = 1
+				else:
+					Globals.EnemySelectable = self
+					PlayerHovering = 1
+		elif PlayerHovering == 1:
+			if Team == 1:
+				Globals.HoveringOverClickable -= 1
+				PlayerHovering = 0
+			else:
+				PlayerHovering = 0
+				Globals.EnemySelectable = null
 		if Pursuing != null:
 			$NavigationAgent2D.target_desired_distance = 40
 			$NavigationAgent2D.target_position = Pursuing.global_position
@@ -474,13 +485,15 @@ func _input(event: InputEvent) -> void:
 			else:
 				Globals.HoveringOverClickable -= 1
 		if (Globals.MousePos.x >= ($UnitIcon.global_position.x - 18)) and (Globals.MousePos.x <= ($UnitIcon.global_position.x + 18)) and (Globals.MousePos.y >= ($UnitIcon.global_position.y - 18)) and (Globals.MousePos.y <= ($UnitIcon.global_position.y + 18)):
-			Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
+			#Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
+			Input.set_custom_mouse_cursor(SelectCursor)
 			#Globals.HoveringOverClickable += 1
 			if Team != 1:
 				Globals.EnemySelectable = self
 			else:
 				if PlayerHovering == 0:
-					Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
+					#Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
+					Input.set_custom_mouse_cursor(SelectCursor)
 					Globals.HoveringOverClickable += 1
 			PlayerHovering = 1
 		if Input.is_action_just_pressed("Select") and Team == 1:

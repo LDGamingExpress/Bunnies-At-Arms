@@ -183,7 +183,7 @@ func _on_enemy_d_timer_timeout() -> void:
 			BuildBuilding(11, 'MotorPool', Engineers[rng.randi_range(0,Engineers.size()-1)])
 		elif hasRadio.size() == 0 and CheckPrice(13) and hasDepot.size() > 0:
 			BuildBuilding(13, 'Radio', Engineers[rng.randi_range(0,Engineers.size()-1)])
-			print("BuildRadio")
+			#print("BuildRadio")
 	var Factor = 1
 	match Focus:
 		"Resources":

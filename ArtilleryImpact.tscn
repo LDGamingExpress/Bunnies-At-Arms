@@ -1,0 +1,90 @@
+[gd_scene load_steps=15 format=3 uid="uid://d3xv1tnkvdnkv"]
+
+[ext_resource type="Script" path="res://ImpactExplosion.gd" id="1_a5nfk"]
+[ext_resource type="Texture2D" uid="uid://jxi7n15np3u5" path="res://Textures/SmokeParticle.png" id="2_ffhc7"]
+
+[sub_resource type="Gradient" id="Gradient_1qhro"]
+offsets = PackedFloat32Array(0, 0.745902, 1)
+colors = PackedColorArray(1, 0.705882, 0, 1, 1, 0.858824, 0.517647, 0.678431, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_aj7wr"]
+gradient = SubResource("Gradient_1qhro")
+
+[sub_resource type="Curve" id="Curve_62fx1"]
+_data = [Vector2(0, 0), 0.0, 8.79121, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_kvi1o"]
+curve = SubResource("Curve_62fx1")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mq0bp"]
+particle_flag_disable_z = true
+angle_min = -263.7
+angle_max = 182.5
+spread = 180.0
+initial_velocity_min = 10.0
+initial_velocity_max = 30.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_kvi1o")
+color_ramp = SubResource("GradientTexture1D_aj7wr")
+turbulence_noise_scale = 3.105
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_u34as"]
+load_path = "res://.godot/imported/FireParticle.png-c6f477c14192667766c9fe5eb3333847.ctex"
+
+[sub_resource type="Gradient" id="Gradient_plqt2"]
+offsets = PackedFloat32Array(0, 0.745902, 1)
+colors = PackedColorArray(0.560955, 0.560955, 0.560955, 1, 0.691357, 0.691357, 0.691357, 0.678431, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_367ue"]
+gradient = SubResource("Gradient_plqt2")
+
+[sub_resource type="Curve" id="Curve_iaeos"]
+_data = [Vector2(0, 1), 0.0, 6.0989, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_nwmao"]
+curve = SubResource("Curve_iaeos")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hdw3i"]
+particle_flag_disable_z = true
+angle_min = -263.7
+angle_max = 182.5
+spread = 180.0
+initial_velocity_min = 10.0
+initial_velocity_max = 30.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_nwmao")
+color_ramp = SubResource("GradientTexture1D_367ue")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ofd4v"]
+radius = 25.0
+
+[node name="ImpactExplosion" type="GPUParticles2D"]
+z_index = 1
+emitting = false
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_mq0bp")
+texture = SubResource("CompressedTexture2D_u34as")
+lifetime = 1.5
+one_shot = true
+explosiveness = 0.95
+script = ExtResource("1_a5nfk")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+show_behind_parent = true
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_hdw3i")
+texture = ExtResource("2_ffhc7")
+lifetime = 1.5
+one_shot = true
+explosiveness = 0.95
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_ofd4v")
+
+[connection signal="finished" from="." to="." method="_on_finished"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

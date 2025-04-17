@@ -6,7 +6,12 @@ var UnitsSelected = []
 var UnitPanelShow = null
 var CurrentUnitIndex = null
 var GameMode = 'Victory Points'
+
+var PointsNeeded = 50000
 var ChangedMesh = false
+var DefaultCursor = preload("res://Textures/BAADefaultCursor.png")
+var AttackCursor = preload("res://Textures/BAAAttackCursor.png")
+var MoveCursor = preload("res://Textures/BAAMoveCursor.png")
 # Victory Points - Conquer a series of victory points and hold them till you gain a certain number of points
 # Elimination - Eliminate all enemy buildings and units
 # Encircled - Hold out for as long as possible against waves of enemies
@@ -39,7 +44,13 @@ var MinesweepCost = 15 # BunnyPower
 func _process(delta: float) -> void:
 	#print(UnitsSelected)
 	if HoveringOverClickable <= 0:
-		Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+		if UnitsSelected.size() > 0:
+			if EnemySelectable != null:
+				Input.set_custom_mouse_cursor(AttackCursor)
+			else:
+				Input.set_custom_mouse_cursor(MoveCursor)
+		else:
+			Input.set_custom_mouse_cursor(DefaultCursor)
 	#print(UnitsSelected)
 	for i in UnitsSelected:
 		#var item = UnitsSelected[i]
