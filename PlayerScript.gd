@@ -390,8 +390,9 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_released("Select"):
 		if Globals.UnitsSelected.size() > 0:
 			for i in range(0,Globals.UnitsSelected.size()):
-				if Globals.UnitsSelected[i] != null:
-					Globals.UnitsSelected[i].UnSelect()
+				if Globals.UnitsSelected.size() > i:
+					if Globals.UnitsSelected[i] != null:
+						Globals.UnitsSelected[i].UnSelect()
 			Globals.UnitsSelected = []
 		for i in range(0,PossibleSelections.size()):
 			if Globals.UnitsSelected.find(PossibleSelections[i]) == -1:
