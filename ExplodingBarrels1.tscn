@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dv633c5urx0xu"]
+[gd_scene load_steps=7 format=3 uid="uid://caw0qddvdqti4"]
 
 [ext_resource type="Texture2D" uid="uid://gjmtp3vdqqbd" path="res://Textures/BAA_MapTiles.png" id="1_2sqwj"]
 [ext_resource type="Script" path="res://ExplodingObj.gd" id="1_j0y7h"]

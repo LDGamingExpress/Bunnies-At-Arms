@@ -21,6 +21,7 @@ offset_bottom = 214.0
 text = "Unit Block 1"
 
 [node name="Button2" type="Button" parent="."]
+layout_mode = 0
 offset_left = 340.0
 offset_top = 151.0
 offset_right = 441.0
@@ -28,6 +29,7 @@ offset_bottom = 214.0
 text = "Unit Block 2"
 
 [node name="Button3" type="Button" parent="."]
+layout_mode = 0
 offset_left = 207.0
 offset_top = 255.0
 offset_right = 308.0
@@ -35,6 +37,7 @@ offset_bottom = 318.0
 text = "Unit Block 4"
 
 [node name="Button4" type="Button" parent="."]
+layout_mode = 0
 offset_left = 471.0
 offset_top = 150.0
 offset_right = 572.0
@@ -42,6 +45,7 @@ offset_bottom = 213.0
 text = "Unit Block 3"
 
 [node name="Button5" type="Button" parent="."]
+layout_mode = 0
 offset_left = 336.0
 offset_top = 255.0
 offset_right = 437.0
@@ -49,6 +53,7 @@ offset_bottom = 318.0
 text = "Unit Block 5"
 
 [node name="Button6" type="Button" parent="."]
+layout_mode = 0
 offset_left = 472.0
 offset_top = 256.0
 offset_right = 573.0
