@@ -60,6 +60,8 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 			NewObj2.Damage = Damage/2
 			NewObj2.Team = Team
 			get_parent().call_deferred("add_child",NewObj2)
+			if body.is_in_group("Explosive"):
+				body.Destroy()
 			if body.is_in_group("Props"):
 				var CellImpacted = body.local_to_map(body.to_local($Node2D.global_position))
 				#print(CellImpacted)
@@ -86,6 +88,8 @@ func _on_cover_area_body_entered(body: Node2D) -> void:
 				NewObj2.Damage = Damage/2
 				NewObj2.Team = Team
 				get_parent().call_deferred("add_child",NewObj2)
+				if body.is_in_group("Explosive"):
+					body.Destroy()
 				var CellImpacted = body.local_to_map(body.to_local($Node2D.global_position))
 				#print(CellImpacted)
 				body.set_cell(CellImpacted,-1,Vector2i(-1,-1),0)

@@ -3,6 +3,8 @@ extends CharacterBody2D
 @onready var GrenadeObj = preload("res://Grenade.tscn")
 @onready var UnitObj = preload("res://UnitObj.tscn")
 @onready var LandMineObj = preload("res://LandMines.tscn")
+@onready var Flare = preload("res://Flare.tscn")
+@onready var PlaneObj = preload("res://Plane.tscn")
 const SPEED = 300.0
 var SelectionStarted = false
 var SelectionStartPos = null
@@ -84,6 +86,42 @@ func _physics_process(delta: float) -> void:
 						AbilityUse = false
 						$AbilitySprite.visible = false
 						AbilitySelected = null
+				'Artillery':
+					if Globals.ArtilleryCost <= Globals.Munitions[0]:
+						var NewObj = Flare.instantiate()
+						NewObj.position = Globals.MousePos
+						NewObj.Type = "Artillery"
+						NewObj.Team = 1
+						# + Vector2(rng.randf_range(-Accuracy,Accuracy),rng.randf_range(-Accuracy,Accuracy))
+						get_parent().add_child(NewObj)
+						Globals.UnitPanelShow = null
+						Globals.CurrentUnitIndex = null
+						AbilityUse = false
+						$AbilitySprite.visible = false
+						AbilitySelected = null
+						Globals.Munitions[0] -= Globals.ArtilleryCost
+				'Airstrike':
+					if Globals.PlaneMCost <= Globals.Munitions[0] and Globals.PlaneFCost <= Globals.Fuel[0]:
+						var NewObj = Flare.instantiate()
+						NewObj.position = Globals.MousePos
+						NewObj.Type = "Airstrike"
+						NewObj.Team = 1
+						# + Vector2(rng.randf_range(-Accuracy,Accuracy),rng.randf_range(-Accuracy,Accuracy))
+						get_parent().add_child(NewObj)
+						var NewObj2 = PlaneObj.instantiate()
+						NewObj2.position = UnitWAbility.global_position
+						NewObj2.Team = 1
+						NewObj2.TargetPos = Globals.MousePos
+						# + Vector2(rng.randf_range(-Accuracy,Accuracy),rng.randf_range(-Accuracy,Accuracy))
+						NewObj2.dir = UnitWAbility.to_local(Globals.MousePos).normalized()
+						get_parent().add_child(NewObj2)
+						Globals.UnitPanelShow = null
+						Globals.CurrentUnitIndex = null
+						AbilityUse = false
+						$AbilitySprite.visible = false
+						AbilitySelected = null
+						Globals.Munitions[0] -= Globals.PlaneMCost
+						Globals.Fuel[0] -= Globals.PlaneFCost
 		if Building and AbleToBuild:
 			if Globals.BunnyPower[0] >= Globals.UnitBPCost[BuildingI] and Globals.Munitions[0] >= Globals.UnitMunitionCost[BuildingI] and Globals.Fuel[0] >= Globals.UnitFuelCost[BuildingI]:
 				Globals.BunnyPower[0] -= Globals.UnitBPCost[BuildingI]
@@ -173,6 +211,32 @@ func _physics_process(delta: float) -> void:
 							AbilityRange = 150
 							AbilityRadius = 30.0
 							AbilitySelected = 'Minesweep'
+							$AbilitySprite.scale = Vector2(AbilityRadius/60.0,AbilityRadius/60.0)
+				'Artillery':
+					if Input.is_action_just_pressed("Ability1"):
+						if AbilityUse == true:
+							AbilityUse = false
+							$AbilitySprite.visible = false
+							AbilitySelected = null
+						elif Globals.ArtilleryCost <= Globals.Munitions[0]:
+							AbilityUse = true
+							$AbilitySprite.visible = true
+							AbilityRange = 10000
+							AbilityRadius = 45.0
+							AbilitySelected = 'Artillery'
+							$AbilitySprite.scale = Vector2(AbilityRadius/60.0,AbilityRadius/60.0)
+				'Airstrike':
+					if Input.is_action_just_pressed("Ability2"):
+						if AbilityUse == true:
+							AbilityUse = false
+							$AbilitySprite.visible = false
+							AbilitySelected = null
+						elif Globals.PlaneMCost <= Globals.Munitions[0] and Globals.PlaneFCost <= Globals.Fuel[0]:
+							AbilityUse = true
+							$AbilitySprite.visible = true
+							AbilityRange = 10000
+							AbilityRadius = 45.0
+							AbilitySelected = 'Airstrike'
 							$AbilitySprite.scale = Vector2(AbilityRadius/60.0,AbilityRadius/60.0)
 				'Tent':
 					if BuildStart == null:

@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://buxins7sy2l8b"]
+
+[ext_resource type="Script" path="res://ExplodingObj.gd" id="1_mne2b"]
+[ext_resource type="Texture2D" uid="uid://gjmtp3vdqqbd" path="res://Textures/BAA_MapTiles.png" id="2_g12am"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gjc6w"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u1x4b"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ct2fy"]
+atlas = ExtResource("2_g12am")
+region = Rect2(224, 160, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l0bja"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ct2fy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="ExplodingBarrels3" type="StaticBody2D" groups=["Explosive"]]
+physics_material_override = SubResource("PhysicsMaterial_gjc6w")
+script = ExtResource("1_mne2b")
+Damage = 20
+radius = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_u1x4b")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_l0bja")

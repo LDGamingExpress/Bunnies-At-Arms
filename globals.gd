@@ -16,9 +16,9 @@ var MoveCursor = preload("res://Textures/BAAMoveCursor.png")
 # Elimination - Eliminate all enemy buildings and units
 # Encircled - Hold out for as long as possible against waves of enemies
 
-var Fuel = [100,100]
+var Fuel = [1000,100]
 var BunnyPower = [500,500]
-var Munitions = [100,100]
+var Munitions = [1000,100]
 var VictoryPoints = [0,0]
 var TeamColors = [[61, 204, 92],[204, 66, 61]]
 # Infantry, Recon, SMG, MG, Engineer, AT, Car, Light Tank, Medium Tank, Heavy Tank, Tent, Motor Pool, Depot, Radio, Mines, Bunker, HQ
@@ -28,11 +28,14 @@ var UnitFuelCost = [0, 0, 0, 0, 0, 0, 50, 100, 250, 350, 0, 100, 280, 50, 0, 0]
 var UnitTypeMatch = ['Infantry', 'Recon', 'SMG', 'MG', 'Eng', 'Rocket', 'Car', 'Tank', 'MTank', 'HTank', 'Tent', 'MotorPool', 'Depot', 'Radio', 'Mines', 'Bunker', 'HQ']
 # Used to get the index based on the string tag for referencing other arrays (i.e. an infantry unit will find it's index to be 0 and can use that to find it's abilities
 
-#                    Infantry,       Recon,         SMG,            MG,                  Engineer,                                                           AT,         Vehicles(No Abilities)                   Tent,                                Motor Pool,                 Depot,                      Radio,     Mines & Bunker (No Abilities),  HQ
+#                    Infantry,       Recon,         SMG,            MG,                  Engineer,                                                           AT,         Vehicles(No Abilities)                   Tent,                              Motor Pool,         Depot,                Radio,     Mines & Bunker (No Abilities),  HQ
 var UnitAbilities = [['Grenade'], ['Grenade'], ['Satchel Charge'], ['Grenade'], ['Minesweep','Tent', 'MotorPool', 'Depot', 'Radio', 'Mines', 'Bunker'], ['Satchel Charge'], [], [], [], [], ['Infantry', 'Recon', 'SMG', 'MG', 'Eng', 'Rocket'], ['Car', 'Tank'], ['MTank', 'HTank'], ['Artillery','Airstrike'], [], [], ['Infantry','Eng']]
 var GrenadeCost = 25 # Munitions
 var SatchelCost = 40 # Munitions
 var MinesweepCost = 15 # BunnyPower
+var ArtilleryCost = 180
+var PlaneMCost = 250
+var PlaneFCost = 150
 # This contains the abilities/build options for every unit and building
 
 # Called when the node enters the scene tree for the first time.
