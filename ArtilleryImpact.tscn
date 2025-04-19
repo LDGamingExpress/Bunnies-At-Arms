@@ -52,13 +52,13 @@ angle_min = -263.7
 angle_max = 182.5
 spread = 180.0
 initial_velocity_min = 10.0
-initial_velocity_max = 30.0
+initial_velocity_max = 40.0
 gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_nwmao")
 color_ramp = SubResource("GradientTexture1D_367ue")
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ofd4v"]
-radius = 25.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_uyf4c"]
+radius = 45.0
 
 [node name="ImpactExplosion" type="GPUParticles2D"]
 z_index = 1
@@ -70,6 +70,7 @@ lifetime = 1.5
 one_shot = true
 explosiveness = 0.95
 script = ExtResource("1_a5nfk")
+radius = 1
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 show_behind_parent = true
@@ -84,7 +85,7 @@ explosiveness = 0.95
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_ofd4v")
+shape = SubResource("CircleShape2D_uyf4c")
 
 [connection signal="finished" from="." to="." method="_on_finished"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

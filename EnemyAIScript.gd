@@ -3,6 +3,8 @@ extends Node
 @onready var GrenadeObj = preload("res://Grenade.tscn")
 @onready var UnitObj = preload("res://UnitObj.tscn")
 @onready var LandMineObj = preload("res://LandMines.tscn")
+@onready var Flare = preload("res://Flare.tscn")
+@onready var PlaneObj = preload("res://Plane.tscn")
 var Troops = []
 var Buildings = []
 var Engineers = []
@@ -313,6 +315,7 @@ func _on_enemy_d_timer_timeout() -> void:
 	#print(Globals.BunnyPower[Team-1])
 	#print(Globals.Munitions[Team-1])
 	#print(Globals.Fuel[Team-1])
+	var ChanceSpecial = rng.randi_range(0,100)
 	if hasDepot.size() > 0 and CheckPriceSave(8,Factor):
 		if CheckPrice(9):
 			BuildUnit(9, 'HTank', hasDepot[rng.randi_range(0,hasDepot.size()-1)])
@@ -329,6 +332,47 @@ func _on_enemy_d_timer_timeout() -> void:
 			BuildUnit(BetterUnit, Globals.UnitTypeMatch[BetterUnit], hasTent[rng.randi_range(0,hasTent.size()-1)])
 		elif rng.randi_range(0,100) > 60:
 			BuildUnit(0, 'Infantry', hasTent[rng.randi_range(0,hasTent.size()-1)])
+	elif hasRadio.size() > 0 and (Focus != "Resources" and Focus != "Unit Production") and Globals.Munitions[Team-1] >= Globals.ArtilleryCost and ChanceSpecial > 50:
+		if Globals.Munitions[Team - 1] >= Globals.PlaneMCost and Globals.Fuel[Team - 1] >= Globals.PlaneFCost:
+			Airstrike()
+		else:
+			Artillery()
+
+func Artillery():
+	var EnemiesInRange = []
+	for i in range(0,Enemies.size()):
+		var dis = sqrt(pow(Enemies[i].global_position.x - hasRadio[0].global_position.x,2) + pow(Enemies[i].global_position.y - hasRadio[0].global_position.y,2))
+		if dis <= 10000:
+			EnemiesInRange.append(Enemies[i])
+	if EnemiesInRange.size() > 0:
+		Globals.Munitions[Team - 1] -= Globals.ArtilleryCost
+		var NewObj = Flare.instantiate()
+		NewObj.position = EnemiesInRange[rng.randi_range(0,EnemiesInRange.size()-1)].global_position
+		NewObj.Type = "Artillery"
+		NewObj.Team = Team
+		# + Vector2(rng.randf_range(-Accuracy,Accuracy),rng.randf_range(-Accuracy,Accuracy))
+		get_parent().call_deferred("add_child",NewObj)
+func Airstrike():
+	var EnemiesInRange = []
+	for i in range(0,Enemies.size()):
+		var dis = sqrt(pow(Enemies[i].global_position.x - hasRadio[0].global_position.x,2) + pow(Enemies[i].global_position.y - hasRadio[0].global_position.y,2))
+		if dis <= 10000:
+			EnemiesInRange.append(Enemies[i])
+	if EnemiesInRange.size() > 0:
+		var Enemy2Attack = EnemiesInRange[rng.randi_range(0,EnemiesInRange.size()-1)]
+		Globals.Munitions[Team - 1] -= Globals.PlaneMCost
+		Globals.Fuel[Team - 1] -= Globals.PlaneFCost
+		var NewObj = Flare.instantiate()
+		NewObj.position = Enemy2Attack.global_position
+		NewObj.Type = "Airstrike"
+		NewObj.Team = Team
+		get_parent().call_deferred("add_child",NewObj)
+		var NewObj2 = PlaneObj.instantiate()
+		NewObj2.position = hasRadio[0].global_position
+		NewObj2.Team = Team
+		NewObj2.TargetPos = Enemy2Attack.global_position
+		NewObj2.dir = hasRadio[0].to_local(Enemy2Attack.global_position).normalized()
+		get_parent().call_deferred("add_child",NewObj2)
 
 func BuildUnit(BuildIndex,toBuild,Building):
 	#print("BuildUnit")
@@ -343,7 +387,7 @@ func BuildUnit(BuildIndex,toBuild,Building):
 	NewObj.Type = toBuild
 	NewObj.global_position = Building.global_position + Vector2(rng.randf_range(-64,64),rng.randf_range(64,96))
 	NewObj.GoToPos = NewObj.global_position
-	get_parent().add_child(NewObj)
+	get_parent().call_deferred("add_child",NewObj)
 
 func CheckPrice(BuildI):
 	if Globals.BunnyPower[Team-1] >= Globals.UnitBPCost[BuildI] and Globals.Munitions[Team-1] >= Globals.UnitMunitionCost[BuildI] and Globals.Fuel[Team-1] >= Globals.UnitFuelCost[BuildI]:
@@ -377,12 +421,12 @@ func BuildBuilding(BuildingI, BuildingT, Eng):
 					NewObj.Team = Team
 					NewObj.Type = BuildingT
 					NewObj.global_position = NewPos
-					get_parent().add_child(NewObj)
+					get_parent().call_deferred("add_child",NewObj)
 				else:
 					var NewObj = LandMineObj.instantiate()
 					NewObj.Team = Team
 					NewObj.global_position = NewPos
-					get_parent().add_child(NewObj)
+					get_parent().call_deferred("add_child",NewObj)
 				i = 26
 				return
 			#else:

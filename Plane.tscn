@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://dn1au804sptii"]
+
+[ext_resource type="Texture2D" uid="uid://cfgpvagvsvydh" path="res://Textures/BAA_UnitTiles.png" id="1_yf1gd"]
+[ext_resource type="Script" path="res://PlaneScript.gd" id="2_xa48x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_84yie"]
+atlas = ExtResource("1_yf1gd")
+region = Rect2(0, 224, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xjeea"]
+atlas = ExtResource("1_yf1gd")
+region = Rect2(96, 224, 96, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a1dim"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_84yie")
+}],
+"loop": true,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xjeea")
+}],
+"loop": true,
+"name": &"2",
+"speed": 5.0
+}]
+
+[node name="Plane" type="CharacterBody2D"]
+z_index = 3
+script = ExtResource("2_xa48x")
+
+[node name="PlaneSprite" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+sprite_frames = SubResource("SpriteFrames_a1dim")
+animation = &"1"
+
+[node name="BombTimer" type="Timer" parent="."]
+wait_time = 0.35
+one_shot = true
+
+[connection signal="timeout" from="BombTimer" to="." method="_on_bomb_timer_timeout"]
