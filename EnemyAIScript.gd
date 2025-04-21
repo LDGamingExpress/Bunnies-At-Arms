@@ -252,7 +252,7 @@ func _on_enemy_d_timer_timeout() -> void:
 				var ClosestPoint = null
 				for a in range(0,VictoryPoints.size()):
 					var dis = sqrt(pow(VictoryPoints[a].global_position.x - Troops[i].GoToPos.x,2)+pow(VictoryPoints[a].global_position.y - Troops[i].GoToPos.y,2))
-					if dis < ClosestDis:
+					if dis < ClosestDis and VictoryPoints[a].Owner != Team:
 						ClosestDis = dis
 						ClosestPoint = VictoryPoints[a]
 				#print(ClosestDis)

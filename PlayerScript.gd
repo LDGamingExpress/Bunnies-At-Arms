@@ -25,6 +25,9 @@ var BuildingT = null
 
 var BuildDict = {1: "Build1",2: "Build2",3: "Build3",4: "Build4",5: "Build5",6: "Build6",7: "Build7"}
 
+func _ready() -> void:
+	MusicPlayer()
+
 func _physics_process(delta: float) -> void:
 	
 	# UI Update Code:
@@ -390,8 +393,9 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_released("Select"):
 		if Globals.UnitsSelected.size() > 0:
 			for i in range(0,Globals.UnitsSelected.size()):
-				if Globals.UnitsSelected[i] != null:
-					Globals.UnitsSelected[i].UnSelect()
+				if Globals.UnitsSelected.size() > i:
+					if Globals.UnitsSelected[i] != null:
+						Globals.UnitsSelected[i].UnSelect()
 			Globals.UnitsSelected = []
 		for i in range(0,PossibleSelections.size()):
 			if Globals.UnitsSelected.find(PossibleSelections[i]) == -1:
@@ -427,3 +431,13 @@ func _on_ability_area_area_exited(area: Area2D) -> void:
 		if area.get_parent().Team != 1:
 			if LandMines.find(area.get_parent()) != -1:
 				LandMines.erase(area.get_parent())
+
+func MusicPlayer():
+	pass
+	# Replace pass with code to continuously play music 
+	# If there is a way to detect how many sounds are playing at once, make it so idle
+	# music plays if <15 are playing and then have a timer after to wait some time
+	# before switching music (use await get_tree().create_timer(30).timeout to make timer)
+	
+	# Idle music: "Trench Rabbits (Preparation)" and "War Has Never Been So Bun"
+	# Action music: "Trench Rabbits (Under Fire)"
