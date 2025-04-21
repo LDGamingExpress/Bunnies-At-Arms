@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://o1mm2ci8jvc"]
+[gd_scene load_steps=10 format=3 uid="uid://o1mm2ci8jvc"]
 
 [ext_resource type="Script" path="res://PlayerScript.gd" id="1_m4ijf"]
 [ext_resource type="Theme" uid="uid://bd0je60acp7ff" path="res://MainTheme.tres" id="2_0yxj5"]
 [ext_resource type="Texture2D" uid="uid://bk474hqpn514c" path="res://Textures/SelectionSquare.png" id="2_pqenh"]
+[ext_resource type="PackedScene" uid="uid://cfldqr5t8q2fg" path="res://UIMain.tscn" id="3_oi5hu"]
 [ext_resource type="Texture2D" uid="uid://dbignfamxvth2" path="res://Textures/ControlArea.png" id="4_67bee"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mn3q2"]
@@ -71,6 +72,8 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 56
 text = "Fuel:
 0"
+
+[node name="Control" parent="Camera2D/CanvasLayer" instance=ExtResource("3_oi5hu")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false

@@ -1,9 +1,63 @@
-[gd_scene format=3 uid="uid://cfldqr5t8q2fg"]
+[gd_scene load_steps=5 format=3 uid="uid://cfldqr5t8q2fg"]
 
-[node name="Control" type="Control"]
+[ext_resource type="PackedScene" uid="uid://bmjev5tmb6pk6" path="res://UIStats.tscn" id="1_frii7"]
+[ext_resource type="PackedScene" uid="uid://b1vm2cfbckpld" path="res://UIUnitsSelected.tscn" id="2_hgu64"]
+[ext_resource type="PackedScene" uid="uid://cigfgoktpvufy" path="res://UIUnitBuilder.tscn" id="2_jx77l"]
+[ext_resource type="PackedScene" uid="uid://1r8uqv5bojfh" path="res://MiniMap.tscn" id="4_f1nwn"]
+
+[node name="UI" type="Control"]
+custom_minimum_size = Vector2(1920, 1080)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Stats" parent="." instance=ExtResource("1_frii7")]
+visible = false
+layout_mode = 1
+
+[node name="UnitBuilder" parent="." instance=ExtResource("2_jx77l")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -354.0
+offset_top = -229.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="UnitsSelected" parent="." instance=ExtResource("2_hgu64")]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -101.0
+offset_bottom = 0.0
+grow_vertical = 0
+
+[node name="MiniMap" parent="." instance=ExtResource("4_f1nwn")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -200.0
+offset_right = 0.0
+offset_bottom = 200.0
+grow_horizontal = 0
+
+[node name="PauseButton" type="Button" parent="."]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -353.0
+offset_right = -303.0
+offset_bottom = 50.0
+grow_horizontal = 0

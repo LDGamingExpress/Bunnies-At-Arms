@@ -1,61 +1,58 @@
-[gd_scene format=3 uid="uid://cigfgoktpvufy"]
+[gd_scene load_steps=2 format=3 uid="uid://cigfgoktpvufy"]
 
-[node name="Control" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 2.0
-offset_top = -1.0
-offset_right = 2.0
-offset_bottom = -1.0
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_r3kpl"]
+
+[node name="TextureRect" type="TextureRect"]
+custom_minimum_size = Vector2(50, 50)
+offset_right = 354.0
+offset_bottom = 229.0
+texture = SubResource("PlaceholderTexture2D_r3kpl")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -79.0
+offset_top = -52.0
+offset_right = 79.0
+offset_bottom = 52.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
 
-[node name="Button" type="Button" parent="."]
-layout_mode = 0
-offset_left = 212.0
-offset_top = 151.0
-offset_right = 313.0
-offset_bottom = 214.0
-text = "Unit Block 1"
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
 
-[node name="Button2" type="Button" parent="."]
-layout_mode = 0
-offset_left = 340.0
-offset_top = 151.0
-offset_right = 441.0
-offset_bottom = 214.0
-text = "Unit Block 2"
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
 
-[node name="Button3" type="Button" parent="."]
-layout_mode = 0
-offset_left = 207.0
-offset_top = 255.0
-offset_right = 308.0
-offset_bottom = 318.0
-text = "Unit Block 4"
+[node name="Button2" type="Button" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
 
-[node name="Button4" type="Button" parent="."]
-layout_mode = 0
-offset_left = 471.0
-offset_top = 150.0
-offset_right = 572.0
-offset_bottom = 213.0
-text = "Unit Block 3"
+[node name="Button3" type="Button" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
 
-[node name="Button5" type="Button" parent="."]
-layout_mode = 0
-offset_left = 336.0
-offset_top = 255.0
-offset_right = 437.0
-offset_bottom = 318.0
-text = "Unit Block 5"
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
 
-[node name="Button6" type="Button" parent="."]
-layout_mode = 0
-offset_left = 472.0
-offset_top = 256.0
-offset_right = 573.0
-offset_bottom = 319.0
-text = "Unit Block 6"
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="Button2" type="Button" parent="VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Button3" type="Button" parent="VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
