@@ -15,7 +15,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Stats" parent="." instance=ExtResource("1_frii7")]
-visible = false
 layout_mode = 1
 
 [node name="UnitBuilder" parent="." instance=ExtResource("2_jx77l")]
