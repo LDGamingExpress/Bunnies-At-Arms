@@ -1,139 +1,137 @@
-[gd_scene load_steps=38 format=3 uid="uid://cigfgoktpvufy"]
+[gd_scene load_steps=36 format=3 uid="uid://cqbh43olxgu6w"]
 
-[ext_resource type="Texture2D" uid="uid://dok5kr3j7obuc" path="res://Textures/Background.png" id="1_7ewqh"]
-[ext_resource type="Texture2D" uid="uid://xfjyri0wrabf" path="res://Textures/BAA_UnitSymbols.png" id="1_br3vl"]
-[ext_resource type="Texture2D" uid="uid://bajiiwmmg7vc6" path="res://Textures/BAA_UnitSelected.png" id="2_l1nw1"]
-[ext_resource type="Theme" uid="uid://bd0je60acp7ff" path="res://MainTheme.tres" id="4_aauik"]
+[ext_resource type="Texture2D" uid="uid://xfjyri0wrabf" path="res://Textures/BAA_UnitSymbols.png" id="1_rph3q"]
+[ext_resource type="Texture2D" uid="uid://bajiiwmmg7vc6" path="res://Textures/BAA_UnitSelected.png" id="2_bbco6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d357s"]
-atlas = ExtResource("1_br3vl")
+atlas = ExtResource("1_rph3q")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q5kqn"]
-atlas = ExtResource("1_br3vl")
+atlas = ExtResource("1_rph3q")
 region = Rect2(96, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7vfkd"]
-atlas = ExtResource("1_br3vl")
+atlas = ExtResource("1_rph3q")
 region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xrcv6"]
-atlas = ExtResource("1_br3vl")
+atlas = ExtResource("1_rph3q")
 region = Rect2(160, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_exe4k"]
-atlas = ExtResource("1_br3vl")
+atlas = ExtResource("1_rph3q")
 region = Rect2(128, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jnpkf"]
-atlas = ExtResource("1_br3vl")
+atlas = ExtResource("1_rph3q")
 region = Rect2(128, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_raqja"]
-atlas = ExtResource("1_br3vl")
+atlas = ExtResource("1_rph3q")
 region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8eruo"]
-atlas = ExtResource("1_br3vl")
+atlas = ExtResource("1_rph3q")
 region = Rect2(128, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5sx4a"]
-atlas = ExtResource("1_br3vl")
+atlas = ExtResource("1_rph3q")
 region = Rect2(32, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cq5cy"]
-atlas = ExtResource("1_br3vl")
+atlas = ExtResource("1_rph3q")
 region = Rect2(32, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q11gb"]
-atlas = ExtResource("1_br3vl")
+atlas = ExtResource("1_rph3q")
 region = Rect2(256, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2r7cl"]
-atlas = ExtResource("1_br3vl")
+atlas = ExtResource("1_rph3q")
 region = Rect2(256, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_opv5f"]
-atlas = ExtResource("1_br3vl")
+atlas = ExtResource("1_rph3q")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mexd1"]
-atlas = ExtResource("1_br3vl")
+atlas = ExtResource("1_rph3q")
 region = Rect2(0, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2e0ql"]
-atlas = ExtResource("1_br3vl")
+atlas = ExtResource("1_rph3q")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5f5t3"]
-atlas = ExtResource("1_br3vl")
+atlas = ExtResource("1_rph3q")
 region = Rect2(96, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_coq2j"]
-atlas = ExtResource("1_br3vl")
+atlas = ExtResource("1_rph3q")
 region = Rect2(224, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4mwtt"]
-atlas = ExtResource("1_br3vl")
+atlas = ExtResource("1_rph3q")
 region = Rect2(224, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_62xmv"]
-atlas = ExtResource("1_br3vl")
+atlas = ExtResource("1_rph3q")
 region = Rect2(96, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q7c4u"]
-atlas = ExtResource("1_br3vl")
+atlas = ExtResource("1_rph3q")
 region = Rect2(96, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fj228"]
-atlas = ExtResource("1_br3vl")
+atlas = ExtResource("1_rph3q")
 region = Rect2(160, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tww1q"]
-atlas = ExtResource("1_br3vl")
+atlas = ExtResource("1_rph3q")
 region = Rect2(160, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bg88k"]
-atlas = ExtResource("1_br3vl")
+atlas = ExtResource("1_rph3q")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i7uah"]
-atlas = ExtResource("1_br3vl")
+atlas = ExtResource("1_rph3q")
 region = Rect2(32, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_po2xf"]
-atlas = ExtResource("1_br3vl")
+atlas = ExtResource("1_rph3q")
 region = Rect2(0, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tuejf"]
-atlas = ExtResource("1_br3vl")
+atlas = ExtResource("1_rph3q")
 region = Rect2(0, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_03t7j"]
-atlas = ExtResource("1_br3vl")
+atlas = ExtResource("1_rph3q")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b23ni"]
-atlas = ExtResource("1_br3vl")
+atlas = ExtResource("1_rph3q")
 region = Rect2(64, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fjvnh"]
-atlas = ExtResource("1_br3vl")
+atlas = ExtResource("1_rph3q")
 region = Rect2(192, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0hl3i"]
-atlas = ExtResource("1_br3vl")
+atlas = ExtResource("1_rph3q")
 region = Rect2(192, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ovlin"]
-atlas = ExtResource("1_br3vl")
+atlas = ExtResource("1_rph3q")
 region = Rect2(64, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wdeid"]
-atlas = ExtResource("1_br3vl")
+atlas = ExtResource("1_rph3q")
 region = Rect2(64, 96, 32, 32)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_eu47m"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_qisoq"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -392,144 +390,51 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="TextureRect" type="TextureRect"]
-custom_minimum_size = Vector2(50, 50)
-offset_top = -45.0
-offset_right = 354.0
-offset_bottom = 229.0
-texture = ExtResource("1_7ewqh")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-custom_minimum_size = Vector2(100, 50)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -154.0
-offset_top = -102.0
-offset_right = 154.0
-offset_bottom = 102.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-custom_minimum_size = Vector2(100, 50)
-layout_mode = 2
-
-[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="UnitCount" type="Panel"]
 custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="UnitIcon" type="AnimatedSprite2D" parent="VBoxContainer/HBoxContainer/Button"]
+[node name="UnitIcon" type="AnimatedSprite2D" parent="."]
 visible = false
 self_modulate = Color(1, 1, 1, 0.462745)
 top_level = true
 z_index = 1
-sprite_frames = SubResource("SpriteFrames_eu47m")
+sprite_frames = SubResource("SpriteFrames_qisoq")
 animation = &"MTank1"
 
-[node name="SelectIcon" type="Sprite2D" parent="VBoxContainer/HBoxContainer/Button/UnitIcon"]
+[node name="SelectIcon" type="Sprite2D" parent="UnitIcon"]
 visible = false
-texture = ExtResource("2_l1nw1")
+texture = ExtResource("2_bbco6")
 
-[node name="Button2" type="Button" parent="VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(100, 50)
-layout_mode = 2
+[node name="Count" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "0"
+horizontal_alignment = 1
 
-[node name="UnitIcon" type="AnimatedSprite2D" parent="VBoxContainer/HBoxContainer/Button2"]
-visible = false
-self_modulate = Color(1, 1, 1, 0.462745)
-top_level = true
-z_index = 1
-sprite_frames = SubResource("SpriteFrames_eu47m")
-animation = &"MTank1"
-
-[node name="SelectIcon" type="Sprite2D" parent="VBoxContainer/HBoxContainer/Button2/UnitIcon"]
-visible = false
-texture = ExtResource("2_l1nw1")
-
-[node name="Button3" type="Button" parent="VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-
-[node name="UnitIcon" type="AnimatedSprite2D" parent="VBoxContainer/HBoxContainer/Button3"]
-visible = false
-self_modulate = Color(1, 1, 1, 0.462745)
-top_level = true
-z_index = 1
-sprite_frames = SubResource("SpriteFrames_eu47m")
-animation = &"MTank1"
-
-[node name="SelectIcon" type="Sprite2D" parent="VBoxContainer/HBoxContainer/Button3/UnitIcon"]
-visible = false
-texture = ExtResource("2_l1nw1")
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 50)
-layout_mode = 2
-
-[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer2"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-
-[node name="UnitIcon" type="AnimatedSprite2D" parent="VBoxContainer/HBoxContainer2/Button"]
-visible = false
-self_modulate = Color(1, 1, 1, 0.462745)
-top_level = true
-z_index = 1
-sprite_frames = SubResource("SpriteFrames_eu47m")
-animation = &"Bunker1"
-frame_progress = 0.287417
-
-[node name="SelectIcon" type="Sprite2D" parent="VBoxContainer/HBoxContainer2/Button/UnitIcon"]
-visible = false
-texture = ExtResource("2_l1nw1")
-
-[node name="Button2" type="Button" parent="VBoxContainer/HBoxContainer2"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-
-[node name="UnitIcon" type="AnimatedSprite2D" parent="VBoxContainer/HBoxContainer2/Button2"]
-visible = false
-self_modulate = Color(1, 1, 1, 0.462745)
-top_level = true
-z_index = 1
-sprite_frames = SubResource("SpriteFrames_eu47m")
-animation = &"MTank1"
-
-[node name="SelectIcon" type="Sprite2D" parent="VBoxContainer/HBoxContainer2/Button2/UnitIcon"]
-visible = false
-texture = ExtResource("2_l1nw1")
-
-[node name="Button3" type="Button" parent="VBoxContainer/HBoxContainer2"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-
-[node name="UnitIcon" type="AnimatedSprite2D" parent="VBoxContainer/HBoxContainer2/Button3"]
-visible = false
-self_modulate = Color(1, 1, 1, 0.462745)
-top_level = true
-z_index = 1
-sprite_frames = SubResource("SpriteFrames_eu47m")
-animation = &"MTank1"
-
-[node name="SelectIcon" type="Sprite2D" parent="VBoxContainer/HBoxContainer2/Button3/UnitIcon"]
-visible = false
-texture = ExtResource("2_l1nw1")
-
-[node name="Label" type="Label" parent="."]
+[node name="Ability Y" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -64.0
-offset_right = 65.0
-offset_bottom = 48.0
-grow_horizontal = 2
-theme = ExtResource("4_aauik")
-text = "Vehicle Bay"
-vertical_alignment = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+text = "Y"
+horizontal_alignment = 1
+
+[node name="Ability X" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "X"
+horizontal_alignment = 1

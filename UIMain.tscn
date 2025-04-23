@@ -15,9 +15,11 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Stats" parent="." instance=ExtResource("1_frii7")]
+visible = false
 layout_mode = 1
 
 [node name="UnitBuilder" parent="." instance=ExtResource("2_jx77l")]
+visible = false
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -32,6 +34,7 @@ grow_horizontal = 0
 grow_vertical = 0
 
 [node name="UnitsSelected" parent="." instance=ExtResource("2_hgu64")]
+visible = false
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -41,6 +44,7 @@ offset_bottom = 0.0
 grow_vertical = 0
 
 [node name="MiniMap" parent="." instance=ExtResource("4_f1nwn")]
+visible = false
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -51,6 +55,7 @@ offset_bottom = 200.0
 grow_horizontal = 0
 
 [node name="PauseButton" type="Button" parent="."]
+visible = false
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 1
 anchors_preset = 1
