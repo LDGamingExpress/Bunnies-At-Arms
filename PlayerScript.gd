@@ -5,6 +5,10 @@ extends CharacterBody2D
 @onready var LandMineObj = preload("res://LandMines.tscn")
 @onready var Flare = preload("res://Flare.tscn")
 @onready var PlaneObj = preload("res://Plane.tscn")
+var Music0 = preload("res://SFX/Bunny Wars.mp3")
+var Music1 = preload("res://SFX/Trench Rabbits (Preparation).mp3")
+var Music2 = preload("res://SFX/Trench Rabbits (Under Fire).mp3")
+var Music3 = preload("res://SFX/War Has Never Been So Much Bun.mp3")
 const SPEED = 300.0
 var SelectionStarted = false
 var SelectionStartPos = null
@@ -433,7 +437,17 @@ func _on_ability_area_area_exited(area: Area2D) -> void:
 				LandMines.erase(area.get_parent())
 
 func MusicPlayer():
-	pass
+	var music2Play = rng.randi_range(1,3)
+	match music2Play:
+		0:
+			$AudioStreamPlayer2D.stream = Music0
+		1:
+			$AudioStreamPlayer2D.stream = Music1
+		2:
+			$AudioStreamPlayer2D.stream = Music2
+		3:
+			$AudioStreamPlayer2D.stream = Music3
+	$AudioStreamPlayer2D.play()
 	# Replace pass with code to continuously play music 
 	# If there is a way to detect how many sounds are playing at once, make it so idle
 	# music plays if <15 are playing and then have a timer after to wait some time
@@ -441,3 +455,7 @@ func MusicPlayer():
 	
 	# Idle music: "Trench Rabbits (Preparation)" and "War Has Never Been So Bun"
 	# Action music: "Trench Rabbits (Under Fire)"
+
+
+func _on_audio_stream_player_2d_finished() -> void:
+	MusicPlayer()

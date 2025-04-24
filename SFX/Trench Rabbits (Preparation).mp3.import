@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://d0j2w3owmyw3l"
+path="res://.godot/imported/Trench Rabbits (Preparation).mp3-8f56e7c4c54b49e5efaf71958fe95a25.mp3str"
+
+[deps]
+
+source_file="res://SFX/Trench Rabbits (Preparation).mp3"
+dest_files=["res://.godot/imported/Trench Rabbits (Preparation).mp3-8f56e7c4c54b49e5efaf71958fe95a25.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://5i0otsitkrxj"
+path="res://.godot/imported/War Has Never Been So Much Bun.mp3-f50a91f99d24f277248adc5855c4cf42.mp3str"
+
+[deps]
+
+source_file="res://SFX/War Has Never Been So Much Bun.mp3"
+dest_files=["res://.godot/imported/War Has Never Been So Much Bun.mp3-f50a91f99d24f277248adc5855c4cf42.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

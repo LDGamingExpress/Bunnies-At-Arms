@@ -108,7 +108,12 @@ collision_mask = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BuildArea/BuildAreaD"]
 shape = SubResource("RectangleShape2D_s8fyj")
 
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
 [connection signal="body_entered" from="Sprite2D/SelectionArea" to="." method="_on_selection_area_body_entered"]
 [connection signal="body_exited" from="Sprite2D/SelectionArea" to="." method="_on_selection_area_body_exited"]
 [connection signal="area_entered" from="AbilitySprite/AbilityArea" to="." method="_on_ability_area_area_entered"]
 [connection signal="area_exited" from="AbilitySprite/AbilityArea" to="." method="_on_ability_area_area_exited"]
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]

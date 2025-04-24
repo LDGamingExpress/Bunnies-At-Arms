@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://w11w2g6u5xba"
+path="res://.godot/imported/Trench Rabbits (Under Fire).mp3-96724a04c051e63d576ee2bde04934ce.mp3str"
+
+[deps]
+
+source_file="res://SFX/Trench Rabbits (Under Fire).mp3"
+dest_files=["res://.godot/imported/Trench Rabbits (Under Fire).mp3-96724a04c051e63d576ee2bde04934ce.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -503,8 +503,9 @@ func _input(event: InputEvent) -> void:
 					$UnitIcon/SelectIcon.visible = true
 					if Globals.UnitsSelected.size() > 0:
 						for i in range(0,Globals.UnitsSelected.size()):
-							if Globals.UnitsSelected[i] != null:
-								Globals.UnitsSelected[i].UnSelect()
+							if i < Globals.UnitsSelected.size():
+								if Globals.UnitsSelected[i] != null:
+									Globals.UnitsSelected[i].UnSelect()
 						Globals.UnitsSelected = []
 					await get_tree().create_timer(0.11).timeout
 					Globals.UnitsSelected.append(self)

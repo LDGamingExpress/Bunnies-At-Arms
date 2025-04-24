@@ -2,6 +2,8 @@ extends GPUParticles2D
 
 var BloodP = preload("res://BloodParticles.tscn")
 var SmokeP = preload("res://SmokeParticlesImpact.tscn")
+var SFXObj = preload("res://SFXObj.tscn")
+var ExplosionSFX = preload("res://SFX/explosion_large_08.wav")
 var Team = 0
 var Damage = 0
 var AllowDamage = true
@@ -9,6 +11,10 @@ var AllowDamage = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	var NewAudio = SFXObj.instantiate()
+	NewAudio.position = global_position
+	NewAudio.stream = ExplosionSFX
+	get_parent().call_deferred("add_child",NewAudio)
 	emitting = true
 	$GPUParticles2D.emitting = true
 	await get_tree().create_timer(0.75).timeout

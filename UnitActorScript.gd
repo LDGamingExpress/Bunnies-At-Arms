@@ -4,6 +4,8 @@ var GunParticles = preload("res://GunParticles.tscn")
 var UnitActor = preload("res://Bullet.tscn")
 var DeathParticles = preload("res://DeathParticles.tscn")
 var VehicleDeathP = preload("res://VehicleExplosionParticles.tscn")
+var SFXObj = preload("res://SFXObj.tscn")
+var SFX2Use = null
 var GoToPos = global_position
 var SPEED = 50.0
 var Type = null
@@ -44,58 +46,68 @@ func _ready() -> void:
 		$NavigationAgent2D.navigation_layers = 2
 	match Type:
 		"Car1":
+			SFX2Use = preload("res://SFX/MG_SFX.mp3")
 			#var NewShape = RectangleShape2D.new()
 			#NewShape.set_size(Vector2(54,22))
 			var NewShape = CircleShape2D.new()
 			NewShape.set_radius(22)
 			$CollisionShape2D.shape = NewShape
 		"Car2":
+			SFX2Use = preload("res://SFX/MG_SFX.mp3")
 			#var NewShape = RectangleShape2D.new()
 			#NewShape.set_size(Vector2(54,22))
 			var NewShape = CircleShape2D.new()
 			NewShape.set_radius(22)
 			$CollisionShape2D.shape = NewShape
 		"Tank1":
+			SFX2Use = preload("res://SFX/TankCannon.mp3")
 			#var NewShape = RectangleShape2D.new()
 			#NewShape.set_size(Vector2(57,20))
 			var NewShape = CircleShape2D.new()
 			NewShape.set_radius(21)
 			$CollisionShape2D.shape = NewShape
 		"Tank2":
+			SFX2Use = preload("res://SFX/TankCannon.mp3")
 			#var NewShape = RectangleShape2D.new()
 			#NewShape.set_size(Vector2(57,20))
 			var NewShape = CircleShape2D.new()
 			NewShape.set_radius(21)
 			$CollisionShape2D.shape = NewShape
 		"MTank1":
+			SFX2Use = preload("res://SFX/TankCannon.mp3")
 			#var NewShape = RectangleShape2D.new()
 			#NewShape.set_size(Vector2(54,20))
 			var NewShape = CircleShape2D.new()
 			NewShape.set_radius(22)
 			$CollisionShape2D.shape = NewShape
 		"MTank2":
+			SFX2Use = preload("res://SFX/TankCannon.mp3")
 			#var NewShape = RectangleShape2D.new()
 			#NewShape.set_size(Vector2(54,20))
 			var NewShape = CircleShape2D.new()
 			NewShape.set_radius(22)
 			$CollisionShape2D.shape = NewShape
 		"HTank1":
+			SFX2Use = preload("res://SFX/TankCannon.mp3")
 			#var NewShape = RectangleShape2D.new()
 			#NewShape.set_size(Vector2(55,28))
 			var NewShape = CircleShape2D.new()
 			NewShape.set_radius(28)
 			$CollisionShape2D.shape = NewShape
 		"HTank2":
+			SFX2Use = preload("res://SFX/TankCannon.mp3")
 			#var NewShape = RectangleShape2D.new()
 			#NewShape.set_size(Vector2(55,28))
 			var NewShape = CircleShape2D.new()
 			NewShape.set_radius(28)
 			$CollisionShape2D.shape = NewShape
 		"Bunker1":
+			SFX2Use = preload("res://SFX/MG_SFX.mp3")
 			var NewShape = RectangleShape2D.new()
 			NewShape.set_size(Vector2(32,32))
 			$CollisionShape2D.shape = NewShape
 		"Bunker2":
+			SFX2Use = preload("res://SFX/MG_SFX.mp3")
 			var NewShape = RectangleShape2D.new()
 			NewShape.set_size(Vector2(32,32))
 			$CollisionShape2D.shape = NewShape
@@ -139,6 +151,24 @@ func _ready() -> void:
 			var NewShape = RectangleShape2D.new()
 			NewShape.set_size(Vector2(64,64))
 			$CollisionShape2D.shape = NewShape
+		"Eng1":
+			SFX2Use = preload("res://SFX/FlameThrowerSX.mp3")
+		"Eng2":
+			SFX2Use = preload("res://SFX/FlameThrowerSX.mp3")
+		"Rocket1":
+			SFX2Use = preload("res://SFX/explosion_large_08.wav")
+		"Rocket2":
+			SFX2Use = preload("res://SFX/explosion_large_08.wav")
+		"MG1":
+			SFX2Use = preload("res://SFX/MG_SFX.mp3")
+		"MG2":
+			SFX2Use = preload("res://SFX/MG_SFX.mp3")
+		"SMG1":
+			SFX2Use = preload("res://SFX/SMG_SFX.mp3")
+		"SMG2":
+			SFX2Use = preload("res://SFX/SMG_SFX.mp3")
+		_:
+			SFX2Use = preload("res://SFX/Gunshot_SFX.wav")
 	$AnimatedSprite2D/GunSprite.position = Vector2(GunOffsetX,GunOffsetY)
 	$AnimatedSprite2D/GunSprite.show_behind_parent = GunBehind
 	if isVehicle == true:
@@ -209,6 +239,7 @@ func _physics_process(delta: float) -> void:
 					else:
 						$AnimatedSprite2D/GunSprite.look_at(EnemyTarget.global_position)
 					if Reloaded == 1:
+						CreateAudio(SFX2Use)
 						Reloaded = 0
 						var NewObj1 = GunParticles.instantiate()
 						NewObj1.position = Vector2(0,0)
@@ -258,6 +289,7 @@ func _physics_process(delta: float) -> void:
 					else:
 						$AnimatedSprite2D/GunSprite.look_at(EnemyTarget.global_position)
 					if Reloaded == 1:
+						CreateAudio(SFX2Use)
 						Reloaded = 0
 						var NewObj = UnitActor.instantiate()
 						NewObj.position = $AnimatedSprite2D/GunSprite.global_position
@@ -324,3 +356,9 @@ func GetClosestEnemy():
 
 func _on_reload_timer_timeout() -> void:
 	Reloaded = 1
+
+func CreateAudio(Effect):
+	var NewAudio = SFXObj.instantiate()
+	NewAudio.position = global_position
+	NewAudio.stream = Effect
+	get_parent().get_parent().call_deferred("add_child",NewAudio)
