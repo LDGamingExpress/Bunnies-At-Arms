@@ -5,6 +5,7 @@ var UnitActor = preload("res://Bullet.tscn")
 var DeathParticles = preload("res://DeathParticles.tscn")
 var VehicleDeathP = preload("res://VehicleExplosionParticles.tscn")
 var SFXObj = preload("res://SFXObj.tscn")
+var DeathObj = preload("res://DeathSprite.tscn")
 var SFX2Use = null
 var GoToPos = global_position
 var SPEED = 50.0
@@ -186,10 +187,25 @@ func _physics_process(delta: float) -> void:
 			var NewObj = VehicleDeathP.instantiate()
 			NewObj.global_position = global_position
 			get_parent().get_parent().add_child(NewObj)
+			var NewDO = DeathObj.instantiate()
+			NewDO.global_position = global_position + Vector2(rng.randi_range(-50,50),rng.randi_range(-50,50))
+			NewDO.animation = "Vehicle" + str(rng.randi_range(1,3))
+			NewDO.rotation = rng.randf_range(0,2*PI)
+			get_parent().get_parent().call_deferred("add_child",NewDO)
+			var NewDO2 = DeathObj.instantiate()
+			NewDO2.global_position = global_position + Vector2(rng.randi_range(-50,50),rng.randi_range(-50,50))
+			NewDO2.animation = "Vehicle" + str(rng.randi_range(1,3))
+			NewDO2.rotation = rng.randf_range(0,2*PI)
+			get_parent().get_parent().call_deferred("add_child",NewDO2)
 		else:
 			var NewObj = DeathParticles.instantiate()
 			NewObj.global_position = global_position
 			get_parent().get_parent().add_child(NewObj)
+			var NewDO = DeathObj.instantiate()
+			NewDO.global_position = global_position + Vector2(rng.randi_range(-20,20),rng.randi_range(-20,20))
+			NewDO.animation = "Inf" + str(rng.randi_range(1,4))
+			NewDO.rotation = rng.randf_range(0,2*PI)
+			get_parent().get_parent().call_deferred("add_child",NewDO)
 		queue_free()
 	if isBuilding == false:
 		match get_parent().Behavior:
@@ -312,6 +328,7 @@ func _physics_process(delta: float) -> void:
 				if EnemyTarget != null:
 					$AnimatedSprite2D/GunSprite.look_at(EnemyTarget.global_position)
 					if Reloaded == 1:
+						CreateAudio(SFX2Use)
 						Reloaded = 0
 						var NewObj = UnitActor.instantiate()
 						NewObj.position = $AnimatedSprite2D/GunSprite.global_position

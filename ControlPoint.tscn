@@ -33,6 +33,7 @@ shape = SubResource("CircleShape2D_f3jqw")
 debug_color = Color(0.415686, 0.431373, 0.427451, 0.435294)
 
 [node name="CPLabel" type="Label" parent="."]
+z_index = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -48,6 +49,7 @@ Point"
 horizontal_alignment = 1
 
 [node name="CPLabel2" type="Label" parent="."]
+z_index = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_left = -46.5

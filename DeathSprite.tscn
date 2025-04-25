@@ -1,0 +1,73 @@
+[gd_scene load_steps=9 format=3 uid="uid://btmq7g45ngxol"]
+
+[ext_resource type="Texture2D" uid="uid://dqacxvrhkulmr" path="res://Textures/BunnyGib1.png" id="1_yslqx"]
+[ext_resource type="Texture2D" uid="uid://3uld03bqsa2e" path="res://Textures/BunnyGib2.png" id="2_j165b"]
+[ext_resource type="Texture2D" uid="uid://c5a5qewmkocbx" path="res://Textures/BunnyGib3.png" id="3_fri28"]
+[ext_resource type="Texture2D" uid="uid://dwjg0kk8rnst3" path="res://Textures/BloodParticle.png" id="4_3sssw"]
+[ext_resource type="Texture2D" uid="uid://dhnslujt1ecec" path="res://Textures/VehicleGib1.png" id="5_fceti"]
+[ext_resource type="Texture2D" uid="uid://d4sfwhnejf2g" path="res://Textures/VehicleGib2.png" id="6_f0jbo"]
+[ext_resource type="Texture2D" uid="uid://bx6x72qnc3wi8" path="res://Textures/VehicleGib3.png" id="7_ja15q"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0tsru"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_yslqx")
+}],
+"loop": true,
+"name": &"Inf1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_j165b")
+}],
+"loop": true,
+"name": &"Inf2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_fri28")
+}],
+"loop": true,
+"name": &"Inf3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_3sssw")
+}],
+"loop": true,
+"name": &"Inf4",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_fceti")
+}],
+"loop": true,
+"name": &"Vehicle1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_f0jbo")
+}],
+"loop": true,
+"name": &"Vehicle2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_ja15q")
+}],
+"loop": true,
+"name": &"Vehicle3",
+"speed": 5.0
+}]
+
+[node name="DeathSprite" type="AnimatedSprite2D"]
+self_modulate = Color(1, 1, 1, 0.756863)
+sprite_frames = SubResource("SpriteFrames_0tsru")
+animation = &"Vehicle3"
