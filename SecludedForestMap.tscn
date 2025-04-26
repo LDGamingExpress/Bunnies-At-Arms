@@ -692,4 +692,9 @@ position = Vector2(-1720, 352)
 [node name="DefensePoint14" parent="." instance=ExtResource("13_1aq85")]
 position = Vector2(1864, -112)
 
+[node name="ControlPoint11" parent="." instance=ExtResource("12_wi1do")]
+position = Vector2(1128, 0)
+ResourceType = "Munitions"
+ResourceAmount = 5
+
 [connection signal="timeout" from="EnemyAI/EnemyDTimer" to="EnemyAI" method="_on_enemy_d_timer_timeout"]

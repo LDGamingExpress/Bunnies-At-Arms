@@ -1,5 +1,6 @@
 extends CharacterBody2D
 var UnitActor = preload("res://UnitActor.tscn")
+var MoveSprite = preload("res://MoveSprite.tscn")
 @export var Type = "Infantry"
 @export var Team = 1
 var PlayerHovering = 0
@@ -526,6 +527,9 @@ func _input(event: InputEvent) -> void:
 				FirstMove = 1
 				#print(GoToPos)
 				$NavigationAgent2D.target_position = GoToPos
+				var NewM = MoveSprite.instantiate()
+				NewM.global_position = GoToPos
+				get_parent().add_child(NewM)
 				if Globals.EnemySelectable != null:
 					Pursuing = Globals.EnemySelectable
 				UnSelect()

@@ -44,7 +44,7 @@ func _physics_process(delta: float) -> void:
 	
 	#print(Globals.UnitsSelected)
 	if Input.is_action_just_pressed("Select") and (AbilityUse == true or Building == true):
-		if AllowAbility:
+		if AllowAbility and UnitWAbility != null:
 			var dis = sqrt(pow(Globals.MousePos.x - UnitWAbility.global_position.x,2) + pow(Globals.MousePos.y - UnitWAbility.global_position.y,2))
 			match AbilitySelected:
 				'Grenade':

@@ -146,7 +146,7 @@ func _on_enemy_d_timer_timeout() -> void:
 		'Victory Points':
 			if Troops.size() >= (Enemies.size() - EnemyBuildings.size())*1.8:
 				Focus = "Elimination"
-			elif Troops.size() >= (Enemies.size() - EnemyBuildings.size())*1.3:
+			elif Troops.size() >= (Enemies.size() - EnemyBuildings.size())*1.1:
 				Focus = "Victory"
 			else:
 				if (hasHQ.size() + hasTent.size() + hasMotorPool.size() + hasDepot.size() + hasRadio.size()) >= 5:

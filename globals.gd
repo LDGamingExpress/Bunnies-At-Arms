@@ -45,8 +45,9 @@ var PlaneFCost = 150
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	print(HoveringOverClickable)
+	#print(HoveringOverClickable)
 	if HoveringOverClickable <= 0:
+		HoveringOverClickable = 0
 		if UnitsSelected.size() > 0:
 			if EnemySelectable != null:
 				Input.set_custom_mouse_cursor(AttackCursor)
