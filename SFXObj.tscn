@@ -4,6 +4,7 @@
 
 [node name="SFXObj" type="AudioStreamPlayer2D"]
 autoplay = true
+bus = &"SFX"
 script = ExtResource("1_41giy")
 
 [connection signal="finished" from="." to="." method="_on_finished"]

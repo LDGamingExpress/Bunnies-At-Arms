@@ -111,6 +111,7 @@ shape = SubResource("RectangleShape2D_s8fyj")
 [node name="AudioListener2D" type="AudioListener2D" parent="."]
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+bus = &"Music"
 
 [connection signal="body_entered" from="Sprite2D/SelectionArea" to="." method="_on_selection_area_body_entered"]
 [connection signal="body_exited" from="Sprite2D/SelectionArea" to="." method="_on_selection_area_body_exited"]

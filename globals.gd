@@ -5,7 +5,7 @@ var EnemySelectable = null
 var UnitsSelected = []
 var UnitPanelShow = null
 var CurrentUnitIndex = null
-var GameMode = 'Victory Points'
+var GameMode = 'Elimination'
 
 var PointsNeeded = 50000
 var ChangedMesh = false

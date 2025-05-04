@@ -157,7 +157,7 @@ func _on_enemy_d_timer_timeout() -> void:
 				else:
 					Focus = "Resources"
 		'Elimination':
-			if Troops.size() >= (Enemies.size() - EnemyBuildings.size())*2.0 and Troops.size() > 4:
+			if (Troops.size() >= (Enemies.size() - EnemyBuildings.size())*2.0 and Troops.size() > 4) or ResourcePoints.size() == 0:
 				Focus = "Elimination"
 			elif Troops.size() >= (Enemies.size() - EnemyBuildings.size())*1.4 and Troops.size() > 4:
 				Focus = "Base Destruction"

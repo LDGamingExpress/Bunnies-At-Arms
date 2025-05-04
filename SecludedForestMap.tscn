@@ -554,6 +554,7 @@ tile_map_data = PackedByteArray("AAD6//X/AAAGAAEAAAD8//X/AAAGAAEAAAD1//n/AAAFAAE
 tile_set = SubResource("TileSet_hkn4w")
 
 [node name="Player" parent="." instance=ExtResource("6_h04sh")]
+position = Vector2(-1768, -648)
 
 [node name="NavigationRegion2D2" type="NavigationRegion2D" parent="."]
 position = Vector2(741, 157)
