@@ -1,7 +1,10 @@
 [gd_scene load_steps=15 format=3 uid="uid://d3xv1tnkvdnkv"]
 
-[ext_resource type="Script" path="res://ImpactExplosion.gd" id="1_a5nfk"]
+[ext_resource type="Script" uid="uid://c7h2jww6wc3e2" path="res://ImpactExplosion.gd" id="1_a5nfk"]
 [ext_resource type="Texture2D" uid="uid://jxi7n15np3u5" path="res://Textures/SmokeParticle.png" id="2_ffhc7"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_u34as"]
+load_path = "res://.godot/imported/FireParticle.png-c6f477c14192667766c9fe5eb3333847.ctex"
 
 [sub_resource type="Gradient" id="Gradient_1qhro"]
 offsets = PackedFloat32Array(0, 0.745902, 1)
@@ -28,9 +31,6 @@ gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_kvi1o")
 color_ramp = SubResource("GradientTexture1D_aj7wr")
 turbulence_noise_scale = 3.105
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_u34as"]
-load_path = "res://.godot/imported/FireParticle.png-c6f477c14192667766c9fe5eb3333847.ctex"
 
 [sub_resource type="Gradient" id="Gradient_plqt2"]
 offsets = PackedFloat32Array(0, 0.745902, 1)
@@ -64,11 +64,11 @@ radius = 45.0
 z_index = 1
 emitting = false
 amount = 15
-process_material = SubResource("ParticleProcessMaterial_mq0bp")
 texture = SubResource("CompressedTexture2D_u34as")
 lifetime = 1.5
 one_shot = true
 explosiveness = 0.95
+process_material = SubResource("ParticleProcessMaterial_mq0bp")
 script = ExtResource("1_a5nfk")
 radius = 1
 
@@ -76,11 +76,11 @@ radius = 1
 show_behind_parent = true
 emitting = false
 amount = 20
-process_material = SubResource("ParticleProcessMaterial_hdw3i")
 texture = ExtResource("2_ffhc7")
 lifetime = 1.5
 one_shot = true
 explosiveness = 0.95
+process_material = SubResource("ParticleProcessMaterial_hdw3i")
 
 [node name="Area2D" type="Area2D" parent="."]
 

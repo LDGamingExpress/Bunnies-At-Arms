@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://dk0of0bcn08r2"]
 
 [ext_resource type="Texture2D" uid="uid://bohnshrlhwfwe" path="res://Textures/FireParticle.png" id="1_a02cu"]
-[ext_resource type="Script" path="res://BloodParticlesScript.gd" id="2_hf4vu"]
+[ext_resource type="Script" uid="uid://dppxuytvr31qb" path="res://BloodParticlesScript.gd" id="2_hf4vu"]
 [ext_resource type="Texture2D" uid="uid://jxi7n15np3u5" path="res://Textures/SmokeParticle.png" id="3_yulh6"]
 
 [sub_resource type="Gradient" id="Gradient_w6scv"]
@@ -11,7 +11,7 @@ colors = PackedColorArray(1, 1, 0, 1, 0.513233, 0.513233, 0.513233, 0.184314)
 gradient = SubResource("Gradient_w6scv")
 
 [sub_resource type="Curve" id="Curve_csa8p"]
-min_value = -1.0
+_limits = [-1.0, 1.0, 0.0, 1.0]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, -1), 0.0, 0.0, 0, 0]
 point_count = 2
 
@@ -65,21 +65,21 @@ color_ramp = SubResource("GradientTexture1D_r4ylv")
 z_index = 1
 emitting = false
 amount = 15
-process_material = SubResource("ParticleProcessMaterial_uf4c8")
 texture = ExtResource("1_a02cu")
 lifetime = 0.8
 one_shot = true
 explosiveness = 0.95
+process_material = SubResource("ParticleProcessMaterial_uf4c8")
 script = ExtResource("2_hf4vu")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 show_behind_parent = true
 z_index = 1
 emitting = false
-process_material = SubResource("ParticleProcessMaterial_c1chw")
 texture = ExtResource("3_yulh6")
 lifetime = 0.8
 one_shot = true
 explosiveness = 0.95
+process_material = SubResource("ParticleProcessMaterial_c1chw")
 
 [connection signal="finished" from="." to="." method="_on_finished"]

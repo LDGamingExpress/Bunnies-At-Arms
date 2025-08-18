@@ -1,16 +1,16 @@
 [gd_scene load_steps=33 format=4 uid="uid://bbcgrxehuek5r"]
 
-[ext_resource type="Script" path="res://MainMenuScript.gd" id="1_iwsq6"]
+[ext_resource type="Script" uid="uid://fqyelc2m7hgg" path="res://MainMenuScript.gd" id="1_iwsq6"]
 [ext_resource type="Texture2D" uid="uid://gjmtp3vdqqbd" path="res://Textures/BAA_MapTiles.png" id="1_m182e"]
 [ext_resource type="PackedScene" uid="uid://caw0qddvdqti4" path="res://ExplodingBarrels1.tscn" id="2_ge6tm"]
 [ext_resource type="PackedScene" uid="uid://dk1tja7euk1cl" path="res://ExplodingBarrels2.tscn" id="3_qswwv"]
 [ext_resource type="PackedScene" uid="uid://dst2gyl2ver2u" path="res://ExplodingBarrels3.tscn" id="4_8j7r1"]
 [ext_resource type="PackedScene" uid="uid://bjqfddi77sti3" path="res://ExplodingBarrels4.tscn" id="5_0vli6"]
 [ext_resource type="PackedScene" uid="uid://dchpe6n7gxdce" path="res://DefensePoint.tscn" id="6_md7ua"]
-[ext_resource type="Shader" path="res://FogShader.gdshader" id="6_q6qsi"]
+[ext_resource type="Shader" uid="uid://b4sxu3xunuglv" path="res://FogShader.gdshader" id="6_q6qsi"]
 [ext_resource type="Texture2D" uid="uid://bpo5x3kotk1cd" path="res://Textures/BAABackground.png" id="7_2pwso"]
 [ext_resource type="PackedScene" uid="uid://8eg0nwcc6gik" path="res://UnitSpawner.tscn" id="7_78rk5"]
-[ext_resource type="Script" path="res://EnemyAIScript.gd" id="8_jf5mx"]
+[ext_resource type="Script" uid="uid://b381hrf6w2ncy" path="res://EnemyAIScript.gd" id="8_jf5mx"]
 [ext_resource type="Theme" uid="uid://bd0je60acp7ff" path="res://MainTheme.tres" id="10_8iohl"]
 [ext_resource type="AudioStream" uid="uid://m035v7jxnd2" path="res://SFX/Bunny Wars.mp3" id="12_drd2f"]
 
@@ -530,9 +530,9 @@ noise = SubResource("FastNoiseLite_g6v2g")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fm0cc"]
 shader = ExtResource("6_q6qsi")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_rox20")
 shader_parameter/density = 0.25
 shader_parameter/speed = Vector2(0.02, 0.01)
-shader_parameter/noise_texture = SubResource("NoiseTexture2D_rox20")
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_iwsq6")
@@ -667,6 +667,7 @@ position_smoothing_enabled = true
 [node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
 
 [node name="Menu" type="Control" parent="Camera2D/CanvasLayer"]
+z_index = 8
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -681,7 +682,68 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("10_8iohl")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Camera2D/CanvasLayer/Menu"]
+[node name="OptionsMenu" type="VBoxContainer" parent="Camera2D/CanvasLayer/Menu"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -455.5
+offset_top = -242.0
+offset_right = 455.5
+offset_bottom = 242.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Camera2D/CanvasLayer/Menu/OptionsMenu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 128
+text = "Options"
+horizontal_alignment = 1
+
+[node name="SFXLevel" type="HBoxContainer" parent="Camera2D/CanvasLayer/Menu/OptionsMenu"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Camera2D/CanvasLayer/Menu/OptionsMenu/SFXLevel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 96
+text = "SFX Level:"
+
+[node name="SFXSlider" type="HSlider" parent="Camera2D/CanvasLayer/Menu/OptionsMenu/SFXLevel"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_vertical = 4
+tick_count = 20
+ticks_on_borders = true
+
+[node name="MusicLevel" type="HBoxContainer" parent="Camera2D/CanvasLayer/Menu/OptionsMenu"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Camera2D/CanvasLayer/Menu/OptionsMenu/MusicLevel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 96
+text = "Music Level:"
+
+[node name="MusicLevel" type="HSlider" parent="Camera2D/CanvasLayer/Menu/OptionsMenu/MusicLevel"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_vertical = 4
+tick_count = 20
+ticks_on_borders = true
+
+[node name="OptionsBack" type="Button" parent="Camera2D/CanvasLayer/Menu/OptionsMenu"]
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 96
+text = "Back"
+
+[node name="MainMenu" type="VBoxContainer" parent="Camera2D/CanvasLayer/Menu"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -695,31 +757,99 @@ offset_bottom = 250.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="Camera2D/CanvasLayer/Menu/VBoxContainer"]
+[node name="Label" type="Label" parent="Camera2D/CanvasLayer/Menu/MainMenu"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 128
 text = "Bunnies At Arms"
 
-[node name="PlayButton" type="Button" parent="Camera2D/CanvasLayer/Menu/VBoxContainer"]
+[node name="PlayButton" type="Button" parent="Camera2D/CanvasLayer/Menu/MainMenu"]
 layout_mode = 2
 size_flags_horizontal = 4
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 96
 text = " Play "
 
-[node name="OptionsButton" type="Button" parent="Camera2D/CanvasLayer/Menu/VBoxContainer"]
+[node name="OptionsButton" type="Button" parent="Camera2D/CanvasLayer/Menu/MainMenu"]
 layout_mode = 2
 size_flags_horizontal = 4
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 96
 text = " Options "
 
-[node name="PlayButton2" type="Button" parent="Camera2D/CanvasLayer/Menu/VBoxContainer"]
+[node name="ExitButton" type="Button" parent="Camera2D/CanvasLayer/Menu/MainMenu"]
 layout_mode = 2
 size_flags_horizontal = 4
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 96
 text = " Exit "
+
+[node name="MapMenu" type="VBoxContainer" parent="Camera2D/CanvasLayer/Menu"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -512.0
+offset_top = -375.0
+offset_right = 512.0
+offset_bottom = 375.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Camera2D/CanvasLayer/Menu/MapMenu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 128
+text = "Map Selection:"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Camera2D/CanvasLayer/Menu/MapMenu"]
+layout_mode = 2
+alignment = 1
+
+[node name="TutorialMap" type="Button" parent="Camera2D/CanvasLayer/Menu/MapMenu/HBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 96
+text = "Tutorial"
+
+[node name="RiverMap" type="Button" parent="Camera2D/CanvasLayer/Menu/MapMenu/HBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 96
+text = "River"
+
+[node name="ForestMap" type="Button" parent="Camera2D/CanvasLayer/Menu/MapMenu/HBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 96
+text = "Secluded
+Forest"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Camera2D/CanvasLayer/Menu/MapMenu"]
+layout_mode = 2
+alignment = 1
+
+[node name="BridgeMap" type="Button" parent="Camera2D/CanvasLayer/Menu/MapMenu/HBoxContainer2"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 96
+text = "A Bridge
+Too Far"
+
+[node name="KonnenburgMap" type="Button" parent="Camera2D/CanvasLayer/Menu/MapMenu/HBoxContainer2"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 96
+text = "Konnenburg"
+
+[node name="MapBack" type="Button" parent="Camera2D/CanvasLayer/Menu/MapMenu"]
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 96
+text = "Back"
 
 [node name="FogParallax" type="ParallaxBackground" parent="."]
 layer = 2
@@ -732,6 +862,7 @@ motion_mirroring = Vector2(2048, 1536)
 material = SubResource("ShaderMaterial_fm0cc")
 offset_right = 2048.0
 offset_bottom = 1536.0
+mouse_filter = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="BackgroundImage" type="ParallaxBackground" parent="."]
@@ -751,3 +882,15 @@ parameters/looping = true
 
 [connection signal="timeout" from="Background/EnemyAI/EnemyDTimer" to="Background/EnemyAI" method="_on_enemy_d_timer_timeout"]
 [connection signal="timeout" from="Background/EnemyAI2/EnemyDTimer" to="Background/EnemyAI2" method="_on_enemy_d_timer_timeout"]
+[connection signal="drag_ended" from="Camera2D/CanvasLayer/Menu/OptionsMenu/SFXLevel/SFXSlider" to="." method="_on_sfx_slider_drag_ended"]
+[connection signal="drag_ended" from="Camera2D/CanvasLayer/Menu/OptionsMenu/MusicLevel/MusicLevel" to="." method="_on_music_level_drag_ended"]
+[connection signal="pressed" from="Camera2D/CanvasLayer/Menu/OptionsMenu/OptionsBack" to="." method="_on_options_back_pressed"]
+[connection signal="pressed" from="Camera2D/CanvasLayer/Menu/MainMenu/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="Camera2D/CanvasLayer/Menu/MainMenu/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="Camera2D/CanvasLayer/Menu/MainMenu/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="Camera2D/CanvasLayer/Menu/MapMenu/HBoxContainer/TutorialMap" to="." method="_on_tutorial_map_pressed"]
+[connection signal="pressed" from="Camera2D/CanvasLayer/Menu/MapMenu/HBoxContainer/RiverMap" to="." method="_on_river_map_pressed"]
+[connection signal="pressed" from="Camera2D/CanvasLayer/Menu/MapMenu/HBoxContainer/ForestMap" to="." method="_on_forest_map_pressed"]
+[connection signal="pressed" from="Camera2D/CanvasLayer/Menu/MapMenu/HBoxContainer2/BridgeMap" to="." method="_on_bridge_map_pressed"]
+[connection signal="pressed" from="Camera2D/CanvasLayer/Menu/MapMenu/HBoxContainer2/KonnenburgMap" to="." method="_on_konnenburg_map_pressed"]
+[connection signal="pressed" from="Camera2D/CanvasLayer/Menu/MapMenu/MapBack" to="." method="_on_map_back_pressed"]

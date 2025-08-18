@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://2ge0qta3pnwv" path="res://Textures/MoveAni/MoveAni7.png" id="7_du4wo"]
 [ext_resource type="Texture2D" uid="uid://dog4g1h8akqxu" path="res://Textures/MoveAni/MoveAni8.png" id="8_ewfn5"]
 [ext_resource type="Texture2D" uid="uid://r617nk5fe5ek" path="res://Textures/MoveAni/MoveAni9.png" id="9_1yq06"]
-[ext_resource type="Script" path="res://MoveAniScript.gd" id="10_ssuxc"]
+[ext_resource type="Script" uid="uid://du55ytqaihnbc" path="res://MoveAniScript.gd" id="10_ssuxc"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_s1pb3"]
 animations = [{
@@ -78,8 +78,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_d0irh"]
 _data = {
-"MoveAni": SubResource("Animation_vqph1"),
-"RESET": SubResource("Animation_odu4a")
+&"MoveAni": SubResource("Animation_vqph1"),
+&"RESET": SubResource("Animation_odu4a")
 }
 
 [node name="MoveSprite" type="AnimatedSprite2D"]
@@ -90,7 +90,7 @@ script = ExtResource("10_ssuxc")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_d0irh")
+&"": SubResource("AnimationLibrary_d0irh")
 }
 autoplay = "MoveAni"
 

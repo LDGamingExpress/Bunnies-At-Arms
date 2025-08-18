@@ -26,6 +26,8 @@ var AbleToBuild = false
 var Building = false
 var BuildingI = null
 var BuildingT = null
+var JustPressedButton = false
+#var AbilityPressed = 0
 
 var BuildDict = {1: "Build1",2: "Build2",3: "Build3",4: "Build4",5: "Build5",6: "Build6",7: "Build7"}
 
@@ -33,17 +35,22 @@ func _ready() -> void:
 	MusicPlayer()
 
 func _physics_process(delta: float) -> void:
-	
+	#print(Globals.GameMode)
+	#print(Globals.Units)
 	# UI Update Code:
+	
 	$Camera2D/CanvasLayer/HBoxContainer/PanelContainer/BPLabel.text = "BunnyPower:\n" + str(Globals.BunnyPower[0])
 	$Camera2D/CanvasLayer/HBoxContainer/PanelContainer2/MunitionsLabel.text = "Munitions:\n" + str(Globals.Munitions[0])
 	$Camera2D/CanvasLayer/HBoxContainer/PanelContainer3/FuelLabel.text = "Fuel:\n" + str(Globals.Fuel[0])
-	
-	
+	if get_viewport().get_mouse_position().y >= get_viewport_rect().size.y - 120:
+		Globals.Menu = true
+	else:
+		Globals.Menu = false
 	# End of UI Update Code
 	
 	#print(Globals.UnitsSelected)
-	if Input.is_action_just_pressed("Select") and (AbilityUse == true or Building == true):
+	
+	if Input.is_action_just_pressed("Select") and (AbilityUse == true or Building == true) and Globals.Menu == false:
 		if AllowAbility and UnitWAbility != null:
 			var dis = sqrt(pow(Globals.MousePos.x - UnitWAbility.global_position.x,2) + pow(Globals.MousePos.y - UnitWAbility.global_position.y,2))
 			match AbilitySelected:
@@ -177,6 +184,29 @@ func _physics_process(delta: float) -> void:
 	
 	if Globals.UnitPanelShow != null:
 		var BuildStart = null
+		match Globals.CurrentUnitIndex:
+			0:
+				$Camera2D/CanvasLayer/RifleMenu.visible = true
+			1:
+				$Camera2D/CanvasLayer/ReconMenu.visible = true
+			2:
+				$Camera2D/CanvasLayer/SMGMenu.visible = true
+			3:
+				$Camera2D/CanvasLayer/MGMenu.visible = true
+			4:
+				$Camera2D/CanvasLayer/EngineerMenu.visible = true
+			5:
+				$Camera2D/CanvasLayer/ATMenu.visible = true
+			10:
+				$Camera2D/CanvasLayer/TentMenu.visible = true
+			11:
+				$Camera2D/CanvasLayer/MotorPoolMenu.visible = true
+			12:
+				$Camera2D/CanvasLayer/DepotMenu.visible = true
+			13:
+				$Camera2D/CanvasLayer/RadioMenu.visible = true
+			16:
+				$Camera2D/CanvasLayer/HQMenu.visible = true
 		for i in range(0,Globals.UnitAbilities[Globals.CurrentUnitIndex].size()):
 			match Globals.UnitAbilities[Globals.CurrentUnitIndex][i]:
 				'Grenade':
@@ -347,7 +377,19 @@ func _physics_process(delta: float) -> void:
 							#print("Created")
 							#print(NewObj.global_position)
 							#print(Globals.MousePos)
-	if Building == true:
+	else:
+		$Camera2D/CanvasLayer/RifleMenu.visible = false
+		$Camera2D/CanvasLayer/ReconMenu.visible = false
+		$Camera2D/CanvasLayer/SMGMenu.visible = false
+		$Camera2D/CanvasLayer/MGMenu.visible = false
+		$Camera2D/CanvasLayer/EngineerMenu.visible = false
+		$Camera2D/CanvasLayer/ATMenu.visible = false
+		$Camera2D/CanvasLayer/TentMenu.visible = false
+		$Camera2D/CanvasLayer/MotorPoolMenu.visible = false
+		$Camera2D/CanvasLayer/DepotMenu.visible = false
+		$Camera2D/CanvasLayer/RadioMenu.visible = false
+		$Camera2D/CanvasLayer/HQMenu.visible = false
+	if Building == true and Globals.Menu == false:
 		$BuildArea.global_position = Globals.MousePos
 		if sqrt(pow(Globals.MousePos.x - Globals.UnitsSelected[0].global_position.x,2) + pow(Globals.MousePos.y - Globals.UnitsSelected[0].global_position.y,2)) <= AbilityRange:
 			if $BuildArea/BuildAreaD.has_overlapping_bodies() == true:
@@ -359,7 +401,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			AbleToBuild = false
 			$BuildArea.self_modulate = Color8(255,0,0,255)
-	if AbilityUse == true:
+	if AbilityUse == true and Globals.Menu == false:
 		$AbilitySprite.global_position = Globals.MousePos
 		if sqrt(pow(Globals.MousePos.x - Globals.UnitsSelected[0].global_position.x,2) + pow(Globals.MousePos.y - Globals.UnitsSelected[0].global_position.y,2)) <= AbilityRange:
 			AllowAbility = true
@@ -383,7 +425,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	velocity = Vector2(0,0)
 	
-	if Input.is_action_pressed("Select"):
+	if Input.is_action_pressed("Select") and Globals.Menu == false:
 		if SelectionStarted == false:
 			SelectionStarted = true
 			SelectionSquare.scale = Vector2(1/19,1/19)
@@ -394,7 +436,7 @@ func _physics_process(delta: float) -> void:
 			var SelectionDis = Vector2(Globals.MousePos.x - SelectionStartPos.x,Globals.MousePos.y - SelectionStartPos.y)
 			SelectionSquare.global_position = SelectionDis/2 + SelectionStartPos
 			SelectionSquare.scale = Vector2(abs(SelectionDis.x)/19,abs(SelectionDis.y)/19)
-	if Input.is_action_just_released("Select"):
+	if Input.is_action_just_released("Select") and Globals.Menu == false:
 		if Globals.UnitsSelected.size() > 0:
 			for i in range(0,Globals.UnitsSelected.size()):
 				if Globals.UnitsSelected.size() > i:
@@ -408,6 +450,18 @@ func _physics_process(delta: float) -> void:
 		$Sprite2D.visible = false
 		SelectionStarted = false
 		PossibleSelections = []
+	#AbilityPressed = 0
+	Input.action_release("Build1")
+	Input.action_release("Build2")
+	Input.action_release("Build3")
+	Input.action_release("Build4")
+	Input.action_release("Build5")
+	Input.action_release("Build6")
+	Input.action_release("Build7")
+	Input.action_release("Ability1")
+	Input.action_release("Ability2")
+	#OS.alert(Globals.UnitPanelShow)
+	GameOverCheck()
 
 
 func _on_selection_area_body_entered(body: Node2D) -> void:
@@ -459,3 +513,110 @@ func MusicPlayer():
 
 func _on_audio_stream_player_2d_finished() -> void:
 	MusicPlayer()
+
+
+func _on_pause_button_pressed() -> void:
+	get_tree().paused = true
+	$Camera2D/CanvasLayer/PauseButton.visible = false
+	$Camera2D/CanvasLayer/PauseMenu.visible = true
+
+
+func _on_resume_button_pressed() -> void:
+	get_tree().paused = false
+	$Camera2D/CanvasLayer/PauseButton.visible = true
+	$Camera2D/CanvasLayer/PauseMenu.visible = false
+
+
+func _on_main_menu_button_pressed() -> void:
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://MainMenu.tscn")
+
+
+func _on_exit_button_pressed() -> void:
+	get_tree().quit()
+
+func _on_tent_button_pressed() -> void:
+	Input.action_press("Build1")
+
+func _on_motor_pool_button_pressed() -> void:
+	Input.action_press("Build2")
+
+
+func _on_depot_button_pressed() -> void:
+	Input.action_press("Build3")
+
+
+func _on_radio_button_pressed() -> void:
+	Input.action_press("Build4")
+
+
+func _on_mines_button_pressed() -> void:
+	Input.action_press("Ability1")
+
+
+func _on_bunker_button_pressed() -> void:
+	Input.action_press("Build5")
+
+
+func _on_grenade_button_pressed() -> void:
+	Input.action_press("Ability1")
+
+
+func _on_satchel_button_pressed() -> void:
+	Input.action_press("Ability1")
+
+
+func _on_infantry_button_pressed() -> void:
+	Input.action_press("Build1")
+
+
+func _on_recon_button_pressed() -> void:
+	Input.action_press("Build2")
+
+
+func _on_smg_button_pressed() -> void:
+	Input.action_press("Build3")
+
+
+func _on_mg_button_pressed() -> void:
+	Input.action_press("Build4")
+
+
+func _on_eng_button_pressed() -> void:
+	Input.action_press("Build5")
+
+
+func _on_at_button_pressed() -> void:
+	Input.action_press("Build6")
+
+
+func _on_artillery_button_pressed() -> void:
+	Input.action_press("Ability1")
+
+
+func _on_airstrike_button_pressed() -> void:
+	Input.action_press("Ability2")
+
+func GameOverCheck():
+	await get_tree().create_timer(0.5).timeout
+	match Globals.GameMode:
+		"Victory Points":
+			if Globals.VictoryPoints[0] >= Globals.PointsNeeded:
+				$Camera2D/CanvasLayer/GameOverMenu/Label.text = "You Win!"
+				$Camera2D/CanvasLayer/GameOverMenu.visible = true
+				get_tree().paused = true
+			elif Globals.VictoryPoints[1] >= Globals.PointsNeeded:
+				$Camera2D/CanvasLayer/GameOverMenu/Label.text = "You Lost!"
+				$Camera2D/CanvasLayer/GameOverMenu.visible = true
+				get_tree().paused = true
+		"Elimination":
+			if Globals.Units[0] <= 0:
+				$Camera2D/CanvasLayer/GameOverMenu/Label.text = "You Lost!"
+				$Camera2D/CanvasLayer/GameOverMenu.visible = true
+				get_tree().paused = true
+			elif Globals.Units[1] <= 0:
+				$Camera2D/CanvasLayer/GameOverMenu/Label.text = "You Won!"
+				$Camera2D/CanvasLayer/GameOverMenu.visible = true
+				get_tree().paused = true
+		"Encircled":
+			pass

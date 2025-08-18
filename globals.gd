@@ -6,6 +6,8 @@ var UnitsSelected = []
 var UnitPanelShow = null
 var CurrentUnitIndex = null
 var GameMode = 'Elimination'
+var Menu = false
+var Units = [0,0]
 
 var PointsNeeded = 50000
 var ChangedMesh = false
@@ -45,21 +47,25 @@ var PlaneFCost = 150
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	#print(HoveringOverClickable)
-	if HoveringOverClickable <= 0:
-		HoveringOverClickable = 0
-		if UnitsSelected.size() > 0:
-			if EnemySelectable != null:
-				Input.set_custom_mouse_cursor(AttackCursor)
+	#print(Units)
+		#print(HoveringOverClickable)
+	if Menu:
+		Input.set_custom_mouse_cursor(null)
+	else:
+		if HoveringOverClickable <= 0:
+			HoveringOverClickable = 0
+			if UnitsSelected.size() > 0:
+				if EnemySelectable != null:
+					Input.set_custom_mouse_cursor(AttackCursor)
+				else:
+					Input.set_custom_mouse_cursor(MoveCursor)
 			else:
-				Input.set_custom_mouse_cursor(MoveCursor)
-		else:
-			Input.set_custom_mouse_cursor(DefaultCursor)
-	for i in UnitsSelected:
-		#var item = UnitsSelected[i]
-		var count = UnitsSelected.count(i)
-		if count > 1:
-			for a in range(0,count-1):
-				UnitsSelected.erase(i)
-	#print(UnitsSelected)
-#	MousePos = get_viewport().get_global_mouse_position()
+				Input.set_custom_mouse_cursor(DefaultCursor)
+		for i in UnitsSelected:
+			#var item = UnitsSelected[i]
+			var count = UnitsSelected.count(i)
+			if count > 1:
+				for a in range(0,count-1):
+					UnitsSelected.erase(i)
+		#print(UnitsSelected)
+	#	MousePos = get_viewport().get_global_mouse_position()

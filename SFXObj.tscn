@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://0aw1mgssjpoj"]
 
-[ext_resource type="Script" path="res://SFXScript.gd" id="1_41giy"]
+[ext_resource type="Script" uid="uid://p5jmpf1n1lsx" path="res://SFXScript.gd" id="1_41giy"]
 
 [node name="SFXObj" type="AudioStreamPlayer2D"]
 autoplay = true

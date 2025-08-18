@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dst2gyl2ver2u"]
 
-[ext_resource type="Script" path="res://ExplodingObj.gd" id="1_mne2b"]
+[ext_resource type="Script" uid="uid://nv1o30tyjmcy" path="res://ExplodingObj.gd" id="1_mne2b"]
 [ext_resource type="Texture2D" uid="uid://gjmtp3vdqqbd" path="res://Textures/BAA_MapTiles.png" id="2_g12am"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gjc6w"]

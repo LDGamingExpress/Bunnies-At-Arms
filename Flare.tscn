@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://6ctw6qwgpjea"]
 
 [ext_resource type="Texture2D" uid="uid://cq2fptvyywbld" path="res://Textures/Flare.png" id="1_qmqk3"]
-[ext_resource type="Script" path="res://FlareScript.gd" id="1_w6bay"]
+[ext_resource type="Script" uid="uid://dm27rru4qwv2b" path="res://FlareScript.gd" id="1_w6bay"]
 [ext_resource type="Texture2D" uid="uid://8a0d1nqp7djt" path="res://Textures/FlareParticle.png" id="2_sv1p6"]
 [ext_resource type="Texture2D" uid="uid://bhrxqop0qvl11" path="res://Textures/FlareLight.png" id="3_8ail0"]
 
@@ -37,8 +37,8 @@ texture = ExtResource("1_qmqk3")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="Sprite2D"]
 amount = 20
-process_material = SubResource("ParticleProcessMaterial_5ddnd")
 texture = ExtResource("2_sv1p6")
+process_material = SubResource("ParticleProcessMaterial_5ddnd")
 
 [node name="PointLight2D" type="PointLight2D" parent="Sprite2D"]
 rotation = 2.94263

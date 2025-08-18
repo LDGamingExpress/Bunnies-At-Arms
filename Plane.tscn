@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dn1au804sptii"]
 
 [ext_resource type="Texture2D" uid="uid://cfgpvagvsvydh" path="res://Textures/BAA_UnitTiles.png" id="1_yf1gd"]
-[ext_resource type="Script" path="res://PlaneScript.gd" id="2_xa48x"]
+[ext_resource type="Script" uid="uid://d3618nxl8yf6b" path="res://PlaneScript.gd" id="2_xa48x"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_84yie"]
 atlas = ExtResource("1_yf1gd")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=62 format=3 uid="uid://ke31dymdk3hu"]
 
 [ext_resource type="Texture2D" uid="uid://cfgpvagvsvydh" path="res://Textures/BAA_UnitTiles.png" id="1_5xegg"]
-[ext_resource type="Script" path="res://UnitActorScript.gd" id="1_dptay"]
+[ext_resource type="Script" uid="uid://pwubqvmmscs0" path="res://UnitActorScript.gd" id="1_dptay"]
 [ext_resource type="Texture2D" uid="uid://d7cfg2ipt2pg" path="res://Textures/BAA_GunTiles.png" id="3_6livi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wcqlw"]

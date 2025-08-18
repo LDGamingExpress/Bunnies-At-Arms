@@ -1,6 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://o1mm2ci8jvc"]
+[gd_scene load_steps=11 format=3 uid="uid://o1mm2ci8jvc"]
 
-[ext_resource type="Script" path="res://PlayerScript.gd" id="1_m4ijf"]
+[ext_resource type="Script" uid="uid://7m0l733yblpa" path="res://PlayerScript.gd" id="1_m4ijf"]
 [ext_resource type="Theme" uid="uid://bd0je60acp7ff" path="res://MainTheme.tres" id="2_0yxj5"]
 [ext_resource type="Texture2D" uid="uid://bk474hqpn514c" path="res://Textures/SelectionSquare.png" id="2_pqenh"]
 [ext_resource type="PackedScene" uid="uid://cfldqr5t8q2fg" path="res://UIMain.tscn" id="3_oi5hu"]
@@ -19,6 +19,9 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cxr5p"]
+bg_color = Color(0.501961, 0.317647, 0.211765, 1)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kej0h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pw0ll"]
@@ -28,12 +31,14 @@ radius = 60.0
 size = Vector2(19, 19)
 
 [node name="Player" type="CharacterBody2D"]
+process_mode = 3
 script = ExtResource("1_m4ijf")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
+layer = 4
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Camera2D/CanvasLayer"]
 offset_right = 96.0
@@ -75,6 +80,531 @@ text = "Fuel:
 
 [node name="Control" parent="Camera2D/CanvasLayer" instance=ExtResource("3_oi5hu")]
 
+[node name="MenuPanel" type="Panel" parent="Camera2D/CanvasLayer"]
+custom_minimum_size = Vector2(0, 120)
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -120.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_cxr5p")
+
+[node name="EngineerMenu" type="HBoxContainer" parent="Camera2D/CanvasLayer"]
+visible = false
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("2_0yxj5")
+
+[node name="TentButton" type="Button" parent="Camera2D/CanvasLayer/EngineerMenu"]
+layout_mode = 2
+tooltip_text = "Creates Infantry
+200 BP
+50 M
+0 F"
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 32
+text = "Build
+Tent"
+
+[node name="MotorPoolButton" type="Button" parent="Camera2D/CanvasLayer/EngineerMenu"]
+layout_mode = 2
+tooltip_text = "Creates Light Vehicles
+250 BP
+150 M
+100 F"
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 32
+text = "Build
+Motor
+Pool"
+
+[node name="DepotButton" type="Button" parent="Camera2D/CanvasLayer/EngineerMenu"]
+layout_mode = 2
+tooltip_text = "Creates Heavy Vehicles
+300 BP
+250 M
+280 F"
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 32
+text = "Build
+Depot"
+
+[node name="RadioButton" type="Button" parent="Camera2D/CanvasLayer/EngineerMenu"]
+layout_mode = 2
+tooltip_text = "Special Abilities
+250 BP
+50 M
+50 F"
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 32
+text = "Build
+Radio"
+
+[node name="MinesButton" type="Button" parent="Camera2D/CanvasLayer/EngineerMenu"]
+layout_mode = 2
+tooltip_text = "Small Explosive Mines
+0 BP
+50 M
+0 F"
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 32
+text = "Lay
+Mines"
+
+[node name="BunkerButton" type="Button" parent="Camera2D/CanvasLayer/EngineerMenu"]
+layout_mode = 2
+tooltip_text = "MG Bunker To Defend Areas
+180 BP
+100 M
+0 F"
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 32
+text = "Build
+Bunker"
+
+[node name="RifleMenu" type="HBoxContainer" parent="Camera2D/CanvasLayer"]
+visible = false
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("2_0yxj5")
+
+[node name="GrenadeButton" type="Button" parent="Camera2D/CanvasLayer/RifleMenu"]
+layout_mode = 2
+tooltip_text = "Small Explosion
+0 BP
+25 M
+0 F"
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 32
+text = "Throw
+A
+Grenade
+"
+
+[node name="ReconMenu" type="HBoxContainer" parent="Camera2D/CanvasLayer"]
+visible = false
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("2_0yxj5")
+
+[node name="GrenadeButton" type="Button" parent="Camera2D/CanvasLayer/ReconMenu"]
+layout_mode = 2
+tooltip_text = "Small Explosion
+0 BP
+25 M
+0 F"
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 32
+text = "Throw
+A
+Grenade
+"
+
+[node name="SMGMenu" type="HBoxContainer" parent="Camera2D/CanvasLayer"]
+visible = false
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("2_0yxj5")
+
+[node name="SatchelButton" type="Button" parent="Camera2D/CanvasLayer/SMGMenu"]
+layout_mode = 2
+tooltip_text = "Large Explosion
+0 BP
+40 M
+0 F"
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 32
+text = "Throw
+A Satchel
+Charge"
+
+[node name="ATMenu" type="HBoxContainer" parent="Camera2D/CanvasLayer"]
+visible = false
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("2_0yxj5")
+
+[node name="SatchelButton" type="Button" parent="Camera2D/CanvasLayer/ATMenu"]
+layout_mode = 2
+tooltip_text = "Large Explosion
+0 BP
+40 M
+0 F"
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 32
+text = "Throw
+A Satchel
+Charge"
+
+[node name="MGMenu" type="HBoxContainer" parent="Camera2D/CanvasLayer"]
+visible = false
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("2_0yxj5")
+
+[node name="GrenadeButton" type="Button" parent="Camera2D/CanvasLayer/MGMenu"]
+layout_mode = 2
+tooltip_text = "Small Explosion
+0 BP
+25 M
+0 F"
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 32
+text = "Throw
+A
+Grenade
+"
+
+[node name="TentMenu" type="HBoxContainer" parent="Camera2D/CanvasLayer"]
+visible = false
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -795.0
+offset_top = -116.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("2_0yxj5")
+alignment = 1
+
+[node name="InfantryButton" type="Button" parent="Camera2D/CanvasLayer/TentMenu"]
+layout_mode = 2
+tooltip_text = "Basic Infantry
+70 BP
+25 M
+0 F"
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 32
+text = "Recruit
+Infantry
+"
+
+[node name="ReconButton" type="Button" parent="Camera2D/CanvasLayer/TentMenu"]
+layout_mode = 2
+tooltip_text = "Sniper Infantry
+100 BP
+50 M
+0 F"
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 32
+text = "Recruit
+Recon"
+
+[node name="SMGButton" type="Button" parent="Camera2D/CanvasLayer/TentMenu"]
+layout_mode = 2
+tooltip_text = "Fast, High Damage, Short Range
+100 BP
+75 M
+0 F"
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 32
+text = "Recruit
+SMG"
+
+[node name="MGButton" type="Button" parent="Camera2D/CanvasLayer/TentMenu"]
+layout_mode = 2
+tooltip_text = "Machine Guns to Shred Infantry
+125 BP
+100 M
+0 F"
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 32
+text = "Recruit
+MG"
+
+[node name="EngButton" type="Button" parent="Camera2D/CanvasLayer/TentMenu"]
+layout_mode = 2
+tooltip_text = "Used for Building
+150 BP
+15 M
+0 F"
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 32
+text = "Recruit
+Engineer"
+
+[node name="ATButton" type="Button" parent="Camera2D/CanvasLayer/TentMenu"]
+layout_mode = 2
+tooltip_text = "Fires Rockets
+125 BP
+150 M
+0 F"
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 32
+text = "Recruit
+Anti-
+Tank"
+
+[node name="MotorPoolMenu" type="HBoxContainer" parent="Camera2D/CanvasLayer"]
+visible = false
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -255.0
+offset_top = -116.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("2_0yxj5")
+
+[node name="CarButton" type="Button" parent="Camera2D/CanvasLayer/MotorPoolMenu"]
+layout_mode = 2
+tooltip_text = "Fast Car With MG
+150 BP
+70 M
+50 F"
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 32
+text = "Recruit
+Armored
+Car
+"
+
+[node name="LTankButton" type="Button" parent="Camera2D/CanvasLayer/MotorPoolMenu"]
+layout_mode = 2
+tooltip_text = "Small Tank
+200 BP
+100 M
+100 F"
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 32
+text = "Recruit
+Light
+Tank"
+
+[node name="DepotMenu" type="HBoxContainer" parent="Camera2D/CanvasLayer"]
+visible = false
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -234.0
+offset_top = -116.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("2_0yxj5")
+
+[node name="MTankButton" type="Button" parent="Camera2D/CanvasLayer/DepotMenu"]
+layout_mode = 2
+tooltip_text = "Medium Tank
+350 BP
+200 M
+250 F"
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 32
+text = "Recruit
+Medium
+Tank
+"
+
+[node name="HTankButton" type="Button" parent="Camera2D/CanvasLayer/DepotMenu"]
+layout_mode = 2
+tooltip_text = "Medium Tank
+550 BP
+350 M
+350 F"
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 32
+text = "Recruit
+Heavy
+Tank"
+
+[node name="RadioMenu" type="HBoxContainer" parent="Camera2D/CanvasLayer"]
+visible = false
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("2_0yxj5")
+
+[node name="ArtilleryButton" type="Button" parent="Camera2D/CanvasLayer/RadioMenu"]
+layout_mode = 2
+tooltip_text = "Artillery Barrage
+0 BP
+180 M
+0 F"
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 32
+text = "Call
+in
+Artillery"
+
+[node name="AirstrikeButton" type="Button" parent="Camera2D/CanvasLayer/RadioMenu"]
+layout_mode = 2
+tooltip_text = "Large Airstrike
+0 BP
+250 M
+150 F"
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 32
+text = "Call
+in
+Airstrike"
+
+[node name="PauseButton" type="Button" parent="Camera2D/CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -8.0
+offset_right = 8.0
+grow_vertical = 0
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_0yxj5")
+theme_override_font_sizes/font_size = 32
+text = "
+Pause
+ "
+
+[node name="HQMenu" type="HBoxContainer" parent="Camera2D/CanvasLayer"]
+visible = false
+custom_minimum_size = Vector2(0, 115)
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -280.0
+offset_top = -98.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("2_0yxj5")
+
+[node name="InfantryButton" type="Button" parent="Camera2D/CanvasLayer/HQMenu"]
+layout_mode = 2
+tooltip_text = "Basic Infantry
+70 BP
+25 M
+0 F"
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 32
+text = "Recruit
+Infantry
+"
+
+[node name="ReconButton" type="Button" parent="Camera2D/CanvasLayer/HQMenu"]
+layout_mode = 2
+tooltip_text = "Used for Building
+150 BP
+15 M
+0 F"
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 32
+text = "Recruit
+Engineer"
+
+[node name="PauseMenu" type="HBoxContainer" parent="Camera2D/CanvasLayer"]
+visible = false
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+theme = ExtResource("2_0yxj5")
+
+[node name="ResumeButton" type="Button" parent="Camera2D/CanvasLayer/PauseMenu"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 32
+text = "
+Resume
+ "
+
+[node name="MainMenuButton" type="Button" parent="Camera2D/CanvasLayer/PauseMenu"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 32
+text = "Main
+Menu"
+
+[node name="ExitButton" type="Button" parent="Camera2D/CanvasLayer/PauseMenu"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 32
+text = "Exit
+Game"
+
+[node name="GameOverMenu" type="VBoxContainer" parent="Camera2D/CanvasLayer"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -42.0
+offset_top = -20.0
+offset_right = 42.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_0yxj5")
+alignment = 1
+
+[node name="Label" type="Label" parent="Camera2D/CanvasLayer/GameOverMenu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "You Win!"
+horizontal_alignment = 1
+
+[node name="MainMenuButton" type="Button" parent="Camera2D/CanvasLayer/GameOverMenu"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 64
+text = "Main Menu"
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
 self_modulate = Color(1, 1, 1, 0.494118)
@@ -113,6 +643,36 @@ shape = SubResource("RectangleShape2D_s8fyj")
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 bus = &"Music"
 
+[connection signal="pressed" from="Camera2D/CanvasLayer/EngineerMenu/TentButton" to="." method="_on_tent_button_pressed"]
+[connection signal="pressed" from="Camera2D/CanvasLayer/EngineerMenu/MotorPoolButton" to="." method="_on_motor_pool_button_pressed"]
+[connection signal="pressed" from="Camera2D/CanvasLayer/EngineerMenu/DepotButton" to="." method="_on_depot_button_pressed"]
+[connection signal="pressed" from="Camera2D/CanvasLayer/EngineerMenu/RadioButton" to="." method="_on_radio_button_pressed"]
+[connection signal="pressed" from="Camera2D/CanvasLayer/EngineerMenu/MinesButton" to="." method="_on_mines_button_pressed"]
+[connection signal="pressed" from="Camera2D/CanvasLayer/EngineerMenu/BunkerButton" to="." method="_on_bunker_button_pressed"]
+[connection signal="pressed" from="Camera2D/CanvasLayer/RifleMenu/GrenadeButton" to="." method="_on_grenade_button_pressed"]
+[connection signal="pressed" from="Camera2D/CanvasLayer/ReconMenu/GrenadeButton" to="." method="_on_grenade_button_pressed"]
+[connection signal="pressed" from="Camera2D/CanvasLayer/SMGMenu/SatchelButton" to="." method="_on_satchel_button_pressed"]
+[connection signal="pressed" from="Camera2D/CanvasLayer/ATMenu/SatchelButton" to="." method="_on_satchel_button_pressed"]
+[connection signal="pressed" from="Camera2D/CanvasLayer/MGMenu/GrenadeButton" to="." method="_on_grenade_button_pressed"]
+[connection signal="pressed" from="Camera2D/CanvasLayer/TentMenu/InfantryButton" to="." method="_on_infantry_button_pressed"]
+[connection signal="pressed" from="Camera2D/CanvasLayer/TentMenu/ReconButton" to="." method="_on_recon_button_pressed"]
+[connection signal="pressed" from="Camera2D/CanvasLayer/TentMenu/SMGButton" to="." method="_on_smg_button_pressed"]
+[connection signal="pressed" from="Camera2D/CanvasLayer/TentMenu/MGButton" to="." method="_on_mg_button_pressed"]
+[connection signal="pressed" from="Camera2D/CanvasLayer/TentMenu/EngButton" to="." method="_on_eng_button_pressed"]
+[connection signal="pressed" from="Camera2D/CanvasLayer/TentMenu/ATButton" to="." method="_on_at_button_pressed"]
+[connection signal="pressed" from="Camera2D/CanvasLayer/MotorPoolMenu/CarButton" to="." method="_on_infantry_button_pressed"]
+[connection signal="pressed" from="Camera2D/CanvasLayer/MotorPoolMenu/LTankButton" to="." method="_on_recon_button_pressed"]
+[connection signal="pressed" from="Camera2D/CanvasLayer/DepotMenu/MTankButton" to="." method="_on_infantry_button_pressed"]
+[connection signal="pressed" from="Camera2D/CanvasLayer/DepotMenu/HTankButton" to="." method="_on_recon_button_pressed"]
+[connection signal="pressed" from="Camera2D/CanvasLayer/RadioMenu/ArtilleryButton" to="." method="_on_artillery_button_pressed"]
+[connection signal="pressed" from="Camera2D/CanvasLayer/RadioMenu/AirstrikeButton" to="." method="_on_airstrike_button_pressed"]
+[connection signal="pressed" from="Camera2D/CanvasLayer/PauseButton" to="." method="_on_pause_button_pressed"]
+[connection signal="pressed" from="Camera2D/CanvasLayer/HQMenu/InfantryButton" to="." method="_on_infantry_button_pressed"]
+[connection signal="pressed" from="Camera2D/CanvasLayer/HQMenu/ReconButton" to="." method="_on_recon_button_pressed"]
+[connection signal="pressed" from="Camera2D/CanvasLayer/PauseMenu/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Camera2D/CanvasLayer/PauseMenu/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="Camera2D/CanvasLayer/PauseMenu/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="Camera2D/CanvasLayer/GameOverMenu/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
 [connection signal="body_entered" from="Sprite2D/SelectionArea" to="." method="_on_selection_area_body_entered"]
 [connection signal="body_exited" from="Sprite2D/SelectionArea" to="." method="_on_selection_area_body_exited"]
 [connection signal="area_entered" from="AbilitySprite/AbilityArea" to="." method="_on_ability_area_area_entered"]

@@ -18,9 +18,11 @@ var Actors = []
 var isBuilding = false
 var isVehicle = false
 var SelectCursor = preload("res://Textures/BAASelectCursor.png")
+var Deleting = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Globals.Units[Team-1] += 1
 	$UnitIcon.global_position = global_position
 	match Type:
 		"HQ":
@@ -409,6 +411,9 @@ func _process(delta: float) -> void:
 			Globals.HoveringOverClickable -= 1
 			PlayerHovering = 0
 		#print(Globals.HoveringOverClickable)
+		if Deleting == false:
+			Globals.Units[Team-1] -= 1
+			Deleting = true
 		queue_free()
 	else:
 		if Selected == 1:
@@ -477,7 +482,7 @@ func _process(delta: float) -> void:
 		else:
 			$UnitIcon.global_position = global_position + Vector2(0,-32)
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
+	if event is InputEventMouseButton and Globals.Menu == false:
 		if PlayerHovering == 1:
 			#Globals.HoveringOverClickable -= 1
 			PlayerHovering = 0
@@ -497,7 +502,7 @@ func _input(event: InputEvent) -> void:
 					Input.set_custom_mouse_cursor(SelectCursor)
 					Globals.HoveringOverClickable += 1
 			PlayerHovering = 1
-		if Input.is_action_just_pressed("Select") and Team == 1:
+		if Input.is_action_just_pressed("Select") and Team == 1 and Globals.Menu == false:
 			if PlayerHovering == 1:
 				if Selected == 0:
 					Selected = 1
@@ -515,7 +520,7 @@ func _input(event: InputEvent) -> void:
 			elif Selected == 1:
 				UnSelect()
 		if Selected == 1:
-			if (event.is_pressed() and event.button_index == MOUSE_BUTTON_RIGHT) and isBuilding == false:
+			if (event.is_pressed() and event.button_index == MOUSE_BUTTON_RIGHT) and isBuilding == false and Globals.Menu == false:
 				var IndexInList = Globals.UnitsSelected.find(self) + 1
 				var ListLength = Globals.UnitsSelected.size() + 1
 				if ListLength == 1:

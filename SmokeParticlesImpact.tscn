@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://busit8nbdwr0s"]
 
 [ext_resource type="Texture2D" uid="uid://jxi7n15np3u5" path="res://Textures/SmokeParticle.png" id="1_teglr"]
-[ext_resource type="Script" path="res://BloodParticlesScript.gd" id="2_nhk3k"]
+[ext_resource type="Script" uid="uid://dppxuytvr31qb" path="res://BloodParticlesScript.gd" id="2_nhk3k"]
 
 [sub_resource type="Curve" id="Curve_0ff0p"]
 _data = [Vector2(0, 0.054945), 0.0, 4.05748, 0, 0, Vector2(0.553333, 0.296703), 0.0, 0.0, 0, 0]
@@ -25,10 +25,10 @@ scale_curve = SubResource("CurveTexture_c7y2g")
 z_index = 1
 emitting = false
 amount = 12
-process_material = SubResource("ParticleProcessMaterial_4y5n7")
 texture = ExtResource("1_teglr")
 one_shot = true
 explosiveness = 0.95
+process_material = SubResource("ParticleProcessMaterial_4y5n7")
 script = ExtResource("2_nhk3k")
 
 [connection signal="finished" from="." to="." method="_on_finished"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://dxvners18g7kr"]
 
-[ext_resource type="Script" path="res://BulletScript.gd" id="1_af8bg"]
+[ext_resource type="Script" uid="uid://cmkntevpep1ne" path="res://BulletScript.gd" id="1_af8bg"]
 [ext_resource type="Texture2D" uid="uid://bmqqoxb64xyc6" path="res://Textures/Bullet.png" id="2_p0mrc"]
 [ext_resource type="Texture2D" uid="uid://jxi7n15np3u5" path="res://Textures/SmokeParticle.png" id="2_qyuho"]
 
@@ -33,10 +33,10 @@ script = ExtResource("1_af8bg")
 
 [node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
 amount = 100
-process_material = SubResource("ParticleProcessMaterial_2ucup")
 texture = ExtResource("2_qyuho")
 lifetime = 0.5
 trail_lifetime = 3.0
+process_material = SubResource("ParticleProcessMaterial_2ucup")
 
 [node name="Area2D" type="Area2D" parent="."]
 

@@ -26,4 +26,5 @@ func MakeUnit():
 		NewObj.global_position = global_position + Vector2(rng.randf_range(-60,60),rng.randf_range(-60,60))
 		NewObj.Type = UnitType
 		NewObj.Team = Team
-		get_parent().add_child(NewObj)
+		get_parent().call_deferred("add_child",NewObj)
+		#add_child(NewObj)

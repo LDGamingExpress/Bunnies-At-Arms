@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://moay3qpb8c0e"]
 
 [ext_resource type="Texture2D" uid="uid://blk0gtx2pelb5" path="res://Textures/ControlPoint.png" id="1_bxxv0"]
-[ext_resource type="Script" path="res://ControlPointScript.gd" id="1_qlmqi"]
+[ext_resource type="Script" uid="uid://ciowgqut6rm7l" path="res://ControlPointScript.gd" id="1_qlmqi"]
 [ext_resource type="Texture2D" uid="uid://dbignfamxvth2" path="res://Textures/ControlArea.png" id="2_p35c0"]
 [ext_resource type="Theme" uid="uid://bd0je60acp7ff" path="res://MainTheme.tres" id="4_tnkk2"]
 

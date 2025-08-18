@@ -1,7 +1,7 @@
 [gd_scene load_steps=37 format=3 uid="uid://bl41bmdw7f06q"]
 
 [ext_resource type="Texture2D" uid="uid://xfjyri0wrabf" path="res://Textures/BAA_UnitSymbols.png" id="1_bgkb8"]
-[ext_resource type="Script" path="res://UnitObjScript.gd" id="2_r6mwj"]
+[ext_resource type="Script" uid="uid://l7o83w35eecu" path="res://UnitObjScript.gd" id="2_r6mwj"]
 [ext_resource type="Texture2D" uid="uid://bajiiwmmg7vc6" path="res://Textures/BAA_UnitSelected.png" id="3_v8l3e"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d357s"]

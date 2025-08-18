@@ -1,7 +1,7 @@
 [gd_scene load_steps=22 format=3 uid="uid://bkqiyxagjx20"]
 
 [ext_resource type="Texture2D" uid="uid://dwjg0kk8rnst3" path="res://Textures/BloodParticle.png" id="1_jg74c"]
-[ext_resource type="Script" path="res://DeathParticles.gd" id="2_e3qen"]
+[ext_resource type="Script" uid="uid://4s5iynkaf5ey" path="res://DeathParticles.gd" id="2_e3qen"]
 [ext_resource type="Texture2D" uid="uid://dqacxvrhkulmr" path="res://Textures/BunnyGib1.png" id="3_ojooc"]
 [ext_resource type="Texture2D" uid="uid://c5a5qewmkocbx" path="res://Textures/BunnyGib3.png" id="4_kgd3l"]
 
@@ -55,6 +55,9 @@ gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_wusmp")
 color_ramp = SubResource("GradientTexture1D_5p78a")
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_x8ey2"]
+load_path = "res://.godot/imported/BunnyGib2.png-072225e0032093369bb5d9594856ac89.ctex"
+
 [sub_resource type="Curve" id="Curve_dgdlg"]
 _data = [Vector2(0, 0.263736), 0.0, 4.04595, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
@@ -72,9 +75,6 @@ initial_velocity_max = 18.0
 gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_70myo")
 color_ramp = SubResource("GradientTexture1D_5p78a")
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_x8ey2"]
-load_path = "res://.godot/imported/BunnyGib2.png-072225e0032093369bb5d9594856ac89.ctex"
 
 [sub_resource type="Curve" id="Curve_ps43d"]
 _data = [Vector2(0, 0.263736), 0.0, 4.04595, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -97,34 +97,34 @@ color_ramp = SubResource("GradientTexture1D_5p78a")
 [node name="DeathParticles" type="GPUParticles2D"]
 emitting = false
 amount = 12
-process_material = SubResource("ParticleProcessMaterial_atq25")
 texture = ExtResource("1_jg74c")
 one_shot = true
 explosiveness = 0.95
+process_material = SubResource("ParticleProcessMaterial_atq25")
 script = ExtResource("2_e3qen")
 
 [node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
 emitting = false
 amount = 3
-process_material = SubResource("ParticleProcessMaterial_ni5p6")
 texture = ExtResource("3_ojooc")
 one_shot = true
 explosiveness = 0.95
+process_material = SubResource("ParticleProcessMaterial_ni5p6")
 
 [node name="GPUParticles2D3" type="GPUParticles2D" parent="."]
 emitting = false
 amount = 3
-process_material = SubResource("ParticleProcessMaterial_1chyj")
 texture = SubResource("CompressedTexture2D_x8ey2")
 one_shot = true
 explosiveness = 0.95
+process_material = SubResource("ParticleProcessMaterial_1chyj")
 
 [node name="GPUParticles2D4" type="GPUParticles2D" parent="."]
 emitting = false
 amount = 3
-process_material = SubResource("ParticleProcessMaterial_7srlf")
 texture = ExtResource("4_kgd3l")
 one_shot = true
 explosiveness = 0.95
+process_material = SubResource("ParticleProcessMaterial_7srlf")
 
 [connection signal="finished" from="." to="." method="_on_finished"]

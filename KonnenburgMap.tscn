@@ -1,14 +1,14 @@
 [gd_scene load_steps=33 format=4 uid="uid://djlhg0tc8vnk4"]
 
 [ext_resource type="Texture2D" uid="uid://gjmtp3vdqqbd" path="res://Textures/BAA_MapTiles.png" id="1_6umsv"]
-[ext_resource type="Script" path="res://TestSceneScript.gd" id="1_b8ima"]
+[ext_resource type="Script" uid="uid://ch8akeek2nmeu" path="res://TestSceneScript.gd" id="1_b8ima"]
 [ext_resource type="PackedScene" uid="uid://caw0qddvdqti4" path="res://ExplodingBarrels1.tscn" id="2_a135w"]
 [ext_resource type="PackedScene" uid="uid://dk1tja7euk1cl" path="res://ExplodingBarrels2.tscn" id="3_ftdsp"]
 [ext_resource type="PackedScene" uid="uid://dst2gyl2ver2u" path="res://ExplodingBarrels3.tscn" id="4_br275"]
 [ext_resource type="PackedScene" uid="uid://bjqfddi77sti3" path="res://ExplodingBarrels4.tscn" id="5_ql2v3"]
 [ext_resource type="PackedScene" uid="uid://o1mm2ci8jvc" path="res://Player.tscn" id="6_cywka"]
-[ext_resource type="Script" path="res://EnemyAIScript.gd" id="7_64y2c"]
-[ext_resource type="Shader" path="res://FogShader.gdshader" id="8_77mcu"]
+[ext_resource type="Script" uid="uid://b381hrf6w2ncy" path="res://EnemyAIScript.gd" id="7_64y2c"]
+[ext_resource type="Shader" uid="uid://b4sxu3xunuglv" path="res://FogShader.gdshader" id="8_77mcu"]
 [ext_resource type="Texture2D" uid="uid://bpo5x3kotk1cd" path="res://Textures/BAABackground.png" id="9_2yu3r"]
 [ext_resource type="PackedScene" uid="uid://bl41bmdw7f06q" path="res://UnitObj.tscn" id="10_g2cs2"]
 [ext_resource type="PackedScene" uid="uid://moay3qpb8c0e" path="res://ControlPoint.tscn" id="11_b16tt"]
@@ -530,9 +530,9 @@ noise = SubResource("FastNoiseLite_vtntn")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ggon3"]
 shader = ExtResource("8_77mcu")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_2vm72")
 shader_parameter/density = 0.25
 shader_parameter/speed = Vector2(0.02, 0.01)
-shader_parameter/noise_texture = SubResource("NoiseTexture2D_2vm72")
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_b8ima")
